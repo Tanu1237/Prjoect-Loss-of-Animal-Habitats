@@ -6,14 +6,15 @@ const Endangered = () => {
 
   useEffect(() => {
     document.body.style.overflow = selectedAnimal ? "hidden" : "auto";
+    document.body.style.backgroundColor = "black"; // prevents flash
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [selectedAnimal]);
 
   return (
-    <div className="relative text-white overflow-hidden">
-      {/* 🎥 BACKGROUND VIDEO (public/rainforest.mp4) */}
+    <div className="fixed inset-0 text-white overflow-auto">
+      {/* 🎥 BACKGROUND VIDEO */}
       <video
         className="fixed top-0 left-0 w-full h-full object-cover -z-10"
         autoPlay
@@ -24,30 +25,27 @@ const Endangered = () => {
         <source src="/rainforest.mp4" type="video/mp4" />
       </video>
 
-      {/* ✅ HERO SECTION (FIRST SCREEN: heading + intro only) */}
+      {/* ✅ HERO SECTION */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold mb-6">
+        <h1 className="text-5xl md:text-6xl font-bold mb-6 hero-heading">
           Endangered Animals
         </h1>
 
-        <p className="max-w-3xl text-base md:text-lg">
+        <p className="max-w-3xl text-base md:text-lg hero-text">
           Endangered animals face a high risk of extinction due to habitat loss,
           climate change, illegal wildlife trade, and human activities.
         </p>
       </section>
 
-      {/* ✅ CARDS SECTION (scroll down to see) */}
+      {/* ✅ CARDS SECTION */}
       <section className="px-6 md:px-12 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-14">
           {endangeredData.map((animal, index) => (
             <div
               key={index}
               onClick={() => setSelectedAnimal(animal)}
-              className="
-                relative rounded-xl overflow-hidden cursor-pointer h-[380px]
-                transition-transform duration-300 hover:scale-[1.03]
-                float-card
-              "
+              className="relative rounded-xl overflow-hidden cursor-pointer h-[380px]
+              transition-transform duration-300 hover:scale-[1.03] float-card"
             >
               <img
                 src={animal.image}
@@ -64,7 +62,7 @@ const Endangered = () => {
         </div>
       </section>
 
-      {/* MODAL */}
+      {/* ✅ MODAL */}
       {selectedAnimal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
           <div
@@ -76,8 +74,6 @@ const Endangered = () => {
             <button
               onClick={() => setSelectedAnimal(null)}
               className="absolute top-4 right-4 text-2xl"
-              aria-label="Close"
-              title="Close"
             >
               ✕
             </button>
@@ -113,14 +109,43 @@ const Endangered = () => {
         </div>
       )}
 
-      {/* ✅ Simple floating animation for ALL cards */}
+      {/* ✅ ANIMATIONS */}
       <style>
         {`
-          .float-card {
-            animation: floatUpDown 3s ease-in-out infinite;
-            will-change: transform;
+          /* LEFT SLIDE HEADING */
+          .hero-heading {
+            opacity: 0;
+            transform: translateX(-80px);
+            animation: slideFromLeft 1s ease-out forwards;
           }
 
+          /* Paragraph slight delay */
+          .hero-text {
+            opacity: 0;
+            transform: translateX(-80px);
+            animation: slideFromLeft 1s ease-out forwards;
+            animation-delay: 0.4s;
+          }
+
+          @keyframes slideFromLeft {
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          /* Floating Cards */
+          .float-card {
+            animation: floatUpDown 3s ease-in-out infinite;
+          }
+
+          @keyframes floatUpDown {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+          }
+
+          /* Hide Scrollbar */
           .hide-scrollbar::-webkit-scrollbar {
             display: none;
           }
@@ -128,12 +153,6 @@ const Endangered = () => {
           .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
-          }
-
-          @keyframes floatUpDown {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
           }
         `}
       </style>

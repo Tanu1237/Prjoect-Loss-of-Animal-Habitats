@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import threatsData from "../data/threatsData";
 
 const Threats = () => {
   const [openId, setOpenId] = useState(null);
 
+  useEffect(() => {
+    document.body.style.backgroundColor = "black";
+  }, []);
+
   return (
-    <div className="relative text-white min-h-screen overflow-hidden">
-      {/* Background Video */}
+    <div className="fixed inset-0 text-white overflow-hidden">
+      {/* 🎥 Background Video */}
       <video
         className="fixed inset-0 w-full h-full object-cover -z-10"
         src="/threats.mp4"
@@ -15,22 +19,32 @@ const Threats = () => {
         loop
         playsInline
       />
-      <div className="fixed inset-0 bg-black/50 -z-10" />
+      <div className="fixed inset-0 bg-black/60 -z-10" />
 
       <div className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth scroll-pt-20">
-        
-        {/* Intro Section */}
-        <section className="snap-start min-h-screen flex items-center justify-center px-6">
-          <div className="text-center max-w-5xl">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-green-200 mb-4">
-              Threats to Animal Habitat
+
+        {/* 🔥 INTRO SECTION */}
+        <section className="snap-start min-h-screen flex items-start  pt-16 justify-start px-8">
+          <div className="max-w-5xl">
+
+            <h1 className="text-5xl md:text-7xl font-extrabold text-green-200 leading-tight hero-line1">
+              The Silent War
             </h1>
-            <p className="text-gray-100">
-              Animals are losing their natural homes due to human activities.
+
+            <h1 className="text-5xl md:text-7xl font-extrabold text-green-200 leading-tight mt-6 hero-line2">
+              Against Wildlife
+            </h1>
+
+            <p className="mt-24 text-lg md:text-xl text-gray-200 max-w-4xl hero-para">
+              Forests are disappearing. Oceans are polluted. Habitats are collapsing.
+              Human expansion, climate change, and uncontrolled exploitation are
+              pushing countless species toward extinction every single day.
             </p>
+
           </div>
         </section>
 
+        {/* 🔎 Threat Sections */}
         {threatsData.map((item) => {
           const isOpen = openId === item.id;
 
@@ -77,7 +91,7 @@ const Threats = () => {
                   {!isOpen ? (
                     <button
                       onClick={() => setOpenId(item.id)}
-                      className="mt-6 px-6 py-2 bg-green-600 rounded-xl"
+                      className="mt-6 px-6 py-2 bg-green-600 rounded-xl hover:bg-green-700 transition"
                     >
                       Read More
                     </button>
@@ -127,7 +141,7 @@ const Threats = () => {
 
                       <button
                         onClick={() => setOpenId(null)}
-                        className="mt-6 px-6 py-2 bg-white/20 rounded-xl"
+                        className="mt-6 px-6 py-2 bg-white/20 rounded-xl hover:bg-white/30 transition"
                       >
                         Show Less
                       </button>
@@ -140,6 +154,38 @@ const Threats = () => {
           );
         })}
       </div>
+
+      {/* 🎬 ANIMATIONS */}
+      <style>
+        {`
+          .hero-line1 {
+            opacity: 0;
+            transform: translateX(-120px);
+            animation: slideLeft 1s ease-out forwards;
+          }
+
+          .hero-line2 {
+            opacity: 0;
+            transform: translateX(-120px);
+            animation: slideLeft 1s ease-out forwards;
+            animation-delay: 0.4s;
+          }
+
+          .hero-para {
+            opacity: 0;
+            transform: translateX(-120px);
+            animation: slideLeft 1s ease-out forwards;
+            animation-delay: 0.8s;
+          }
+
+          @keyframes slideLeft {
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
