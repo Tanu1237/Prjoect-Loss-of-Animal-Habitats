@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
-import Extinct from "./pages/Extinct.jsx";
+import Extinct from "./pages/extinct.jsx";
 import Endangered from "./pages/Endangered.jsx";
 import Threats from "./pages/Threats.jsx";
 import Conservation from "./pages/Conservation.jsx";
