@@ -513,14 +513,17 @@ export default function App() {
       {/* ── 14. FOOTER — social icons only ── */}
       <footer style={{ background:bg.deep, borderTop:"1px solid rgba(201,168,76,0.1)" }}>
         <div style={{ padding:"2.5rem 2rem", borderBottom:"1px solid rgba(201,168,76,0.06)", display:"flex", justifyContent:"center", gap:"1.25rem" }}>
-          {[{Icon:Instagram,label:"Instagram",url:"https://instagram.com"},{Icon:Twitter,label:"Twitter",url:"https://twitter.com"},{Icon:Facebook,label:"Facebook",url:"https://facebook.com"},{Icon:Youtube,label:"YouTube",url:"https://youtube.com"}].map(({ Icon, label, url }) => (
-            <motion.a key={label} href={url} target="_blank" rel="noopener noreferrer" whileHover={{ scale:1.12, y:-3 }}
-              style={{ width:"2.8rem", height:"2.8rem", borderRadius:"50%", background:"rgba(201,168,76,0.07)", border:"1px solid rgba(201,168,76,0.18)", display:"flex", alignItems:"center", justifyContent:"center", color:"rgba(201,168,76,0.6)", transition:"all 0.3s", textDecoration:"none" }}
-              onMouseEnter={e => { e.currentTarget.style.background = "rgba(201,168,76,0.18)"; e.currentTarget.style.color = GOLD; e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "rgba(201,168,76,0.07)"; e.currentTarget.style.color = "rgba(201,168,76,0.6)"; e.currentTarget.style.borderColor = "rgba(201,168,76,0.18)"; }}>
-              <Icon size={16} />
-            </motion.a>
-          ))}
+          {[{Icon:Instagram,label:"Instagram",url:"https://instagram.com"},{Icon:Twitter,label:"Twitter",url:"https://twitter.com"},{Icon:Facebook,label:"Facebook",url:"https://facebook.com"},{Icon:Youtube,label:"YouTube",url:"https://youtube.com"}].map(({ Icon, label, url }) => {
+            const icon = Icon({ size:16 });
+            return (
+              <motion.a key={label} href={url} target="_blank" rel="noopener noreferrer" whileHover={{ scale:1.12, y:-3 }}
+                style={{ width:"2.8rem", height:"2.8rem", borderRadius:"50%", background:"rgba(201,168,76,0.07)", border:"1px solid rgba(201,168,76,0.18)", display:"flex", alignItems:"center", justifyContent:"center", color:"rgba(201,168,76,0.6)", transition:"all 0.3s", textDecoration:"none" }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(201,168,76,0.18)"; e.currentTarget.style.color = GOLD; e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(201,168,76,0.07)"; e.currentTarget.style.color = "rgba(201,168,76,0.6)"; e.currentTarget.style.borderColor = "rgba(201,168,76,0.18)"; }}>
+                {icon}
+              </motion.a>
+            );
+          })}
         </div>
         <div style={{ padding:"2rem 2.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1rem" }}>
           <div style={{ display:"flex", alignItems:"center", gap:"0.7rem" }}>

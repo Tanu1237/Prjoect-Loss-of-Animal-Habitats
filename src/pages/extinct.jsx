@@ -126,6 +126,12 @@ export default function Extinct() {
     document.body.style.overflow = sidebarOpen || activeSpecies ? "hidden" : "";
   }, [sidebarOpen, activeSpecies]);
 
+  const openSpecies = (item) => {
+    const idx = extinctData.findIndex(s => s.id === item.id);
+    setActiveSpecies(item);
+    setActiveIndex(idx);
+  };
+
   useEffect(() => {
 
   const hash = location.hash.replace("#", "");
@@ -136,9 +142,8 @@ export default function Extinct() {
 
     if (found) {
 
-      openSpecies(found);
-
       setTimeout(() => {
+        openSpecies(found);
         const el = document.getElementById(hash);
         if (el) {
           el.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -150,12 +155,6 @@ export default function Extinct() {
   }
 
 }, [location]);
-
-  const openSpecies = (item) => {
-    const idx = extinctData.findIndex(s => s.id === item.id);
-    setActiveSpecies(item);
-    setActiveIndex(idx);
-  };
 
   return (
     <main className="bg-slate-950 text-stone-200">

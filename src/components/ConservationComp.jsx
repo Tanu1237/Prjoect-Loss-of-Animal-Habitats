@@ -167,11 +167,14 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
           </AnimatePresence>
           <div style={{ position:"absolute", inset:0, background:`linear-gradient(to top,${bg.card},transparent 50%)` }} />
           {[{ s:"left",  fn:() => setImgIdx(p => (p - 1 + md.imgs.length) % md.imgs.length), I:ChevronLeft  },
-            { s:"right", fn:() => setImgIdx(p => (p + 1) % md.imgs.length),                  I:ChevronRight }].map(({ s, fn, I }) => (
-            <button key={s} onClick={fn} style={{ position:"absolute", [s]:"1rem", top:"50%", transform:"translateY(-50%)", padding:"0.6rem", borderRadius:"50%", background:"rgba(3,6,5,0.75)", border:"1px solid rgba(201,168,76,0.2)", cursor:"pointer", color:cream }}>
-              <I size={16} />
-            </button>
-          ))}
+            { s:"right", fn:() => setImgIdx(p => (p + 1) % md.imgs.length),                  I:ChevronRight }].map(({ s, fn, I }) => {
+            const icon = I({ size:16 });
+            return (
+              <button key={s} onClick={fn} style={{ position:"absolute", [s]:"1rem", top:"50%", transform:"translateY(-50%)", padding:"0.6rem", borderRadius:"50%", background:"rgba(3,6,5,0.75)", border:"1px solid rgba(201,168,76,0.2)", cursor:"pointer", color:cream }}>
+                {icon}
+              </button>
+            );
+          })}
           <button onClick={onClose} style={{ position:"absolute", top:"1rem", right:"1rem", padding:"0.4rem", borderRadius:"50%", background:"rgba(3,6,5,0.75)", border:"1px solid rgba(201,168,76,0.2)", cursor:"pointer", color:cream }}>
             <X size={16} />
           </button>
