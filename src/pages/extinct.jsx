@@ -1,7 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
+
 import extinctvid2 from "../assets/extinctvid2.mp4";
-import extinctData from "../data/extinctData";
+import extinctData from "../data/ExtinctData";
 import SlideUpInfo from "../components/SlideUpInfo";
 import SpeciesListSidebar from "../components/SpeciesListSidebar";
 
@@ -118,10 +120,36 @@ export default function Extinct() {
   const [activeSpecies, setActiveSpecies] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+    const location = useLocation();
 
   useEffect(() => {
     document.body.style.overflow = sidebarOpen || activeSpecies ? "hidden" : "";
   }, [sidebarOpen, activeSpecies]);
+
+  useEffect(() => {
+
+  const hash = location.hash.replace("#", "");
+
+  if (hash) {
+
+    const found = extinctData.find(a => a.id === hash);
+
+    if (found) {
+
+      openSpecies(found);
+
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 300);
+
+    }
+
+  }
+
+}, [location]);
 
   const openSpecies = (item) => {
     const idx = extinctData.findIndex(s => s.id === item.id);
@@ -202,9 +230,11 @@ export default function Extinct() {
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {sec.species.map(sp => (
-                <SpeciesCard key={sp.id} item={sp} onClick={() => openSpecies(sp)} />
-              ))}
+             {sec.species.map(sp => (
+  <div id={sp.id} key={sp.id}>
+    <SpeciesCard item={sp} onClick={() => openSpecies(sp)} />
+  </div>
+))}
             </div>
           </div>
         </section>
