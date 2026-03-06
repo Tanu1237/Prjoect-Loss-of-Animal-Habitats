@@ -1,1 +1,15 @@
-import React from 'react';\nimport './Threats.css';\n\nconst Threats = () => {\n    return (\n        <div className='threats-container' style={{ backgroundColor: '#FFDAB9' }}>\n            <h1 style={{ color: '#8B4513' }}>Threats to Animal Habitats</h1>\n            {/* Statistics Section */}\n            <div className='statistics' style={{ border: '2px solid #CC5500' }}>\n                <h2 style={{ color: '#FFBF00' }}>Statistics</h2>\n                <p style={{ color: '#8B4513' }}>Many species are facing threats due to habitat loss...</p>\n            </div>\n            {/* Enhanced Threat Cards */}\n            <div className='threat-cards'>\n                <div className='threat-card' style={{ borderColor: '#CC5500', boxShadow: '0 0 10px #8B4513' }}>\n                    <h3 style={{ color: '#FFBF00' }}>Deforestation</h3>\n                    <p style={{ color: '#8B4513' }}>60% of wildlife habitats are lost due to deforestation...</p>\n                </div>\n                <div className='threat-card' style={{ borderColor: '#CC5500', boxShadow: '0 0 10px #8B4513' }}>\n                    <h3 style={{ color: '#FFBF00' }}>Climate Change</h3>\n                    <p style={{ color: '#8B4513' }}>Climate change contributes to habitat degradation...</p>\n                </div>\n                <div className='threat-card' style={{ borderColor: '#CC5500', boxShadow: '0 0 10px #8B4513' }}>\n                    <h3 style={{ color: '#FFBF00' }}>Pollution</h3>\n                    <p style={{ color: '#8B4513' }}>Pollution has devastating effects on natural ecosystems...</p>\n                </div>\n            </div>\n            {/* Emotional Ending */}\n            <div className='emotional-ending' style={{ backgroundColor: '#8B4513', color: '#FFBF00' }}>\n                <h2>Our Future Depends on Protecting Habitats</h2>\n                <p>Every action counts, and together we can restore balance...</p>\n            </div>\n        </div>\n    );\n};\n\nexport default Threats;
+import React from 'react';
+
+const Threats = () => {
+    return (
+        <div>
+            <h1 style={{ color: '#FFBF00' }}>Threats to Animal Habitats</h1>
+            <p style={{ color: '#CC5500' }}>Deforestation is a major threat.</p>
+            <p style={{ color: '#8B4513' }}>Climate change affects habitats.</p>
+            <p style={{ color: '#FFD580' }}>Pollution is devastating.</p>
+            <p style={{ color: '#FFE4B5' }}>Human activities impact wildlife.</p>
+        </div>
+    );
+};
+
+export default Threats;
