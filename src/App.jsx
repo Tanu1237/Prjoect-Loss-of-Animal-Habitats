@@ -14,12 +14,15 @@ const App = () => {
   const navigate = useNavigate();
   const showNavbar = location.pathname !== "/";
 
+  // Scroll to top on every navigation, including revisits
   useEffect(() => {
-    // Redirect to landing page on every fresh load/reload
+    window.scrollTo(0, 0);
+  }, [location.pathname, location.key]); // ← add this
+
+  useEffect(() => {
     if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
       navigate("/");
     } else if (location.pathname !== "/" && !["/extinct", "/endangered", "/threats", "/conservation", "/home"].includes(location.pathname)) {
-      // Also handle case where user directly enters an unknown URL or needs to start at landing
       navigate("/");
     }
   }, []);

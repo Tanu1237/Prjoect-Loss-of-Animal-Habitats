@@ -1,5 +1,9 @@
 const endangeredData = [
   {
+    id: "tiger",
+    type: "Mammals",
+    title: "Tiger",
+    keywords: ["tiger", "big cat", "apex predator", "forest", "asia", "poaching", "mammal"],
     name: "Tiger",
     image: "https://images.pexels.com/photos/14040355/pexels-photo-14040355.jpeg",
     habitat: "Forests, grasslands, mangroves",
@@ -12,6 +16,10 @@ As forests shrink, tigers increasingly come into contact with humans, leading to
   },
 
   {
+    id: "giraffe",
+    type: "Mammals",
+    title: "Giraffe",
+    keywords: ["giraffe", "savanna", "africa", "tall", "mammal", "woodland", "herbivore"],
     name: "Giraffe",
     image: "https://images.pexels.com/photos/6168825/pexels-photo-6168825.jpeg",
     habitat: "Savannas, woodlands",
@@ -20,10 +28,14 @@ As forests shrink, tigers increasingly come into contact with humans, leading to
 
 Despite their popularity, giraffe populations have undergone a quiet decline due to expanding agriculture, habitat fragmentation, civil unrest, and illegal hunting. Many local populations have disappeared entirely without widespread attention.
 
-Conservation programs emphasize habitat protection, population monitoring, anti-poaching initiatives, and transboundary conservation efforts to ensure giraffes continue roaming Africa’s landscapes.`
+Conservation programs emphasize habitat protection, population monitoring, anti-poaching initiatives, and transboundary conservation efforts to ensure giraffes continue roaming Africa's landscapes.`
   },
 
   {
+    id: "hippopotamus",
+    type: "Mammals",
+    title: "Hippopotamus",
+    keywords: ["hippo", "hippopotamus", "river", "wetland", "africa", "semi-aquatic", "mammal"],
     name: "Hippopotamus",
     image: "https://images.pexels.com/photos/14042858/pexels-photo-14042858.jpeg",
     habitat: "Rivers, lakes, wetlands",
@@ -36,6 +48,10 @@ Protecting freshwater ecosystems, enforcing wildlife laws, and managing water re
   },
 
   {
+    id: "chimpanzee",
+    type: "Mammals",
+    title: "Chimpanzee",
+    keywords: ["chimpanzee", "primate", "ape", "africa", "forest", "intelligence", "mammal"],
     name: "Chimpanzee",
     image: "https://images.pexels.com/photos/22589266/pexels-photo-22589266.jpeg",
     habitat: "Tropical forests, savannas",
@@ -48,6 +64,10 @@ Conservation strategies include forest protection, wildlife law enforcement, dis
   },
 
   {
+    id: "asian-elephant",
+    type: "Mammals",
+    title: "Asian Elephant",
+    keywords: ["asian elephant", "elephant", "asia", "forest", "keystone species", "mammal", "grassland"],
     name: "Asian Elephant",
     image: "https://images.pexels.com/photos/13257031/pexels-photo-13257031.jpeg",
     habitat: "Forests, grasslands",
@@ -60,6 +80,10 @@ Conservation efforts focus on wildlife corridors, conflict mitigation, habitat r
   },
 
   {
+    id: "blue-whale",
+    type: "Marine Life",
+    title: "Blue Whale",
+    keywords: ["blue whale", "whale", "ocean", "marine", "largest animal", "krill", "cetacean"],
     name: "Blue Whale",
     image: "https://images.pexels.com/photos/4666753/pexels-photo-4666753.jpeg",
     habitat: "Open oceans",
@@ -72,6 +96,10 @@ Global marine conservation, ship speed regulations, and pollution reduction are 
   },
 
   {
+    id: "rhinoceros",
+    type: "Mammals",
+    title: "Rhinoceros",
+    keywords: ["rhino", "rhinoceros", "savanna", "africa", "poaching", "horn", "mammal", "grassland"],
     name: "Rhinoceros",
     image: "https://images.pexels.com/photos/9533170/pexels-photo-9533170.jpeg",
     habitat: "Grasslands, savannas",
@@ -84,6 +112,10 @@ Anti-poaching enforcement, international trade bans, habitat protection, and com
   },
 
   {
+    id: "sea-turtle",
+    type: "Reptiles",
+    title: "Sea Turtle",
+    keywords: ["sea turtle", "turtle", "ocean", "marine", "coral reef", "reptile", "coastal"],
     name: "Sea Turtle",
     image: "https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg",
     habitat: "Oceans and coastal regions",
@@ -96,6 +128,10 @@ Conservation includes beach protection, fishing regulations, and reducing marine
   },
 
   {
+    id: "gorilla",
+    type: "Mammals",
+    title: "Gorilla",
+    keywords: ["gorilla", "great ape", "primate", "rainforest", "africa", "mammal", "endangered"],
     name: "Gorilla",
     image: "https://images.pexels.com/photos/6949387/pexels-photo-6949387.jpeg",
     habitat: "Tropical rainforests",
@@ -108,6 +144,10 @@ Protected habitats, medical monitoring, and ecotourism help support conservation
   },
 
   {
+    id: "red-panda",
+    type: "Mammals",
+    title: "Red Panda",
+    keywords: ["red panda", "panda", "bamboo", "mountain forest", "asia", "mammal", "arboreal"],
     name: "Red Panda",
     image: "https://images.pexels.com/photos/26087027/pexels-photo-26087027.jpeg",
     habitat: "Temperate mountain forests",
@@ -118,6 +158,10 @@ Conservation focuses on forest protection, habitat corridors, and public awarene
   },
 
   {
+    id: "great-indian-bustard",
+    type: "Birds",
+    title: "Great Indian Bustard",
+    keywords: ["great indian bustard", "bustard", "bird", "grassland", "india", "critically endangered"],
     name: "Great Indian Bustard",
     image: "https://images.pexels.com/photos/33536155/pexels-photo-33536155.jpeg",
     habitat: "Grasslands",
@@ -130,6 +174,10 @@ Habitat protection and underground power lines are key conservation measures.`
   },
 
   {
+    id: "snow-leopard",
+    type: "Mammals",
+    title: "Snow Leopard",
+    keywords: ["snow leopard", "leopard", "big cat", "mountain", "himalaya", "mammal", "predator"],
     name: "Snow Leopard",
     image: "https://images.pexels.com/photos/4033662/pexels-photo-4033662.jpeg",
     habitat: "High-altitude mountains",
@@ -142,6 +190,10 @@ Conservation includes mountain habitat protection and community engagement.`
   },
 
   {
+    id: "kangaroo",
+    type: "Mammals",
+    title: "Kangaroo",
+    keywords: ["kangaroo", "marsupial", "australia", "grassland", "mammal", "bushfire"],
     name: "Kangaroo",
     image: "https://images.pexels.com/photos/6704257/pexels-photo-6704257.png",
     habitat: "Grasslands, forests",
@@ -152,6 +204,10 @@ Habitat management and climate resilience are crucial for survival.`
   },
 
   {
+    id: "koala",
+    type: "Mammals",
+    title: "Koala",
+    keywords: ["koala", "marsupial", "australia", "eucalyptus", "mammal", "forest", "bushfire"],
     name: "Koala",
     image: "https://images.pexels.com/photos/146083/pexels-photo-146083.jpeg",
     habitat: "Eucalyptus forests",
@@ -162,6 +218,10 @@ Conservation includes habitat restoration and disease management.`
   },
 
   {
+    id: "philippine-eagle",
+    type: "Birds",
+    title: "Philippine Eagle",
+    keywords: ["philippine eagle", "eagle", "bird", "philippines", "raptor", "tropical forest", "critically endangered"],
     name: "Philippine Eagle",
     image: "https://images.pexels.com/photos/31637116/pexels-photo-31637116.jpeg",
     habitat: "Tropical forests",
@@ -172,6 +232,10 @@ Forest protection and captive breeding are essential.`
   },
 
   {
+    id: "african-wild-dog",
+    type: "Mammals",
+    title: "African Wild Dog",
+    keywords: ["african wild dog", "painted wolf", "wild dog", "africa", "savanna", "pack", "mammal"],
     name: "African Wild Dog",
     image: "https://images.pexels.com/photos/32935826/pexels-photo-32935826.jpeg",
     habitat: "Savannas, woodlands",
@@ -182,6 +246,10 @@ Protected areas and disease control are key.`
   },
 
   {
+    id: "snowy-owl",
+    type: "Birds",
+    title: "Snowy Owl",
+    keywords: ["snowy owl", "owl", "bird", "arctic", "tundra", "raptor", "climate change"],
     name: "Snowy Owl",
     image: "https://images.pexels.com/photos/8181538/pexels-photo-8181538.jpeg",
     habitat: "Arctic tundra, open fields",
@@ -192,6 +260,10 @@ Monitoring and habitat protection support conservation.`
   },
 
   {
+    id: "giant-panda",
+    type: "Mammals",
+    title: "Giant Panda",
+    keywords: ["giant panda", "panda", "china", "bamboo", "bear", "mammal", "endangered"],
     name: "Giant Panda",
     image: "https://images.pexels.com/photos/29088370/pexels-photo-29088370.jpeg",
     habitat: "Bamboo forests",
@@ -202,6 +274,10 @@ Reforestation and habitat corridors aid recovery.`
   },
 
   {
+    id: "maned-wolf",
+    type: "Mammals",
+    title: "Maned Wolf",
+    keywords: ["maned wolf", "wolf", "south america", "brazil", "grassland", "mammal", "canid"],
     name: "Maned Wolf",
     image: "https://images.pexels.com/photos/7402790/pexels-photo-7402790.jpeg",
     habitat: "Grasslands, savannas, forests",
@@ -212,6 +288,10 @@ Road mortality and agriculture threaten populations.`
   },
 
   {
+    id: "leopard",
+    type: "Mammals",
+    title: "Leopard",
+    keywords: ["leopard", "big cat", "africa", "asia", "forest", "predator", "mammal", "poaching"],
     name: "Leopard",
     image: "https://images.pexels.com/photos/6652059/pexels-photo-6652059.jpeg",
     habitat: "Forests, grasslands",
@@ -219,7 +299,8 @@ Road mortality and agriculture threaten populations.`
     description: `Leopards are adaptable predators that maintain prey balance.
 
 Poaching and habitat loss remain major threats.`
-  }
+  },
+
 ];
 
 export default endangeredData;
