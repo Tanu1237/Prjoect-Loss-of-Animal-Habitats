@@ -2,8 +2,9 @@ import animalVideo from "../assets/animal.mp4";
 import { motion } from "framer-motion";
 import AnimalSpecies from "../components/AnimalSearch";
 import AnimalGallery from "../components/AnimalGallery";   // ← new
-
+import AnimalVoices from "../components/AnimalVoices";
 function Home() {
+  
   return (
     <div className="relative w-screen min-h-screen overflow-x-hidden text-white">
 
@@ -40,6 +41,7 @@ function Home() {
         <AnimalSpecies />
       </motion.section>
 
+    
       {/* INFORMATION SECTION */}
       <section
         id="info-section"
@@ -104,6 +106,8 @@ function Home() {
       </section>
 
      
+<AnimalVoices />
+
 
       {/* BE PART OF THE CHANGE */}
       <section className="relative py-28 px-6 text-center overflow-hidden">
@@ -162,28 +166,53 @@ function Home() {
       <AnimalGallery />
 
       {/* FOOTER */}
-      <footer className="text-gray-200 bg-[#0f2a1d]/95 py-12 px-6 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-xl font-semibold text-white mb-3">About Us</h2>
-          <p className="text-gray-300 leading-relaxed text-m">
-            Our mission is to raise awareness about the rapid loss of animal
-            habitats across the globe. Through educational content and research,
-            we aim to inspire responsible actions that support wildlife
-            conservation and environmental protection.
-          </p>
+      <section className="relative bg-black px-10 py-24">
+
+        {/* GRADIENT BLEND */}
+        <div className="absolute top-0 w-full h-32 bg-gradient-to-b from-transparent to-black pointer-events-none"></div>
+
+        <div className="relative z-10 grid md:grid-cols-3 gap-16 text-center">
+
+          <div>
+            <h3 className="text-3xl font-bold mb-6 text-green-400">
+              About Us
+            </h3>
+
+            <p className="text-gray-300">
+              We aim to spread awareness about the loss of wildlife habitats
+              and encourage people to take action for nature.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold mb-6 text-green-400">
+              Our Mission
+            </h3>
+
+            <p className="text-gray-300">
+              Our mission is to highlight the growing destruction of
+              forests and inspire people to protect the homes of
+              countless animal species.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold mb-6 text-green-400">
+              Contact Us
+            </h3>
+
+            <p className="text-gray-300">
+              wildlife@email.com
+            </p>
+
+            <p className="text-gray-300">
+              conservation@email.com
+            </p>
+          </div>
+
         </div>
 
-        <div className="mt-8"></div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-white mb-2">Contact Us</h2>
-          <p className="text-gray-300 text-sm">Email: support@wildlife.org</p>
-        </div>
-
-        <p className="mt-6 text-xs text-gray-400">
-          © 2026 Wildlife Awareness | All Rights Reserved
-        </p>
-      </footer>
+      </section>
 
     </div>
   );
