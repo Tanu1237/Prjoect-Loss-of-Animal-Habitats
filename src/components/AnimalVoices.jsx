@@ -35,7 +35,7 @@ function AnimalVoices() {
         <h2 className="text-5xl  text-[#929296] md:text-4xl font-bold mb-16">
           Voices of the Wild
         </h2>
-         <h2 className="text-3xl text-[#e94b45] font-bold text-center mb-20">
+         <h2 className="text-3xl text-black font-bold text-center mb-20">
           If Animals Could Speak...
         </h2>
 
