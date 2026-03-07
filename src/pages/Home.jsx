@@ -187,7 +187,7 @@ function Home() {
             </h3>
 
             <p className="text-gray-300">
-              wildlife@email.com
+              madhu.panwar2629@gmail.com
             </p>
 
             <p className="text-gray-300">
