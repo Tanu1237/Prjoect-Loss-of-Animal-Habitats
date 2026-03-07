@@ -28,15 +28,15 @@ function AnimalVoices() {
   };
 
   return (
-    <section className="relative bg-green-900/30 backdrop-blur-md py-24 px-6">
+    <section className="relative  backdrop-blur-md py-24 px-6">
 
       <div className="max-w-6xl mx-auto text-center">
 
-        <h2 className="text-5xl md:text-4xl font-bold mb-16">
+        <h2 className="text-5xl  text-[#929296] md:text-4xl font-bold mb-16">
           Voices of the Wild
         </h2>
-         <h2 className="text-3xl font-bold text-center mb-20">
-          If Animals Could Speak
+         <h2 className="text-3xl text-[#e94b45] font-bold text-center mb-20">
+          If Animals Could Speak...
         </h2>
 
         {/* LEFT BUTTON */}
@@ -62,7 +62,7 @@ function AnimalVoices() {
 
             <div
               key={i}
-              className="group bg-white/40 backdrop-blur-md p-8 rounded-2xl shadow-xl
+              className="group backdrop-blur-md bg-[#a78c08] p-8 rounded-2xl shadow-xl
               transition-all duration-500 cursor-pointer
               hover:-translate-y-3 hover:bg-white/60
               hover:shadow-2xl hover:ring-4 hover:ring-green-600/40"

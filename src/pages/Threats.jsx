@@ -89,11 +89,11 @@ function Threats() {
             The Silent War
           </h1>
 
-          <h1 className="absolute bottom-28 right-10 text-6xl md:text-7xl font-extrabold text-amber-200 text-right drop-shadow-lg">
+          <h1 className="absolute bottom-28 right-10 text-6xl md:text-7xl font-extrabold text-[#7fc764dd] text-right drop-shadow-lg px-2 py-12">
             Against Wildlife
           </h1>
 
-          <p className="absolute bottom-10 left-10 max-w-xl text-lg text-gray-200 leading-relaxed">
+          <p className="absolute bottom-10 left-10 max-w-xl text-xl text-gray-200 leading-relaxed  px-8">
             Forests are disappearing. Oceans are polluted. Habitats are collapsing.
             Human expansion, climate change, and exploitation are pushing species
             toward extinction every single day.
@@ -179,9 +179,9 @@ function Threats() {
                       onClick={() => setOpenId(item.id)}
                       className="
                       mt-6 px-6 py-2
-                      bg-gradient-to-r from-green-600 to-amber-600
+                      bg-gradient-to-r from-green-600 to-blue-400
                       rounded-lg
-                      hover:from-green-700 hover:to-amber-700
+                      hover:from-green-700 hover:to-emerald-200
                       transition shadow-md hover:shadow-xl
                       "
                     >
