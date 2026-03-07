@@ -27,9 +27,8 @@ const Endangered = () => {
       );
 
       if (found) {
-        setSelectedAnimal(found);
-
         setTimeout(() => {
+          setSelectedAnimal(found);
           const el = document.getElementById(hash);
           if (el) {
             el.scrollIntoView({ behavior: "smooth", block: "center" });

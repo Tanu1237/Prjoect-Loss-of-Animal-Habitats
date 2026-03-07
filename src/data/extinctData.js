@@ -1,9 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import extinctvid2 from "../assets/extinctvid2.mp4"
-import SlideUpInfo from "../components/SlideUpInfo";
-import SpeciesListSidebar from "../components/SpeciesListSidebar";
-import { List } from "lucide-react";
 const extinctData = [
 
   // ------------------- MAMMALS -------------------
