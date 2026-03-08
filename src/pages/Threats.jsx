@@ -2,19 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import threatsData from "../data/threatsData";
 
 const STATS = [
-  { value: "1M+", label: "Species at Risk", sub: "of extinction right now" },
-  { value: "10B+", label: "Animals Killed", sub: "every year by humans" },
-  { value: "68%", label: "Wildlife Decline", sub: "since 1970 — in one lifetime" },
-  { value: "80%", label: "Habitat Destroyed", sub: "of Earth's forests are gone" },
-];
-
-const WAYS_TO_HELP = [
-  "🌱 Support conservation organizations and wildlife charities",
-  "🚫 Refuse products made from endangered species",
-  "🌳 Plant native trees and restore local habitats",
-  "📢 Raise awareness — share and educate",
-  "🥦 Reduce meat consumption to lower deforestation",
-  "♻️ Reduce plastic use to protect oceans",
+  { value: "1M+", label: "Species at Risk", sub: "Currently facing extinction" },
+  { value: "10B+", label: "Animals Killed", sub: "Every year due to human activities" },
+  { value: "68%", label: "Wildlife Decline", sub: "Since 1970 — in a single lifetime" },
+  { value: "80%", label: "Habitat Destroyed", sub: "Of Earth's forests are gone" },
 ];
 
 function StatCard({ value, label, sub }) {
@@ -26,7 +17,6 @@ function StatCard({ value, label, sub }) {
       ([entry]) => entry.isIntersecting && setVisible(true),
       { threshold: 0.3 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
@@ -34,26 +24,19 @@ function StatCard({ value, label, sub }) {
   return (
     <div
       ref={ref}
-      className="
-      bg-gradient-to-br from-green-900/50 via-emerald-800/40 to-amber-900/40
-      border border-green-400/30
-      rounded-xl p-6 text-center backdrop-blur-md
-      transition-all duration-300
-      hover:scale-110 hover:border-amber-300
-      hover:shadow-[0_0_25px_rgba(253,224,71,0.4)]
-      "
+      className={`
+        bg-gradient-to-br from-[#0c1e0f]/80 via-[#162918]/60 to-[#1a2b1a]/60
+        border border-green-700/30
+        rounded-xl p-6 text-center backdrop-blur-md
+        transition-transform duration-300
+        hover:scale-105 hover:shadow-[0_0_20px_rgba(72,187,120,0.4)]
+      `}
     >
-      <div className={`text-4xl font-bold text-emerald-300 ${visible ? "animate-pulse" : ""}`}>
+      <div className={`text-4xl font-bold text-green-300 ${visible ? "opacity-100 transition-opacity duration-1000" : "opacity-0"}`}>
         {value}
       </div>
-
-      <div className="text-green-200 font-semibold mt-2">
-        {label}
-      </div>
-
-      <div className="text-sm text-amber-200/80">
-        {sub}
-      </div>
+      <div className="text-gray-300 font-semibold mt-2">{label}</div>
+      <div className="text-gray-400 text-sm">{sub}</div>
     </div>
   );
 }
@@ -62,239 +45,186 @@ function Threats() {
   const [openId, setOpenId] = useState(null);
 
   useEffect(() => {
-    document.body.style.backgroundColor = "black";
+    document.body.style.backgroundColor = "#000";
   }, []);
 
   return (
     <div className="fixed inset-0 text-white overflow-hidden">
 
-      {/* Background Video */}
+      {/* Background video with dark overlay */}
       <video
-        className="fixed inset-0 w-full h-full object-cover -z-10"
+        className="fixed inset-0 w-full h-full object-cover -z-10 filter brightness-30"
         src="/threats.mp4"
         autoPlay
         muted
         loop
         playsInline
       />
-
       <div className="fixed inset-0 bg-black/60 -z-10" />
 
       <div className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth">
 
         {/* HERO SECTION */}
-        <section className="snap-start min-h-screen relative px-10 py-20">
-
-          <h1 className="absolute top-24 left-10 text-6xl md:text-7xl font-extrabold text-green-200 drop-shadow-lg">
+        <section className="snap-start min-h-screen flex flex-col justify-center items-center text-center px-10">
+          <h1 className="text-6xl md:text-7xl font-extrabold text-green-200 drop-shadow-lg mb-4 animate-slideIn">
             The Silent War
           </h1>
-
-          <h1 className="absolute bottom-28 right-10 text-6xl md:text-7xl font-extrabold text-amber-200 text-right drop-shadow-lg">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-300 drop-shadow-lg animate-slideIn delay-200">
             Against Wildlife
-          </h1>
-
-          <p className="absolute bottom-10 left-10 max-w-xl text-lg text-gray-200 leading-relaxed">
-            Forests are disappearing. Oceans are polluted. Habitats are collapsing.
-            Human expansion, climate change, and exploitation are pushing species
-            toward extinction every single day.
+          </h2>
+          <p className="max-w-xl text-gray-400 mt-6 animate-fadeIn">
+            Humanity's actions are driving countless species towards extinction. Understand the threats and help protect the wild.
           </p>
-
         </section>
 
-        {/* STATS */}
-        <section className="snap-start min-h-screen flex flex-col items-center justify-center px-6">
-
-          <h2 className="text-4xl font-bold text-green-300 text-center">
+        {/* STATS SECTION */}
+        <section className="snap-start min-h-screen flex flex-col items-center justify-center px-6 gap-8">
+          <h2 className="text-4xl font-bold text-green-300 text-center animate-fadeIn">
             The Scale of Destruction
           </h2>
-
-          <p className="text-gray-300 mt-4 text-center max-w-xl">
+          <p className="text-gray-400 text-center max-w-xl animate-fadeIn">
             These numbers are not just statistics — they represent lives and ecosystems lost forever.
           </p>
-
           <div className="grid md:grid-cols-4 gap-6 mt-10 max-w-5xl w-full">
             {STATS.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}
           </div>
-
         </section>
 
         {/* THREATS */}
         {threatsData.map((item) => {
           const isOpen = openId === item.id;
-
           return (
-            <section
-              key={item.id}
-              className="snap-start min-h-screen flex items-center justify-center px-6"
-            >
+            <section key={item.id} className="snap-start min-h-screen flex items-center justify-center px-6">
               <div
-                className="
-                grid md:grid-cols-2 gap-10 max-w-6xl
-                bg-gradient-to-br from-[#1c2a22]/90 via-[#24352c]/90 to-[#3b2f23]/90
-                p-10 rounded-2xl
-                border border-green-400/20
-                transition-all duration-300
-                hover:scale-[1.02]
-                hover:border-amber-300
-                hover:shadow-[0_0_35px_rgba(34,197,94,0.35)]
-                "
+                className={`
+                  grid md:grid-cols-2 gap-10 max-w-6xl
+                  bg-gradient-to-br from-[#0c1e0f]/80 via-[#162918]/70 to-[#1a2b1a]/80
+                  p-10 rounded-2xl
+                  border border-green-700/20
+                  transition-transform duration-300
+                  hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(72,187,120,0.3)]
+                `}
               >
-
                 {/* Images */}
                 <div className="space-y-6">
-
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="rounded-xl h-72 object-cover w-full transition-transform duration-500 hover:scale-105"
+                    className="rounded-xl h-72 object-cover w-full transition-transform duration-500 hover:scale-105 hover:shadow-lg"
                   />
-
                   {isOpen &&
                     item.extraImages?.map((img, index) => (
                       <img
                         key={index}
                         src={img}
                         alt="extra"
-                        className="rounded-xl h-72 object-cover w-full transition-transform duration-500 hover:scale-105"
+                        className="rounded-xl h-72 object-cover w-full transition-transform duration-500 hover:scale-105 hover:shadow-lg"
                       />
                     ))}
-
                 </div>
 
                 {/* Text */}
                 <div>
-
-                  <h2 className="text-2xl font-bold text-green-300">
-                    {item.title}
-                  </h2>
-
-                  <p className="text-gray-300 mt-4">
-                    {item.short}
-                  </p>
+                  <h2 className="text-2xl font-bold text-green-300">{item.title}</h2>
+                  <p className="text-gray-300 mt-4">{item.short}</p>
 
                   {!isOpen ? (
                     <button
                       onClick={() => setOpenId(item.id)}
-                      className="
-                      mt-6 px-6 py-2
-                      bg-gradient-to-r from-green-600 to-amber-600
-                      rounded-lg
-                      hover:from-green-700 hover:to-amber-700
-                      transition shadow-md hover:shadow-xl
-                      "
+                      className="mt-6 px-6 py-2 bg-green-700/70 hover:bg-green-600 transition rounded-lg shadow"
                     >
                       Read More
                     </button>
                   ) : (
                     <div className="mt-6 space-y-4">
-
-                      <p className="text-gray-200">
-                        {item.long}
-                      </p>
+                      <p className="text-gray-300">{item.long}</p>
 
                       {item.causes && (
                         <>
-                          <h3 className="text-green-300 font-semibold">
-                            Causes
-                          </h3>
-
-                          <ul className="space-y-1 text-gray-300">
-                            {item.causes.map((cause, i) => (
-                              <li key={i}>• {cause}</li>
-                            ))}
+                          <h3 className="text-green-300 font-semibold">Causes</h3>
+                          <ul className="space-y-1 text-gray-400">
+                            {item.causes.map((c, i) => <li key={i}>• {c}</li>)}
                           </ul>
                         </>
                       )}
 
                       {item.effects && (
                         <>
-                          <h3 className="text-amber-300 font-semibold">
-                            Effects
-                          </h3>
-
-                          <ul className="space-y-1 text-gray-300">
-                            {item.effects.map((effect, i) => (
-                              <li key={i}>• {effect}</li>
-                            ))}
+                          <h3 className="text-amber-400 font-semibold">Effects</h3>
+                          <ul className="space-y-1 text-gray-400">
+                            {item.effects.map((e, i) => <li key={i}>• {e}</li>)}
                           </ul>
                         </>
                       )}
 
                       {item.example && (
-                        <p className="italic text-gray-300 border-l-2 border-amber-400 pl-4">
-                          {item.example}
-                        </p>
+                        <p className="italic text-gray-400 border-l-2 border-amber-500 pl-4">{item.example}</p>
                       )}
 
                       <button
                         onClick={() => setOpenId(null)}
-                        className="
-                        mt-4 px-6 py-2
-                        bg-gradient-to-r from-amber-700 to-green-700
-                        rounded-lg
-                        hover:opacity-90
-                        transition
-                        "
+                        className="mt-4 px-6 py-2 bg-gray-800 hover:bg-gray-700 transition rounded-lg"
                       >
                         Show Less
                       </button>
-
                     </div>
                   )}
-
                 </div>
-
               </div>
             </section>
           );
         })}
 
-        {/* ENDING */}
-        <section className="snap-start min-h-screen flex flex-col items-center justify-center text-center px-6">
+        {/* DID YOU KNOW / THREADS */}
+        <section className="snap-start min-h-screen flex flex-col items-center justify-center text-center px-6 gap-6">
+          <h2 className="text-4xl font-bold text-green-300 mb-8">Did You Know?</h2>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl w-full">
+            <div className="bg-[#0c1e0f]/80 p-6 rounded-xl border border-green-700/20 hover:scale-105 hover:shadow-md transition">
+              Tigers have lost over 95% of their natural habitat in the last century.
+            </div>
+            <div className="bg-[#0c1e0f]/80 p-6 rounded-xl border border-green-700/20 hover:scale-105 hover:shadow-md transition">
+              Rhinos are poached for their horns, highly valued illegally.
+            </div>
+            <div className="bg-[#0c1e0f]/80 p-6 rounded-xl border border-green-700/20 hover:scale-105 hover:shadow-md transition">
+              Elephants help shape ecosystems; losing them affects thousands of species.
+            </div>
+          </div>
+        </section>
 
-          <h2 className="text-5xl font-extrabold bg-gradient-to-r from-green-300 via-emerald-200 to-amber-300 bg-clip-text text-transparent mb-6">
-            Every Species Lost Is Forever
-          </h2>
+        {/* ENDING / WAYS TO HELP */}
+        <section className="snap-start min-h-screen flex flex-col items-center justify-center text-center px-6 gap-6">
+          
 
-          <p className="max-w-xl text-gray-200 mb-10 leading-relaxed">
-            The extinction crisis is happening right now. Every species lost is
-            a unique story erased from Earth forever.
-          </p>
-
-          <div
-            className="
-            bg-gradient-to-br from-green-900/40 via-emerald-800/30 to-amber-900/40
-            border border-green-400/30
-            p-8 rounded-xl max-w-xl
-            backdrop-blur-md
-            hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]
-            transition
-            "
-          >
-
-            <h3 className="text-xl font-semibold text-green-300 mb-4">
-              Ways You Can Help
-            </h3>
-
-            <ul className="space-y-3 text-gray-200">
-              {WAYS_TO_HELP.map((way, i) => (
-                <li key={i} className="hover:text-amber-200 transition">
-                  {way}
-                </li>
-              ))}
+          <div className="bg-gradient-to-br from-[#0c1e0f]/70 via-[#162918]/50 to-[#1a2b1a]/70 border border-green-700/20 p-8 rounded-xl max-w-xl backdrop-blur-md transition hover:shadow-lg">
+            <h3 className="text-xl font-semibold text-green-300 mb-4">Ways You Can Help</h3>
+            <ul className="space-y-3 text-gray-400 text-left">
+              <li>Support conservation organizations and wildlife charities</li>
+              <li>Refuse products made from endangered species</li>
+              <li>Plant native trees and restore local habitats</li>
+              <li>Raise awareness — share and educate</li>
+              <li>Reduce meat consumption to lower deforestation</li>
+              <li>Reduce plastic use to protect oceans</li>
             </ul>
-
           </div>
 
-          <p className="mt-10 text-amber-300 font-semibold text-lg">
-            🌍 The wild world is counting on us.
+          <p className="mt-10 text-gray-300 font-semibold text-lg">
+            The wild world is counting on us.
           </p>
-
         </section>
 
       </div>
+
+      {/* Animations */}
+      <style>
+        {`
+          @keyframes slideIn { 0% {opacity:0; transform:translateY(40px);} 100% {opacity:1; transform:translateY(0);} }
+          .animate-slideIn { animation: slideIn 1s forwards; }
+          .animate-fadeIn { animation: fadeIn 1.5s forwards; }
+          @keyframes fadeIn {0% {opacity:0;} 100% {opacity:1;}}
+        `}
+      </style>
     </div>
   );
 }
