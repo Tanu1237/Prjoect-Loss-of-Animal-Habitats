@@ -42,8 +42,10 @@ const Endangered = () => {
         loop
         playsInline
       >
+        
         <source src="/rainforest.mp4" type="video/mp4" />
       </video>
+      <div className="fixed inset-0 -z-10 bg-gradient-to-b from-black/60 via-black/30 to-black/10"></div>
 
       {/* HERO SECTION */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
@@ -117,10 +119,10 @@ const Endangered = () => {
             >
 
               <img
-                src={animal.image}
-                alt={animal.name}
-                className="w-full h-full object-cover"
-              />
+  src={animal.image}
+  alt={animal.name}
+  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+/>
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 transition duration-500 group-hover:from-black/90">
 
@@ -209,11 +211,11 @@ const Endangered = () => {
             onClick={() => setSelectedAnimal(null)}
           />
 
-          <div className="relative bg-black rounded-xl max-w-4xl w-full shadow-2xl z-50 backdrop-blur-sm transition-all duration-300 scale-100">
+          <div className="relative bg-black rounded-xl max-w-4xl w-full shadow-2xl z-50 backdrop-blur-sm transition-all duration-300 scale-95 animate-[fadeIn_0.3s_ease_forwards]">
 
             <button
               onClick={() => setSelectedAnimal(null)}
-              className="absolute top-4 right-4 text-2xl"
+              className="absolute top-4 right-4 text-2xl hover:text-red-400 transition"
             >
               ✕
             </button>
