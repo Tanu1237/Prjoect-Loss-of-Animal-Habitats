@@ -1,15 +1,13 @@
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
-// Dynamic accent colors per type — kept as JS values
-// because Tailwind cannot generate dynamic arbitrary color classes at runtime
 const TYPE_COLORS = {
-  Mammals:   "#D97706",
-  Birds:     "#F97316",
-  Reptiles:  "#059669",
-  Amphibian: "#0EA5E9",
-  Fish:      "#6366F1",
-  Insects:   "#EC4899",
+  Mammals:"#D97706",
+  Birds:"#F97316",
+  Reptiles:"#059669",
+  Amphibian:"#0EA5E9",
+  Fish:"#6366F1",
+  Insects:"#EC4899",
 };
 
 export default function SlideUpInfo({ species, onClose }) {
@@ -27,7 +25,6 @@ export default function SlideUpInfo({ species, onClose }) {
         animate={{ y: 0 }}
         transition={{ type: "spring", damping: 26 }}
         className="w-full max-h-[90vh] rounded-t-[2.5rem] overflow-y-auto shadow-2xl border-t-4"
-        // background (#F5F0E8) and border-top color are dynamic — kept as style
         style={{ backgroundColor: "#F5F0E8", borderTopColor: accent }}
         onClick={e => e.stopPropagation()}
       >
@@ -80,9 +77,7 @@ export default function SlideUpInfo({ species, onClose }) {
                     <img
                       key={k}
                       src={img}
-                      alt=""
                       className="h-40 w-full object-cover rounded-lg border"
-                      // border color is a dynamic alpha-modified accent — kept as style
                       style={{ borderColor: `${accent}40` }}
                     />
                   ))}

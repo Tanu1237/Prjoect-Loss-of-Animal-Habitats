@@ -3,25 +3,25 @@ import { useNavigate } from "react-router-dom";
 import extinctData from "../data/extinctData";
 import endangeredData from "../data/endangeredData";
 
-// ── Build unified animal index ──────────────────────────────────────────────
+// ── Build unified animal index ───────────────────
 const buildAnimals = () => {
   const extinct = extinctData.map(a => ({
-    id:       a.id,
-    title:    a.title || a.name || "",
-    page:     "extinct",
-    type:     a.type || "",
+    id: a.id,
+    title: a.title || a.name || "",
+    page: "extinct",
+    type: a.type || "",
     keywords: Array.isArray(a.keywords) ? a.keywords : [],
-    status:   "Extinct",
+    status: "Extinct",
     subtitle: a.subtitle || "",
   }));
 
   const endangered = endangeredData.map(a => ({
-    id:       a.id,
-    title:    a.name || a.title || "",
-    page:     "endangered",
-    type:     a.type || "",
+    id: a.id,
+    title: a.name || a.title || "",
+    page: "endangered",
+    type: a.type || "",
     keywords: Array.isArray(a.keywords) ? a.keywords : [],
-    status:   "Endangered",
+    status: "Endangered",
     subtitle: a.habitat ? a.habitat.split(".")[0] : "",
   }));
 
@@ -31,23 +31,23 @@ const buildAnimals = () => {
 const ALL_ANIMALS = buildAnimals();
 
 const TYPE_ICONS = {
-  Mammals:        "🦁",
-  Birds:          "🦅",
-  Reptiles:       "🦎",
-  Amphibian:      "🐸",
-  Fish:           "🐟",
-  Insects:        "🦋",
-  "Marine Life":  "🐋",
+  Mammals: "🦁",
+  Birds:  "🦅",
+  Reptiles:  "🦎",
+  Amphibian:  "🐸",
+  Fish:  "🐟",
+  Insects:  "🦋",
+  "Marine Life": "🐋",
 };
 
 const scoreMatch = (animal, query) => {
   const q = query.toLowerCase();
   const t = animal.title.toLowerCase();
-  if (t === q)                                                   return 100;
-  if (t.startsWith(q))                                           return 90;
-  if (t.includes(q))                                             return 70;
-  if (animal.type.toLowerCase().includes(q))                     return 50;
-  if (animal.keywords.some(k => k?.toLowerCase().includes(q)))   return 30;
+  if (t === q) return 100;
+  if (t.startsWith(q)) return 90;
+  if (t.includes(q)) return 70;
+  if (animal.type.toLowerCase().includes(q)) return 50;
+  if (animal.keywords.some(k => k?.toLowerCase().includes(q))) return 30;
   return -1;
 };
 
@@ -67,19 +67,19 @@ const Highlight = ({ text = "", query = "" }) => {
 };
 
 export default function AnimalSearch() {
-  const [query,       setQuery]       = useState("");
-  const [focused,     setFocused]     = useState(false);
-  const [activeIdx,   setActiveIdx]   = useState(0);
+  const [query, setQuery] = useState("");
+  const [focused, setFocused] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
 
   const wrapperRef = useRef(null);
-  const inputRef   = useRef(null);
-  const listRef    = useRef(null);
-  const itemRefs   = useRef([]);
-  const blurTimer  = useRef(null);
-  const navigate   = useNavigate();
+  const inputRef = useRef(null);
+  const listRef = useRef(null);
+  const itemRefs = useRef([]);
+  const blurTimer = useRef(null);
+  const navigate = useNavigate();
 
-  // ── Filter & rank ──────────────────────────────────────────────────────────
+  // ── Filter ──────────
   const results = query.trim().length > 0
     ? ALL_ANIMALS
         .map(a => ({ ...a, _score: scoreMatch(a, query.trim()) }))
@@ -90,7 +90,7 @@ export default function AnimalSearch() {
 
   const showDropdown = focused && query.trim().length > 0;
 
-  // ── Fixed dropdown position — recalculate on scroll/resize ────────────────
+  // ── dropdown position ─────────
   useEffect(() => {
     if (!showDropdown || !wrapperRef.current) return;
     const update = () => {
@@ -106,7 +106,7 @@ export default function AnimalSearch() {
     };
   }, [showDropdown]);
 
-  // ── Navigate to animal page ────────────────────────────────────────────────
+  // ── Navigate to animal page ───────────
   const go = useCallback((animal) => {
     navigate(`/${animal.page}#${animal.id}`);
     setQuery("");
@@ -212,17 +212,17 @@ export default function AnimalSearch() {
         )}
       </div>
 
-      {/* ── Dropdown — position:fixed so it never affects page layout ── */}
+      {/* ── Dropdown ── */}
       {showDropdown && (
         <div
           ref={listRef}
           role="listbox"
           style={{
             position: "fixed",
-            top:      dropdownPos.top,
-            left:     dropdownPos.left,
-            width:    dropdownPos.width,
-            zIndex:   99999,
+            top: dropdownPos.top,
+            left: dropdownPos.left,
+            width: dropdownPos.width,
+            zIndex: 99999,
           }}
           className="rounded-2xl border border-white/10 bg-black/95 backdrop-blur-2xl
             shadow-[0_24px_60px_rgba(0,0,0,0.8)]

@@ -44,8 +44,8 @@ function AnimalCard({ animal, index }) {
 
 function ScrollRow({ title, badgeColor, dotColor, animals, page }) {
   const mapped = animals.map((a, i) => ({
-    id:    a.id || `${page}-${i}`,
-    name:  a.name || a.title,
+    id: a.id || `${page}-${i}`,
+    name: a.name || a.title,
     image: a.image,
     page,
   }));

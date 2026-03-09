@@ -378,7 +378,7 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
           {/* Prev / Next */}
           {[
             { side: "left",  fn: () => setImgIdx(p => (p - 1 + md.imgs.length) % md.imgs.length), I: ChevronLeft },
-            { side: "right", fn: () => setImgIdx(p => (p + 1) % md.imgs.length),                  I: ChevronRight },
+            { side: "right", fn: () => setImgIdx(p => (p + 1) % md.imgs.length), I: ChevronRight },
           ].map(({ side, fn, I }) => (
             <button
               key={side}

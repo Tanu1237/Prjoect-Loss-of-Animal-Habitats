@@ -2,25 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import watchMovie from "../assets/watch movie.mp4";
 import { GL, Tag, SectionHeader, NewsModal, FocusModal } from "../components/ConservationComp.jsx";
-import {
-  GOLD, G, bg, cream, dim, gBtn,
-  SLIDES, FOCUS, FOCUS_MODALS, STATS, THREATS,
-  WINS, ANIMALS, MIGRATION, HELP_ACTIONS,
-  VOLUNTEER_ROLES, NEWS, ORGS,
-} from "../data/ConservationData.js";
-import {
-  Leaf, Heart, Droplet, ExternalLink, Play, ArrowDown, X,
-  Users, BookOpen, Twitter, Instagram, Youtube, Facebook, ChevronRight,
-} from "lucide-react";
+import {GOLD, G, bg, cream, dim, gBtn,SLIDES, FOCUS, FOCUS_MODALS, STATS, THREATS,WINS, ANIMALS, MIGRATION, HELP_ACTIONS,VOLUNTEER_ROLES, NEWS, ORGS,} from "../data/ConservationData.js";
+import {Leaf, Heart, Droplet, ExternalLink, Play, ArrowDown, X,Users, BookOpen, Twitter, Instagram, Youtube, Facebook, ChevronRight,} from "lucide-react";
 
 const FOCUS_ICONS = { Leaf, Droplet, Heart };
 
 export default function Conservation() {
-  const [slide, setSlide]                   = useState(0);
-  const [focusModal, setFocusModal]         = useState(null);
-  const [newsArticle, setNewsArticle]       = useState(null);
-  const [video, setVideo]                   = useState(null);
-  const [expandedWin, setExpandedWin]       = useState(null);
+  const [slide, setSlide]= useState(0);
+  const [focusModal, setFocusModal]= useState(null);
+  const [newsArticle, setNewsArticle]= useState(null);
+  const [video, setVideo]= useState(null);
+  const [expandedWin, setExpandedWin]= useState(null);
   const [migrationModal, setMigrationModal] = useState(null);
 
   const heroRef = useRef(null);
@@ -217,9 +209,9 @@ export default function Conservation() {
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
-                ["🌍", "Global Reach",   "Covering conservation across 6 continents"],
+                ["🌍", "Global Reach","Covering conservation across 6 continents"],
                 ["🔬", "Science-Backed", "All data from peer-reviewed research"],
-                ["🤝", "Community",      "Connecting you to front-line conservationists"],
+                ["🤝", "Community","Connecting you to front-line conservationists"],
                 ["💡", "Action-Focused", "Every page ends with a way to help"],
               ].map(([ic, t, d]) => (
                 <div
@@ -723,10 +715,10 @@ export default function Conservation() {
             </h3>
             <div className="grid grid-cols-4 gap-8 text-center">
               {[
-                { v: "1.5B",   l: "Birds migrate each year in North America", i: "🐦" },
-                { v: "90K km", l: "Distance Arctic Tern travels annually",     i: "🗺️" },
-                { v: "500+",   l: "Species undertake long-distance migrations", i: "🌍" },
-                { v: "30%",    l: "Migratory species in decline",               i: "📉" },
+                { v: "1.5B",l: "Birds migrate each year in North America", i: "🐦" },
+                { v: "90K km", l: "Distance Arctic Tern travels annually",i: "🗺️" },
+                { v: "500+", l: "Species undertake long-distance migrations", i: "🌍" },
+                { v: "30%",l: "Migratory species in decline",i: "📉" },
               ].map((s, i) => (
                 <motion.div
                   key={i}
@@ -1208,9 +1200,9 @@ export default function Conservation() {
 
           <div className="grid grid-cols-3 gap-5">
             {[
-              { emoji: "🌱", name: "GlobalGiving",    desc: "Choose from hundreds of conservation projects worldwide.", tag: "Fund Projects",    url: "https://www.globalgiving.org",     color: "#7aab82" },
-              { emoji: "🌿", name: "Rainforest Trust", desc: "Protect critical rainforest habitats and biodiversity.",  tag: "Protect Habitats", url: "https://www.rainforesttrust.org",   color: "#2a8c7a" },
-              { emoji: "✊", name: "Change.org",       desc: "Sign petitions to stop illegal wildlife trade globally.", tag: "Sign Petitions",   url: "https://www.change.org",           color: GOLD },
+              { emoji: "🌱", name: "GlobalGiving",desc: "Choose from hundreds of conservation projects worldwide.", tag: "Fund Projects",url: "https://www.globalgiving.org",     color: "#7aab82" },
+              { emoji: "🌿", name: "Rainforest Trust", desc: "Protect critical rainforest habitats and biodiversity.",tag: "Protect Habitats", url: "https://www.rainforesttrust.org",   color: "#2a8c7a" },
+              { emoji: "✊", name: "Change.org",desc: "Sign petitions to stop illegal wildlife trade globally.", tag: "Sign Petitions",url: "https://www.change.org",           color: GOLD },
             ].map((p, i) => (
               <motion.a
                 key={i}
@@ -1243,9 +1235,9 @@ export default function Conservation() {
         >
           {[
             { Icon: Instagram, label: "Instagram", url: "https://instagram.com" },
-            { Icon: Twitter,   label: "Twitter",   url: "https://twitter.com" },
-            { Icon: Facebook,  label: "Facebook",  url: "https://facebook.com" },
-            { Icon: Youtube,   label: "YouTube",   url: "https://youtube.com" },
+            { Icon: Twitter, label: "Twitter", url: "https://twitter.com" },
+            { Icon: Facebook,label: "Facebook",url: "https://facebook.com" },
+            { Icon: Youtube,label: "YouTube",url: "https://youtube.com" },
           ].map(({ Icon, label, url }) => (
             <motion.a
               key={label}

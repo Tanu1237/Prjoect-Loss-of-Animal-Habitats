@@ -24,19 +24,19 @@ Every species plays a role in keeping our planet balanced and healthy. To unders
 };
 
 const stats = [
-  { number: "99%+", label: "Species gone forever",  description: "Of all species that ever lived" },
-  { number: "1M+",  label: "Species at risk today", description: "Driven by human activity" },
-  { number: "68%",  label: "Population decline",    description: "Since 1970" },
-  { number: "365",  label: "Species lost per day",  description: "Current estimates" },
+  { number: "99%+", label: "Species gone forever",description: "Of all species that ever lived" },
+  { number: "1M+",label: "Species at risk today", description: "Driven by human activity" },
+  { number: "68%",label: "Population decline",description: "Since 1970" },
+  { number: "365",label: "Species lost per day",  description: "Current estimates" },
 ];
 
 const sections = [
-  { id: "mammals",   title: "Mammals",        subtitle: "Warm-blooded giants lost to time",           bg: "https://images.pexels.com/photos/26689570/pexels-photo-26689570.jpeg", species: extinctData.filter(s => s.type === "Mammals") },
-  { id: "birds",     title: "Birds",          subtitle: "Songs that will never be heard again",        bg: "https://images.pexels.com/photos/987947/pexels-photo-987947.jpeg",     species: extinctData.filter(s => s.type === "Birds") },
-  { id: "reptiles",  title: "Reptiles",       subtitle: "Cold-blooded survivors of a lost era",        bg: "https://images.pexels.com/photos/15444977/pexels-photo-15444977.jpeg", species: extinctData.filter(s => s.type === "Reptiles") },
-  { id: "amphibian", title: "Amphibian Life", subtitle: "Extinction beneath the waves",                bg: "https://images.pexels.com/photos/8919558/pexels-photo-8919558.jpeg",   species: extinctData.filter(s => s.type === "Amphibian") },
-  { id: "fish",      title: "Fish",           subtitle: "Ancient swimmers lost forever",               bg: "https://images.pexels.com/photos/14264284/pexels-photo-14264284.jpeg", species: extinctData.filter(s => s.type === "Fish") },
-  { id: "insects",   title: "Insects",        subtitle: "Tiny lives with massive impact",              bg: "https://images.pexels.com/photos/32934278/pexels-photo-32934278.jpeg", species: extinctData.filter(s => s.type === "Insects") },
+  { id: "mammals",title: "Mammals",subtitle: "Warm-blooded giants lost to time",bg: "https://images.pexels.com/photos/26689570/pexels-photo-26689570.jpeg", species: extinctData.filter(s => s.type === "Mammals") },
+  { id: "birds", title: "Birds",subtitle: "Songs that will never be heard again",bg: "https://images.pexels.com/photos/987947/pexels-photo-987947.jpeg",species: extinctData.filter(s => s.type === "Birds") },
+  { id: "reptiles",title: "Reptiles",subtitle: "Cold-blooded survivors of a lost era",bg: "https://images.pexels.com/photos/15444977/pexels-photo-15444977.jpeg", species: extinctData.filter(s => s.type === "Reptiles") },
+  { id: "amphibian", title: "Amphibian Life", subtitle: "Extinction beneath the waves",bg: "https://images.pexels.com/photos/8919558/pexels-photo-8919558.jpeg",species: extinctData.filter(s => s.type === "Amphibian") },
+  { id: "fish",title: "Fish",subtitle: "Ancient swimmers lost forever",bg: "https://images.pexels.com/photos/14264284/pexels-photo-14264284.jpeg", species: extinctData.filter(s => s.type === "Fish") },
+  { id: "insects",title: "Insects",subtitle: "Tiny lives with massive impact",bg: "https://images.pexels.com/photos/32934278/pexels-photo-32934278.jpeg", species: extinctData.filter(s => s.type === "Insects") },
 ];
 
 // ───────────────────── FADE EFFECTS ─────────────────────
@@ -78,8 +78,8 @@ const StatCard = ({ stat }) => (
 export default function Extinct() {
   const sectionRefs = useRef([]);
   const [activeSpecies, setActiveSpecies] = useState(null);
-  const [activeIndex,   setActiveIndex]   = useState(null);
-  const [sidebarOpen,   setSidebarOpen]   = useState(false);
+  const [activeIndex,setActiveIndex]= useState(null);
+  const [sidebarOpen, setSidebarOpen]= useState(false);
   const location = useLocation();
 
   useEffect(() => {
