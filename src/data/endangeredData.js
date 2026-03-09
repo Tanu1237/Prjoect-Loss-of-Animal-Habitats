@@ -1,305 +1,347 @@
 const endangeredData = [
-  {
-    id: "tiger",
-    type: "Mammals",
-    title: "Tiger",
-    keywords: ["tiger", "big cat", "apex predator", "forest", "asia", "poaching", "mammal"],
-    name: "Tiger",
-    image: "https://images.pexels.com/photos/14040355/pexels-photo-14040355.jpeg",
-    habitat: "Forests, grasslands, mangroves",
-    threat: "Poaching, habitat destruction, human-wildlife conflict",
-    description: `Tigers are the largest wild cats and function as apex predators, meaning they sit at the top of the food chain. By controlling prey populations such as deer and wild boar, they help maintain ecological balance and prevent overgrazing, which protects forest regeneration.
 
-Historically, tigers ranged across much of Asia, but their population has declined by over 95% in the last century. Illegal poaching for skins and body parts, deforestation, infrastructure development, and agriculture have fragmented their habitats into isolated pockets.
+{
+id:"tiger",
+type:"Mammals",
+title:"Tiger",
+keywords:["tiger","big cat","apex predator","forest","asia","poaching","mammal"],
+name:"Tiger",
+image:"https://images.pexels.com/photos/14040355/pexels-photo-14040355.jpeg",
 
-As forests shrink, tigers increasingly come into contact with humans, leading to conflict and retaliatory killings. Conservation efforts focus on protected reserves, wildlife corridors, strict anti-poaching enforcement, community participation, and international cooperation to ensure long-term survival.`
-  },
+habitat:"Tigers live in diverse habitats including tropical rainforests, mangrove swamps, grasslands, and temperate forests across Asia. They require dense vegetation for cover and large territories with sufficient prey populations such as deer, wild boar, and antelope. Most wild tigers now survive in protected reserves in countries like India, Nepal, Bhutan, Russia, and parts of Southeast Asia.",
 
-  {
-    id: "giraffe",
-    type: "Mammals",
-    title: "Giraffe",
-    keywords: ["giraffe", "savanna", "africa", "tall", "mammal", "woodland", "herbivore"],
-    name: "Giraffe",
-    image: "https://images.pexels.com/photos/6168825/pexels-photo-6168825.jpeg",
-    habitat: "Savannas, woodlands",
-    threat: "Habitat loss, illegal hunting",
-    description: `Giraffes are the tallest land animals on Earth, easily recognized by their long necks, long legs, and unique spot patterns. They feed mainly on leaves from tall trees, particularly acacia, helping shape vegetation structure in savanna ecosystems.
+threat:"Major threats include illegal poaching for their skins and body parts, habitat destruction caused by logging and agriculture, infrastructure development that fragments forests, and increasing human-wildlife conflict as people expand into forested areas.",
 
-Despite their popularity, giraffe populations have undergone a quiet decline due to expanding agriculture, habitat fragmentation, civil unrest, and illegal hunting. Many local populations have disappeared entirely without widespread attention.
+description:`Tigers are the largest members of the cat family and act as apex predators in their ecosystems. By controlling herbivore populations, they help maintain ecological balance and support healthy forest regeneration.
 
-Conservation programs emphasize habitat protection, population monitoring, anti-poaching initiatives, and transboundary conservation efforts to ensure giraffes continue roaming Africa's landscapes.`
-  },
+Historically, tigers ranged across much of Asia, but their numbers have declined drastically over the last century. Conservation programs today focus on anti-poaching patrols, habitat restoration, wildlife corridors connecting forest reserves, and community participation in conservation.
 
-  {
-    id: "hippopotamus",
-    type: "Mammals",
-    title: "Hippopotamus",
-    keywords: ["hippo", "hippopotamus", "river", "wetland", "africa", "semi-aquatic", "mammal"],
-    name: "Hippopotamus",
-    image: "https://images.pexels.com/photos/14042858/pexels-photo-14042858.jpeg",
-    habitat: "Rivers, lakes, wetlands",
-    threat: "Poaching, habitat loss",
-    description: `Hippopotamuses are large semi-aquatic mammals that spend most of the day submerged in water to regulate body temperature. At night, they graze on land and transport nutrients back into rivers, enriching aquatic ecosystems.
+Protecting tigers also protects many other species because tiger habitats support entire ecosystems rich in biodiversity.`
 
-Hippos face increasing threats from dam construction, water pollution, shrinking wetlands, and illegal hunting for meat and ivory-like teeth. Human encroachment near rivers has intensified conflict and reduced safe habitats.
+},
 
-Protecting freshwater ecosystems, enforcing wildlife laws, and managing water resources sustainably are essential to preserving hippo populations.`
-  },
+{
+id:"giraffe",
+type:"Mammals",
+title:"Giraffe",
+keywords:["giraffe","savanna","africa","tall","mammal","woodland","herbivore"],
+name:"Giraffe",
+image:"https://images.pexels.com/photos/6168825/pexels-photo-6168825.jpeg",
 
-  {
-    id: "chimpanzee",
-    type: "Mammals",
-    title: "Chimpanzee",
-    keywords: ["chimpanzee", "primate", "ape", "africa", "forest", "intelligence", "mammal"],
-    name: "Chimpanzee",
-    image: "https://images.pexels.com/photos/22589266/pexels-photo-22589266.jpeg",
-    habitat: "Tropical forests, savannas",
-    threat: "Deforestation, illegal wildlife trade, disease",
-    description: `Chimpanzees are highly intelligent primates sharing nearly 99% of human DNA. They demonstrate tool use, problem-solving abilities, emotional intelligence, and complex social relationships.
+habitat:"Giraffes inhabit African savannas, open woodlands, and grasslands where tall acacia trees grow. These ecosystems provide both food and open visibility that helps giraffes detect predators from long distances.",
 
-Rapid deforestation, illegal pet trade, poaching, and disease outbreaks such as Ebola have devastated chimpanzee populations. Infant chimpanzees are often captured after adults are killed.
+threat:"Habitat loss due to agriculture, illegal hunting for meat and hides, and fragmentation caused by roads and settlements threaten giraffe populations.",
 
-Conservation strategies include forest protection, wildlife law enforcement, disease monitoring, research, and community education programs that promote coexistence.`
-  },
+description:`Giraffes are the tallest land animals on Earth and can grow over 5 meters in height. Their long necks allow them to feed on leaves high in trees that other herbivores cannot reach.
 
-  {
-    id: "asian-elephant",
-    type: "Mammals",
-    title: "Asian Elephant",
-    keywords: ["asian elephant", "elephant", "asia", "forest", "keystone species", "mammal", "grassland"],
-    name: "Asian Elephant",
-    image: "https://images.pexels.com/photos/13257031/pexels-photo-13257031.jpeg",
-    habitat: "Forests, grasslands",
-    threat: "Habitat fragmentation, human conflict, poaching",
-    description: `Asian elephants are keystone species that shape landscapes by dispersing seeds and clearing vegetation. Their migratory behavior supports forest diversity and regeneration.
+They help shape vegetation patterns in savanna ecosystems and also disperse seeds while moving across landscapes. Despite their iconic status, giraffe populations have declined in recent decades due to habitat loss and human activities.`
+},
 
-Habitat fragmentation from roads, farms, and urban expansion disrupts migration routes, increasing human-elephant conflict. Poaching for tusks and loss of forest cover continue to threaten survival.
+{
+id:"hippopotamus",
+type:"Mammals",
+title:"Hippopotamus",
+keywords:["hippo","hippopotamus","river","wetland","africa","semi-aquatic","mammal"],
+name:"Hippopotamus",
+image:"https://images.pexels.com/photos/14042858/pexels-photo-14042858.jpeg",
 
-Conservation efforts focus on wildlife corridors, conflict mitigation, habitat restoration, and community-based conservation.`
-  },
+habitat:"Hippos inhabit rivers, lakes, and wetlands across sub-Saharan Africa. They spend most of the day submerged in water to stay cool and come onto land at night to graze on grasses.",
 
-  {
-    id: "blue-whale",
-    type: "Marine Life",
-    title: "Blue Whale",
-    keywords: ["blue whale", "whale", "ocean", "marine", "largest animal", "krill", "cetacean"],
-    name: "Blue Whale",
-    image: "https://images.pexels.com/photos/4666753/pexels-photo-4666753.jpeg",
-    habitat: "Open oceans",
-    threat: "Ship strikes, climate change, ocean pollution",
-    description: `Blue whales are the largest animals ever to exist, growing over 30 meters long. They feed almost entirely on krill and play a critical role in nutrient cycling within marine ecosystems.
+threat:"Poaching for meat and ivory-like teeth, habitat destruction caused by dam construction and water pollution, and conflicts with humans near rivers threaten hippo populations.",
 
-Although commercial whaling has ended, blue whales face threats from ship collisions, underwater noise pollution, plastic waste, and climate-driven changes in krill distribution.
+description:`Hippopotamuses are large semi-aquatic mammals known for their powerful jaws and territorial behavior. Despite their heavy bodies, they can run surprisingly fast on land.
 
-Global marine conservation, ship speed regulations, and pollution reduction are essential for their recovery.`
-  },
+Hippos play an important ecological role by transporting nutrients from land to water ecosystems, enriching rivers and supporting aquatic life.`
+},
 
-  {
-    id: "rhinoceros",
-    type: "Mammals",
-    title: "Rhinoceros",
-    keywords: ["rhino", "rhinoceros", "savanna", "africa", "poaching", "horn", "mammal", "grassland"],
-    name: "Rhinoceros",
-    image: "https://images.pexels.com/photos/9533170/pexels-photo-9533170.jpeg",
-    habitat: "Grasslands, savannas",
-    threat: "Poaching, illegal wildlife trade",
-    description: `Rhinoceroses are large herbivores that shape grassland ecosystems through grazing. Despite their size, they are extremely vulnerable due to slow reproduction.
+{
+id:"chimpanzee",
+type:"Mammals",
+title:"Chimpanzee",
+keywords:["chimpanzee","primate","ape","africa","forest","intelligence","mammal"],
+name:"Chimpanzee",
+image:"https://images.pexels.com/photos/22589266/pexels-photo-22589266.jpeg",
 
-Poaching for horns remains the greatest threat. Habitat loss further reduces breeding success.
+habitat:"Chimpanzees live in tropical forests, woodland savannas, and forest edges across central and western Africa where fruit trees and other food sources are abundant.",
 
-Anti-poaching enforcement, international trade bans, habitat protection, and community involvement are critical to rhino survival.`
-  },
+threat:"Deforestation, illegal wildlife trade, bushmeat hunting, and diseases such as Ebola threaten chimpanzee populations.",
 
-  {
-    id: "sea-turtle",
-    type: "Reptiles",
-    title: "Sea Turtle",
-    keywords: ["sea turtle", "turtle", "ocean", "marine", "coral reef", "reptile", "coastal"],
-    name: "Sea Turtle",
-    image: "https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg",
-    habitat: "Oceans and coastal regions",
-    threat: "Plastic pollution, fishing nets, habitat loss",
-    description: `Sea turtles have survived for over 100 million years and are essential for maintaining healthy coral reefs and seagrass beds.
+description:`Chimpanzees are among the most intelligent animals on Earth and share nearly 99 percent of their DNA with humans. They use tools, solve problems, and live in complex social communities.
 
-They are threatened by plastic ingestion, fishing bycatch, coastal development, and climate change affecting nesting beaches.
+Their survival depends heavily on protecting forest habitats and preventing illegal capture for the pet trade.`
+},
 
-Conservation includes beach protection, fishing regulations, and reducing marine pollution.`
-  },
+{
+id:"asian-elephant",
+type:"Mammals",
+title:"Asian Elephant",
+keywords:["asian elephant","elephant","asia","forest","keystone species","mammal","grassland"],
+name:"Asian Elephant",
+image:"https://images.pexels.com/photos/13257031/pexels-photo-13257031.jpeg",
 
-  {
-    id: "gorilla",
-    type: "Mammals",
-    title: "Gorilla",
-    keywords: ["gorilla", "great ape", "primate", "rainforest", "africa", "mammal", "endangered"],
-    name: "Gorilla",
-    image: "https://images.pexels.com/photos/6949387/pexels-photo-6949387.jpeg",
-    habitat: "Tropical rainforests",
-    threat: "Deforestation, disease, hunting",
-    description: `Gorillas live in close-knit family groups and contribute to forest regeneration through seed dispersal.
+habitat:"Asian elephants inhabit forests, grasslands, and scrublands across South and Southeast Asia. They travel long distances between feeding and watering sites.",
 
-Deforestation, hunting, and diseases such as Ebola have caused severe population declines.
+threat:"Habitat fragmentation, poaching for ivory, and human-elephant conflict are the main threats.",
 
-Protected habitats, medical monitoring, and ecotourism help support conservation.`
-  },
+description:`Asian elephants are considered keystone species because they shape ecosystems by dispersing seeds and clearing vegetation.
 
-  {
-    id: "red-panda",
-    type: "Mammals",
-    title: "Red Panda",
-    keywords: ["red panda", "panda", "bamboo", "mountain forest", "asia", "mammal", "arboreal"],
-    name: "Red Panda",
-    image: "https://images.pexels.com/photos/26087027/pexels-photo-26087027.jpeg",
-    habitat: "Temperate mountain forests",
-    threat: "Deforestation, climate change",
-    description: `Red pandas are arboreal mammals dependent on bamboo forests. Habitat fragmentation and climate change have severely reduced populations.
+Their migratory behavior helps maintain biodiversity across forests. However, shrinking habitats are increasing conflicts with humans.`
+},
 
-Conservation focuses on forest protection, habitat corridors, and public awareness.`
-  },
+{
+id:"blue-whale",
+type:"Marine Life",
+title:"Blue Whale",
+keywords:["blue whale","whale","ocean","marine","largest animal","krill","cetacean"],
+name:"Blue Whale",
+image:"https://images.pexels.com/photos/4666753/pexels-photo-4666753.jpeg",
 
-  {
-    id: "great-indian-bustard",
-    type: "Birds",
-    title: "Great Indian Bustard",
-    keywords: ["great indian bustard", "bustard", "bird", "grassland", "india", "critically endangered"],
-    name: "Great Indian Bustard",
-    image: "https://images.pexels.com/photos/33536155/pexels-photo-33536155.jpeg",
-    habitat: "Grasslands",
-    threat: "Habitat loss, power line collisions",
-    description: `The Great Indian Bustard is one of the heaviest flying birds and an indicator of healthy grassland ecosystems.
+habitat:"Blue whales inhabit deep open oceans worldwide and migrate long distances between feeding grounds in cold waters and breeding grounds in warmer seas.",
 
-Infrastructure development and power line collisions have critically reduced numbers.
+threat:"Ship strikes, underwater noise pollution, climate change affecting krill populations, and plastic pollution threaten blue whales.",
 
-Habitat protection and underground power lines are key conservation measures.`
-  },
+description:`Blue whales are the largest animals ever known to exist on Earth, reaching lengths of more than 30 meters.
 
-  {
-    id: "snow-leopard",
-    type: "Mammals",
-    title: "Snow Leopard",
-    keywords: ["snow leopard", "leopard", "big cat", "mountain", "himalaya", "mammal", "predator"],
-    name: "Snow Leopard",
-    image: "https://images.pexels.com/photos/4033662/pexels-photo-4033662.jpeg",
-    habitat: "High-altitude mountains",
-    threat: "Poaching, climate change, human conflict",
-    description: `Snow leopards are elusive predators adapted to cold mountain regions. They regulate prey populations in fragile ecosystems.
+They feed almost entirely on tiny shrimp-like animals called krill and play a major role in maintaining ocean ecosystems through nutrient cycling.`
+},
 
-Climate change, livestock conflict, and poaching threaten survival.
+{
+id:"rhinoceros",
+type:"Mammals",
+title:"Rhinoceros",
+keywords:["rhino","rhinoceros","savanna","africa","poaching","horn","mammal","grassland"],
+name:"Rhinoceros",
+image:"https://images.pexels.com/photos/9533170/pexels-photo-9533170.jpeg",
 
-Conservation includes mountain habitat protection and community engagement.`
-  },
+habitat:"Rhinos inhabit grasslands, savannas, and tropical forests across Africa and Asia where they graze on grasses and shrubs.",
 
-  {
-    id: "kangaroo",
-    type: "Mammals",
-    title: "Kangaroo",
-    keywords: ["kangaroo", "marsupial", "australia", "grassland", "mammal", "bushfire"],
-    name: "Kangaroo",
-    image: "https://images.pexels.com/photos/6704257/pexels-photo-6704257.png",
-    habitat: "Grasslands, forests",
-    threat: "Habitat loss, bushfires, climate change",
-    description: `Kangaroos are iconic Australian marsupials. Droughts, bushfires, and land clearing have reduced populations.
+threat:"Poaching for rhino horns used in illegal wildlife trade is the biggest threat.",
 
-Habitat management and climate resilience are crucial for survival.`
-  },
+description:`Rhinoceroses are large herbivores that help shape ecosystems through grazing.
 
-  {
-    id: "koala",
-    type: "Mammals",
-    title: "Koala",
-    keywords: ["koala", "marsupial", "australia", "eucalyptus", "mammal", "forest", "bushfire"],
-    name: "Koala",
-    image: "https://images.pexels.com/photos/146083/pexels-photo-146083.jpeg",
-    habitat: "Eucalyptus forests",
-    threat: "Deforestation, bushfires, disease",
-    description: `Koalas rely exclusively on eucalyptus trees. Large-scale deforestation and bushfires have devastated populations.
+Due to illegal demand for their horns, rhinos have been heavily targeted by poachers, making strict conservation measures necessary.`
+},
 
-Conservation includes habitat restoration and disease management.`
-  },
+{
+id:"sea-turtle",
+type:"Reptiles",
+title:"Sea Turtle",
+keywords:["sea turtle","turtle","ocean","marine","coral reef","reptile","coastal"],
+name:"Sea Turtle",
+image:"https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg",
 
-  {
-    id: "philippine-eagle",
-    type: "Birds",
-    title: "Philippine Eagle",
-    keywords: ["philippine eagle", "eagle", "bird", "philippines", "raptor", "tropical forest", "critically endangered"],
-    name: "Philippine Eagle",
-    image: "https://images.pexels.com/photos/31637116/pexels-photo-31637116.jpeg",
-    habitat: "Tropical forests",
-    threat: "Deforestation, hunting",
-    description: `The Philippine eagle is among the rarest birds of prey. Deforestation has left only a few breeding pairs.
+habitat:"Sea turtles inhabit oceans worldwide and rely on sandy beaches for nesting.",
 
-Forest protection and captive breeding are essential.`
-  },
+threat:"Plastic pollution, fishing nets, coastal development, and climate change threaten sea turtle populations.",
 
-  {
-    id: "african-wild-dog",
-    type: "Mammals",
-    title: "African Wild Dog",
-    keywords: ["african wild dog", "painted wolf", "wild dog", "africa", "savanna", "pack", "mammal"],
-    name: "African Wild Dog",
-    image: "https://images.pexels.com/photos/32935826/pexels-photo-32935826.jpeg",
-    habitat: "Savannas, woodlands",
-    threat: "Habitat loss, disease",
-    description: `African wild dogs are highly social pack hunters. Habitat fragmentation and disease transmission threaten survival.
+description:`Sea turtles have survived for more than 100 million years and are essential for maintaining healthy marine ecosystems.
 
-Protected areas and disease control are key.`
-  },
+They help maintain seagrass beds and coral reefs which support many other marine species.`
+},
 
-  {
-    id: "snowy-owl",
-    type: "Birds",
-    title: "Snowy Owl",
-    keywords: ["snowy owl", "owl", "bird", "arctic", "tundra", "raptor", "climate change"],
-    name: "Snowy Owl",
-    image: "https://images.pexels.com/photos/8181538/pexels-photo-8181538.jpeg",
-    habitat: "Arctic tundra, open fields",
-    threat: "Climate change, habitat disturbance",
-    description: `Snowy owls depend on Arctic ecosystems. Climate change alters prey availability and breeding success.
+{
+id:"gorilla",
+type:"Mammals",
+title:"Gorilla",
+keywords:["gorilla","great ape","primate","rainforest","africa","mammal","endangered"],
+name:"Gorilla",
+image:"https://images.pexels.com/photos/6949387/pexels-photo-6949387.jpeg",
 
-Monitoring and habitat protection support conservation.`
-  },
+habitat:"Gorillas inhabit dense tropical rainforests and mountainous forests in central Africa.",
 
-  {
-    id: "giant-panda",
-    type: "Mammals",
-    title: "Giant Panda",
-    keywords: ["giant panda", "panda", "china", "bamboo", "bear", "mammal", "endangered"],
-    name: "Giant Panda",
-    image: "https://images.pexels.com/photos/29088370/pexels-photo-29088370.jpeg",
-    habitat: "Bamboo forests",
-    threat: "Habitat fragmentation, low reproduction",
-    description: `Giant pandas rely almost entirely on bamboo. Habitat fragmentation limits breeding.
+threat:"Deforestation, disease outbreaks, and illegal hunting threaten gorilla populations.",
 
-Reforestation and habitat corridors aid recovery.`
-  },
+description:`Gorillas live in close family groups led by a dominant silverback male.
 
-  {
-    id: "maned-wolf",
-    type: "Mammals",
-    title: "Maned Wolf",
-    keywords: ["maned wolf", "wolf", "south america", "brazil", "grassland", "mammal", "canid"],
-    name: "Maned Wolf",
-    image: "https://images.pexels.com/photos/7402790/pexels-photo-7402790.jpeg",
-    habitat: "Grasslands, savannas, forests",
-    threat: "Habitat loss, vehicle collisions",
-    description: `Maned wolves help control rodent populations and disperse seeds.
+They contribute to forest regeneration by dispersing seeds while feeding on fruits and vegetation.`
+},
 
-Road mortality and agriculture threaten populations.`
-  },
+{
+id:"red-panda",
+type:"Mammals",
+title:"Red Panda",
+keywords:["red panda","panda","bamboo","mountain forest","asia","mammal","arboreal"],
+name:"Red Panda",
+image:"https://images.pexels.com/photos/26087027/pexels-photo-26087027.jpeg",
 
-  {
-    id: "leopard",
-    type: "Mammals",
-    title: "Leopard",
-    keywords: ["leopard", "big cat", "africa", "asia", "forest", "predator", "mammal", "poaching"],
-    name: "Leopard",
-    image: "https://images.pexels.com/photos/6652059/pexels-photo-6652059.jpeg",
-    habitat: "Forests, grasslands",
-    threat: "Poaching, habitat loss",
-    description: `Leopards are adaptable predators that maintain prey balance.
+habitat:"Red pandas inhabit temperate forests in the Himalayan region where bamboo grows abundantly.",
 
-Poaching and habitat loss remain major threats.`
-  },
+threat:"Deforestation, climate change, and habitat fragmentation threaten red panda populations.",
+
+description:`Red pandas are small arboreal mammals known for their reddish fur and bushy tails.
+
+They rely heavily on bamboo forests and spend most of their lives in trees.`
+},
+
+{
+id:"great-indian-bustard",
+type:"Birds",
+title:"Great Indian Bustard",
+keywords:["great indian bustard","bustard","bird","grassland","india","critically endangered"],
+name:"Great Indian Bustard",
+image:"https://images.pexels.com/photos/33536155/pexels-photo-33536155.jpeg",
+
+habitat:"Great Indian Bustards inhabit dry grasslands and semi-arid plains mainly in India.",
+
+threat:"Habitat destruction, power-line collisions, and agricultural expansion are the biggest threats.",
+
+description:`The Great Indian Bustard is one of the heaviest flying birds in the world and an indicator of healthy grassland ecosystems.
+
+Conservation programs now focus on protecting grasslands and modifying power lines to prevent bird collisions.`
+},
+
+{
+id:"snow-leopard",
+type:"Mammals",
+title:"Snow Leopard",
+keywords:["snow leopard","leopard","big cat","mountain","himalaya","mammal","predator"],
+name:"Snow Leopard",
+image:"https://images.pexels.com/photos/4033662/pexels-photo-4033662.jpeg",
+
+habitat:"Snow leopards live in high-altitude mountain ranges of Central and South Asia including the Himalayas.",
+
+threat:"Poaching, climate change, and conflicts with livestock farmers threaten snow leopard populations.",
+
+description:`Snow leopards are elusive predators adapted to extreme mountain environments.
+
+Their thick fur and powerful limbs help them survive harsh climates and hunt agile prey on steep cliffs.`
+},
+
+{
+id:"kangaroo",
+type:"Mammals",
+title:"Kangaroo",
+keywords:["kangaroo","marsupial","australia","grassland","mammal","bushfire"],
+name:"Kangaroo",
+image:"https://images.pexels.com/photos/6704257/pexels-photo-6704257.png",
+
+habitat:"Kangaroos inhabit grasslands, open forests, and deserts across Australia.",
+
+threat:"Habitat destruction, climate change, droughts, and bushfires threaten some kangaroo populations.",
+
+description:`Kangaroos are iconic Australian marsupials known for their powerful hind legs and ability to leap long distances.
+
+They play important roles in maintaining grassland ecosystems.`
+},
+
+{
+id:"koala",
+type:"Mammals",
+title:"Koala",
+keywords:["koala","marsupial","australia","eucalyptus","mammal","forest","bushfire"],
+name:"Koala",
+image:"https://images.pexels.com/photos/146083/pexels-photo-146083.jpeg",
+
+habitat:"Koalas inhabit eucalyptus forests across eastern and southeastern Australia.",
+
+threat:"Deforestation, bushfires, climate change, and disease outbreaks threaten koala populations.",
+
+description:`Koalas spend most of their lives in trees and feed almost exclusively on eucalyptus leaves.
+
+Protecting forests and restoring habitats are essential for koala survival.`
+},
+
+{
+id:"philippine-eagle",
+type:"Birds",
+title:"Philippine Eagle",
+keywords:["philippine eagle","eagle","bird","philippines","raptor","tropical forest","critically endangered"],
+name:"Philippine Eagle",
+image:"https://images.pexels.com/photos/31637116/pexels-photo-31637116.jpeg",
+
+habitat:"The Philippine eagle inhabits dense tropical rainforests of the Philippines where tall trees are used for nesting.",
+
+threat:"Deforestation and illegal hunting are the biggest threats.",
+
+description:`The Philippine eagle is one of the largest and most powerful birds of prey in the world.
+
+Due to massive habitat loss, only a few hundred individuals remain in the wild.`
+},
+
+{
+id:"african-wild-dog",
+type:"Mammals",
+title:"African Wild Dog",
+keywords:["african wild dog","painted wolf","wild dog","africa","savanna","pack","mammal"],
+name:"African Wild Dog",
+image:"https://images.pexels.com/photos/32935826/pexels-photo-32935826.jpeg",
+
+habitat:"African wild dogs inhabit savannas, grasslands, and woodlands across sub-Saharan Africa.",
+
+threat:"Habitat fragmentation, human conflict, and disease outbreaks threaten their survival.",
+
+description:`African wild dogs are highly social predators that hunt in coordinated packs.
+
+They are among the most efficient hunters in the animal kingdom.`
+},
+
+{
+id:"snowy-owl",
+type:"Birds",
+title:"Snowy Owl",
+keywords:["snowy owl","owl","bird","arctic","tundra","raptor","climate change"],
+name:"Snowy Owl",
+image:"https://images.pexels.com/photos/8181538/pexels-photo-8181538.jpeg",
+
+habitat:"Snowy owls inhabit Arctic tundra regions and open fields.",
+
+threat:"Climate change and habitat disturbance threaten their survival.",
+
+description:`Snowy owls depend on cold Arctic ecosystems where they hunt rodents and small mammals.
+
+Changes in climate affect their prey availability and breeding success.`
+},
+
+{
+id:"giant-panda",
+type:"Mammals",
+title:"Giant Panda",
+keywords:["giant panda","panda","china","bamboo","bear","mammal","endangered"],
+name:"Giant Panda",
+image:"https://images.pexels.com/photos/29088370/pexels-photo-29088370.jpeg",
+
+habitat:"Giant pandas inhabit bamboo forests in mountainous regions of China.",
+
+threat:"Habitat fragmentation and low reproduction rates threaten panda populations.",
+
+description:`Giant pandas feed almost entirely on bamboo and play an important role in maintaining forest ecosystems.
+
+Extensive conservation programs have helped stabilize their population.`
+},
+
+{
+id:"maned-wolf",
+type:"Mammals",
+title:"Maned Wolf",
+keywords:["maned wolf","wolf","south america","brazil","grassland","mammal","canid"],
+name:"Maned Wolf",
+image:"https://images.pexels.com/photos/7402790/pexels-photo-7402790.jpeg",
+
+habitat:"Maned wolves inhabit grasslands, savannas, and scrub forests in South America.",
+
+threat:"Habitat destruction and vehicle collisions threaten their populations.",
+
+description:`Maned wolves are unique canids known for their long legs and fox-like appearance.
+
+They help control rodent populations and disperse seeds across ecosystems.`
+},
+
+{
+id:"leopard",
+type:"Mammals",
+title:"Leopard",
+keywords:["leopard","big cat","africa","asia","forest","predator","mammal","poaching"],
+name:"Leopard",
+image:"https://images.pexels.com/photos/6652059/pexels-photo-6652059.jpeg",
+
+habitat:"Leopards inhabit forests, grasslands, mountains, and deserts across Africa and Asia.",
+
+threat:"Poaching, habitat loss, and conflict with humans threaten leopard populations.",
+
+description:`Leopards are extremely adaptable predators capable of surviving in many different environments.
+
+They help maintain ecological balance by regulating prey populations in their ecosystems.`
+}
 
 ];
 
