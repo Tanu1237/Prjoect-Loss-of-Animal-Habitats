@@ -1,4 +1,9 @@
-// ── Brand tokens (kept as JS values — used dynamically in style={} props) ──
+
+import Captain_Paul_Watson    from "../assets/Captain_Paul_Watson.mp4";
+import WWF_s                  from "../assets/WWF_s.mp4";
+import Nature_Conservancy     from "../assets/Nature_Conservancy.mp4";
+import Conservation_International from "../assets/Conservation_International.mp4";
+
 export const GOLD = "#c9a84c";
 export const G    = "linear-gradient(135deg, #c9a84c, #e2c578)";
 
@@ -12,30 +17,12 @@ export const bg = {
 export const cream = "#f0ead8";
 export const dim   = "#c4bba6";
 
-// ── Reusable Tailwind class strings (replaces inline style objects) ──
-
-/**
- * gBtn — outlined gold button / link
- * Usage:  className={gBtn}
- */
 export const gBtn =
   "inline-flex items-center gap-2 px-7 py-3 border border-[#c9a84c] text-[#c9a84c] " +
   "rounded-full text-xs uppercase tracking-[0.2em] no-underline bg-transparent " +
   "transition-all duration-300 cursor-pointer";
 
-/**
- * cardStyle — rounded card with subtle gold border
- * Usage:  className={cardStyle}
- */
 export const cardStyle = "rounded-2xl overflow-hidden border border-[#c9a84c]/[0.08]";
-
-// ── Asset imports ──
-import Captain_Paul_Watson    from "../assets/Captain_Paul_Watson.mp4";
-import WWF_s                  from "../assets/WWF_s.mp4";
-import Nature_Conservancy     from "../assets/Nature_Conservancy.mp4";
-import Conservation_International from "../assets/Conservation_International.mp4";
-
-// ── Data ──
 
 export const SLIDES = [
   {
