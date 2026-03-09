@@ -11,7 +11,7 @@ function Home() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="w-screen overflow-x-hidden text-white"
+      className="w-full overflow-x-hidden text-white"
     >
 
       {/* HERO SECTION */}
