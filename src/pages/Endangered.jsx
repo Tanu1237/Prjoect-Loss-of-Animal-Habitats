@@ -105,13 +105,17 @@ const Endangered = () => {
               id={animal.id}
               key={animal.id}
               onClick={() => setSelectedAnimal(animal)}
-              className="relative rounded-xl overflow-hidden cursor-pointer h-[380px]
-              transition-transform duration-300 hover:scale-[1.03] float-card"
+              className="relative rounded-xl overflow-hidden cursor-pointer h-[380px] group
+              transition duration-500 hover:scale-[1.05] hover:shadow-2xl" 
             >
               <img src={animal.image} alt={animal.name} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-5">
-                <h2 className="text-2xl font-bold">{animal.name}</h2>
-                <p className="text-[#bbf7d0] mt-2">To know more</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-6 transition duration-500 group-hover:from-black/90">
+               <h2 className="text-3xl font-bold tracking-wide transform transition duration-500 group-hover:translate-y-[-4px]">
+  {animal.name}
+</h2>
+            <p className="text-green-300 mt-2 opacity-0 group-hover:opacity-100 transition duration-500">
+  Click to explore →
+</p>
               </div>
             </div>
           ))}
@@ -159,40 +163,72 @@ const Endangered = () => {
         </div>
       </section>
 
-      {/* MODAL */}
-      {selectedAnimal && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24">
-          <div
-            className="absolute inset-0 bg-black/70"
-            onClick={() => setSelectedAnimal(null)}
-          />
-          <div className="relative bg-black rounded-xl max-w-4xl w-full h-[90vh] shadow-2xl z-50 overflow-hidden">
-            <button
-              onClick={() => setSelectedAnimal(null)}
-              className="absolute top-4 right-4 text-2xl"
-            >
-              ✕
-            </button>
-            <div className="h-full overflow-y-auto hide-scrollbar">
-              <img
-                src={selectedAnimal.image}
-                alt={selectedAnimal.name}
-                className="w-full h-[420px] object-cover"
-              />
-              <div className="p-6">
-                <h2 className="text-3xl font-bold mb-4">{selectedAnimal.name}</h2>
-                <p className="mb-6 whitespace-pre-line">{selectedAnimal.description}</p>
-                <p className="mb-2">
-                  <span className="font-semibold">Habitat:</span> {selectedAnimal.habitat}
-                </p>
-                <p>
-                  <span className="font-semibold">Threats:</span> {selectedAnimal.threat}
-                </p>
-              </div>
-            </div>
+      
+     {/* MODAL */}
+{selectedAnimal && (
+  <div className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24 overflow-y-auto scrollbar-none scroll-smooth">
+
+    <div
+      className="fixed inset-0 bg-black/70"
+      onClick={() => setSelectedAnimal(null)}
+    />
+<div className="relative bg-black rounded-xl max-w-4xl w-full shadow-2xl z-50 backdrop-blur-sm">
+
+      <button
+        onClick={() => setSelectedAnimal(null)}
+        className="absolute top-4 right-4 text-2xl"
+      >
+        ✕
+      </button>
+
+      <div className="space-y-8 pb-10">
+
+        <img
+          src={selectedAnimal.image}
+          alt={selectedAnimal.name}
+          className="w-full h-[420px] object-cover rounded-t-xl"
+        />
+
+        <div className="px-8 space-y-8">
+
+          <h2 className="text-3xl font-bold">
+            {selectedAnimal.name}
+          </h2>
+          <p className="text-gray-200 leading-loose whitespace-pre-line"></p>
+          <p className="text-gray-200 leading-loose whitespace-pre-line">
+            {selectedAnimal.description}
+          </p>
+
+          <div className="space-y-6 pt-6 border-t border-gray-700">
+
+            <p className="text-lg">
+              <span className="font-semibold text-green-400">
+                Habitat:
+              </span>{" "}
+              <span className="text-gray-300">
+                {selectedAnimal.habitat}
+              </span>
+            </p>
+
+            <p className="text-lg">
+              <span className="font-semibold text-red-400">
+                Threats:
+              </span>{" "}
+              <span className="text-gray-300">
+                {selectedAnimal.threat}
+              </span>
+            </p>
+
           </div>
+
         </div>
-      )}
+
+      </div>
+
+    </div>
+
+  </div>
+)}
 
       {/* ANIMATIONS & STYLES */}
       <style>
