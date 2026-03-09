@@ -19,3 +19,16 @@
     letter-spacing: 0.015em;
   }
 }
+/* Custom vertical scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141c04;
+}
+
+::-webkit-scrollbar-thumb {
+  background: center/contain no-repeat, #0e2f1d;
+  border-radius: 10px;
+}
