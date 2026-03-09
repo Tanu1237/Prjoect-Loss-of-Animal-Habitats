@@ -13,14 +13,14 @@ function AnimalCard({ animal, index }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, delay: index * 0.04 }}
       onClick={() => navigate(`/${animal.page}#${animal.id}`)}
-      className="relative flex-shrink-0 w-48 h-64 rounded-2xl overflow-hidden cursor-pointer group"
+      className="relative shrink-0 w-48 h-64 rounded-2xl overflow-hidden cursor-pointer group"
     >
       <img
         src={animal.image}
         alt={animal.name}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        onError={(e) => { e.target.src = "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg"; }}
+        onError={e => { e.target.src = "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg"; }}
       />
 
       {/* Vignette */}
@@ -44,8 +44,8 @@ function AnimalCard({ animal, index }) {
 
 function ScrollRow({ title, badgeColor, dotColor, animals, page }) {
   const mapped = animals.map((a, i) => ({
-    id: a.id || `${page}-${i}`,
-    name: a.name || a.title,
+    id:    a.id || `${page}-${i}`,
+    name:  a.name || a.title,
     image: a.image,
     page,
   }));
@@ -54,7 +54,7 @@ function ScrollRow({ title, badgeColor, dotColor, animals, page }) {
     <div className="mb-12">
       {/* Row header */}
       <div className="flex items-center gap-3 mb-4">
-        <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${dotColor}`} />
+        <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${dotColor}`} />
         <h3 className="text-white font-bold text-lg">{title}</h3>
         <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${badgeColor}`}>
           {animals.length} species

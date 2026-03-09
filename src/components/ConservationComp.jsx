@@ -7,27 +7,20 @@ import { GOLD, G, bg, cream, dim } from "../data/ConservationData.js";
 
 export const GL = ({ center }) => (
   <div
-    style={{
-      height: 1,
-      width: 60,
-      background: G,
-      margin: center ? "0.75rem auto" : "0.75rem 0",
-    }}
+    className={`h-px w-16 my-3 ${center ? "mx-auto" : "mx-0"}`}
+    style={{ background: G }}
   />
 );
 
 export const Tag = ({ children, color }) => (
   <span
+    className="inline-block px-3 py-1 rounded-full text-xs uppercase tracking-widest"
     style={{
-      padding: "0.3rem 0.85rem",
-      borderRadius: "2rem",
-      fontSize: "0.65rem",
-      letterSpacing: "0.2em",
-      textTransform: "uppercase",
       color: color || GOLD,
       background: `${color || GOLD}12`,
       border: `1px solid ${color || GOLD}33`,
       fontFamily: "Courier New,monospace",
+      letterSpacing: "0.2em",
     }}
   >
     {children}
@@ -39,46 +32,25 @@ export const SectionHeader = ({ label, title, sub, center }) => (
     initial={{ opacity: 0, y: 28 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    style={{
-      marginBottom: "3.5rem",
-      textAlign: center ? "center" : "left",
-    }}
+    className={`mb-14 ${center ? "text-center" : "text-left"}`}
   >
     <p
-      style={{
-        color: GOLD,
-        fontSize: "0.65rem",
-        letterSpacing: "0.5em",
-        textTransform: "uppercase",
-        fontFamily: "Courier New,monospace",
-        marginBottom: "0.75rem",
-      }}
+      className="text-xs uppercase tracking-widest mb-3"
+      style={{ color: GOLD, fontFamily: "Courier New,monospace", letterSpacing: "0.5em" }}
     >
       {label}
     </p>
     <GL center={center} />
     <h2
-      style={{
-        fontSize: "clamp(2.2rem,4vw,3.4rem)",
-        color: cream,
-        fontWeight: 400,
-        letterSpacing: "0.02em",
-      }}
+      className="font-normal tracking-wide"
+      style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)", color: cream, letterSpacing: "0.02em" }}
     >
       {title}
     </h2>
     {sub && (
       <p
-        style={{
-          color: dim,
-          marginTop: "1rem",
-          maxWidth: "40rem",
-          marginLeft: center ? "auto" : 0,
-          marginRight: center ? "auto" : 0,
-          lineHeight: 1.8,
-          opacity: 0.75,
-          fontSize: "1.05rem",
-        }}
+        className={`mt-4 leading-relaxed text-lg ${center ? "mx-auto" : ""}`}
+        style={{ color: dim, maxWidth: "40rem", opacity: 0.75, lineHeight: 1.8 }}
       >
         {sub}
       </p>
@@ -86,23 +58,22 @@ export const SectionHeader = ({ label, title, sub, center }) => (
   </motion.div>
 );
 
-// ── Body block renderer (shared by both modals) ──
+// ── Body block renderer ──
 
 function BodyBlocks({ body }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+    <div className="flex flex-col gap-7">
       {body.map((block, i) => {
         if (block.type === "intro") return (
           <p
             key={i}
+            className="pl-5 m-0"
             style={{
               color: cream,
               fontSize: "1.12rem",
               lineHeight: 1.85,
               opacity: 0.92,
               borderLeft: `3px solid ${GOLD}`,
-              paddingLeft: "1.25rem",
-              margin: 0,
             }}
           >
             {block.text}
@@ -112,13 +83,8 @@ function BodyBlocks({ body }) {
         if (block.type === "paragraph") return (
           <p
             key={i}
-            style={{
-              color: dim,
-              fontSize: "1.05rem",
-              lineHeight: 1.9,
-              opacity: 0.82,
-              margin: 0,
-            }}
+            className="m-0"
+            style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.9, opacity: 0.82 }}
           >
             {block.text}
           </p>
@@ -126,8 +92,8 @@ function BodyBlocks({ body }) {
 
         if (block.type === "subheading") return (
           <div key={i}>
-            <div style={{ height: 1, width: 36, background: G, marginBottom: "0.75rem" }} />
-            <h3 style={{ fontSize: "1.35rem", fontWeight: 400, color: cream, margin: 0 }}>
+            <div className="h-px w-9 mb-3" style={{ background: G }} />
+            <h3 className="text-2xl font-normal m-0" style={{ color: cream }}>
               {block.text}
             </h3>
           </div>
@@ -139,50 +105,25 @@ function BodyBlocks({ body }) {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            style={{
-              padding: "2rem 2.25rem",
-              borderRadius: "1rem",
-              background: "rgba(201,168,76,0.05)",
-              border: "1px solid rgba(201,168,76,0.18)",
-              position: "relative",
-            }}
+            className="relative px-9 py-8 rounded-2xl"
+            style={{ background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.18)" }}
           >
             <span
-              style={{
-                fontSize: "4rem",
-                color: `${GOLD}20`,
-                position: "absolute",
-                top: "0.5rem",
-                left: "1.5rem",
-                fontFamily: "Georgia,serif",
-                lineHeight: 1,
-              }}
+              className="absolute top-2 left-6 leading-none"
+              style={{ fontSize: "4rem", color: `${GOLD}20`, fontFamily: "Georgia,serif" }}
             >
               "
             </span>
             <p
-              style={{
-                color: cream,
-                fontSize: "1.2rem",
-                fontStyle: "italic",
-                lineHeight: 1.7,
-                margin: "0 0 1rem",
-                paddingTop: "0.5rem",
-                opacity: 0.9,
-              }}
+              className="italic pt-2 mb-4"
+              style={{ color: cream, fontSize: "1.2rem", lineHeight: 1.7, opacity: 0.9 }}
             >
               {block.text}
             </p>
-            <div style={{ height: 1, width: 40, background: G, marginBottom: "0.6rem" }} />
+            <div className="h-px w-10 mb-2" style={{ background: G }} />
             <p
-              style={{
-                color: GOLD,
-                fontSize: "0.72rem",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                fontFamily: "Courier New,monospace",
-                margin: 0,
-              }}
+              className="m-0 uppercase tracking-widest"
+              style={{ color: GOLD, fontSize: "0.72rem", letterSpacing: "0.2em", fontFamily: "Courier New,monospace" }}
             >
               {block.attribution}
             </p>
@@ -190,14 +131,7 @@ function BodyBlocks({ body }) {
         );
 
         if (block.type === "stats") return (
-          <div
-            key={i}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
-              gap: "1rem",
-            }}
-          >
+          <div key={i} className="grid grid-cols-4 gap-4">
             {block.items.map((s, j) => (
               <motion.div
                 key={j}
@@ -205,19 +139,20 @@ function BodyBlocks({ body }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: j * 0.08 }}
-                style={{
-                  padding: "1.25rem 0.75rem",
-                  textAlign: "center",
-                  borderRadius: "0.75rem",
-                  background: "rgba(201,168,76,0.04)",
-                  border: "1px solid rgba(201,168,76,0.14)",
-                }}
+                className="py-5 px-3 text-center rounded-xl"
+                style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.14)" }}
               >
-                <p style={{ fontSize: "1.8rem", color: GOLD, fontFamily: "'Cinzel',serif", margin: "0 0 0.25rem" }}>
+                <p
+                  className="mb-1"
+                  style={{ fontSize: "1.8rem", color: GOLD, fontFamily: "'Cinzel',serif" }}
+                >
                   {s.val}
                 </p>
-                <div style={{ height: 1, width: 18, background: G, margin: "0.3rem auto" }} />
-                <p style={{ color: dim, fontSize: "0.72rem", opacity: 0.65, margin: 0, lineHeight: 1.5 }}>
+                <div className="h-px w-4 mx-auto my-1" style={{ background: G }} />
+                <p
+                  className="m-0 leading-snug"
+                  style={{ color: dim, fontSize: "0.72rem", opacity: 0.65 }}
+                >
                   {s.label}
                 </p>
               </motion.div>
@@ -231,34 +166,19 @@ function BodyBlocks({ body }) {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{
-              display: "flex",
-              gap: "1.25rem",
-              alignItems: "flex-start",
-              padding: "1.75rem",
-              borderRadius: "1rem",
-              background: "rgba(201,168,76,0.07)",
-              border: "1px solid rgba(201,168,76,0.25)",
-              position: "relative",
-              overflow: "hidden",
-            }}
+            className="relative flex gap-5 items-start p-7 rounded-2xl overflow-hidden"
+            style={{ background: "rgba(201,168,76,0.07)", border: "1px solid rgba(201,168,76,0.25)" }}
           >
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: G }} />
-            <span style={{ fontSize: "2rem", flexShrink: 0, marginTop: "0.1rem" }}>{block.icon}</span>
+            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: G }} />
+            <span className="text-3xl shrink-0 mt-0.5">{block.icon}</span>
             <div>
               <p
-                style={{
-                  color: GOLD,
-                  fontSize: "0.62rem",
-                  letterSpacing: "0.4em",
-                  textTransform: "uppercase",
-                  fontFamily: "Courier New,monospace",
-                  margin: "0 0 0.5rem",
-                }}
+                className="m-0 mb-2 uppercase tracking-widest"
+                style={{ color: GOLD, fontSize: "0.62rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}
               >
                 How You Can Help
               </p>
-              <p style={{ color: cream, fontSize: "1rem", lineHeight: 1.75, margin: 0, opacity: 0.88 }}>
+              <p className="m-0" style={{ color: cream, fontSize: "1rem", lineHeight: 1.75, opacity: 0.88 }}>
                 {block.text}
               </p>
             </div>
@@ -284,17 +204,8 @@ export function NewsModal({ article, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 400,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "1rem",
-        background: "rgba(3,6,5,0.95)",
-        backdropFilter: "blur(28px)",
-      }}
+      className="fixed inset-0 z-[400] flex items-center justify-center p-4 backdrop-blur-3xl"
+      style={{ background: "rgba(3,6,5,0.95)" }}
       onClick={onClose}
     >
       <motion.div
@@ -303,165 +214,101 @@ export function NewsModal({ article, onClose }) {
         exit={{ scale: 0.9, y: 40, opacity: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 26 }}
         onClick={e => e.stopPropagation()}
-        style={{
-          background: bg.card,
-          border: "1px solid rgba(201,168,76,0.18)",
-          borderRadius: "1.5rem",
-          maxWidth: "52rem",
-          width: "100%",
-          maxHeight: "92vh",
-          overflowY: "auto",
-          position: "relative",
-        }}
+        className="relative w-full max-w-2xl overflow-y-auto rounded-3xl"
+        style={{ background: bg.card, border: "1px solid rgba(201,168,76,0.18)", maxHeight: "92vh" }}
       >
+        {/* Gold top bar */}
         <div
-          style={{
-            height: 2,
-            background: G,
-            borderRadius: "1.5rem 1.5rem 0 0",
-            position: "sticky",
-            top: 0,
-            zIndex: 10,
-          }}
+          className="h-0.5 rounded-t-3xl sticky top-0 z-10"
+          style={{ background: G }}
         />
 
-        {/* Hero */}
-        <div style={{ position: "relative", height: "22rem", overflow: "hidden" }}>
+        {/* Hero image */}
+        <div className="relative overflow-hidden" style={{ height: "22rem" }}>
           <img
             src={article.heroImg}
             alt={article.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            className="w-full h-full object-cover"
           />
           <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to top,rgba(12,20,16,1) 0%,rgba(12,20,16,0.4) 55%,transparent 100%)",
-            }}
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(to top,rgba(12,20,16,1) 0%,rgba(12,20,16,0.4) 55%,transparent 100%)" }}
           />
+          {/* Close button */}
           <button
             onClick={onClose}
-            style={{
-              position: "absolute",
-              top: "1.25rem",
-              right: "1.25rem",
-              width: "2.4rem",
-              height: "2.4rem",
-              borderRadius: "50%",
-              background: "rgba(6,10,7,0.85)",
-              border: "1px solid rgba(201,168,76,0.25)",
-              cursor: "pointer",
-              color: cream,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backdropFilter: "blur(8px)",
-              zIndex: 5,
-            }}
+            className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md z-10"
+            style={{ background: "rgba(6,10,7,0.85)", border: "1px solid rgba(201,168,76,0.25)", color: cream }}
           >
             <X size={15} />
           </button>
-          <div
-            style={{
-              position: "absolute",
-              top: "1.25rem",
-              left: "1.5rem",
-              display: "flex",
-              gap: "0.5rem",
-              alignItems: "center",
-            }}
-          >
+          {/* Tag + date */}
+          <div className="absolute top-5 left-6 flex items-center gap-2">
             <Tag>{article.tag}</Tag>
-            <span style={{ color: "rgba(201,168,76,0.5)", fontSize: "0.72rem", fontFamily: "Courier New,monospace" }}>
+            <span
+              style={{ color: "rgba(201,168,76,0.5)", fontSize: "0.72rem", fontFamily: "Courier New,monospace" }}
+            >
               {article.date}
             </span>
           </div>
         </div>
 
         {/* Content */}
-        <div style={{ padding: "2.5rem 3rem 3rem" }}>
+        <div className="px-12 pt-10 pb-12">
           <h2
-            style={{
-              fontSize: "clamp(1.6rem,3vw,2.4rem)",
-              fontWeight: 400,
-              color: cream,
-              lineHeight: 1.2,
-              marginBottom: "1.5rem",
-            }}
+            className="font-normal mb-6 leading-tight"
+            style={{ fontSize: "clamp(1.6rem,3vw,2.4rem)", color: cream }}
           >
             {article.title}
           </h2>
 
+          {/* Author row */}
           <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1.25rem",
-              paddingBottom: "1.5rem",
-              marginBottom: "2rem",
-              borderBottom: "1px solid rgba(201,168,76,0.1)",
-            }}
+            className="flex items-center gap-5 pb-6 mb-8"
+            style={{ borderBottom: "1px solid rgba(201,168,76,0.1)" }}
           >
             <div
+              className="w-11 h-11 rounded-full flex items-center justify-center text-lg shrink-0"
               style={{
-                width: "2.75rem",
-                height: "2.75rem",
-                borderRadius: "50%",
                 background: "linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05))",
                 border: "1px solid rgba(201,168,76,0.2)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1.1rem",
-                flexShrink: 0,
               }}
             >
               {article.author.charAt(0)}
             </div>
             <div>
-              <p style={{ color: cream, fontSize: "0.92rem", margin: 0 }}>{article.author}</p>
-              <p style={{ color: dim, fontSize: "0.78rem", opacity: 0.6, margin: 0 }}>{article.authorRole}</p>
+              <p className="m-0" style={{ color: cream, fontSize: "0.92rem" }}>{article.author}</p>
+              <p className="m-0" style={{ color: dim, fontSize: "0.78rem", opacity: 0.6 }}>{article.authorRole}</p>
             </div>
-            <div style={{ marginLeft: "auto", color: "rgba(201,168,76,0.45)", fontSize: "0.75rem", fontFamily: "Courier New,monospace" }}>
+            <div
+              className="ml-auto"
+              style={{ color: "rgba(201,168,76,0.45)", fontSize: "0.75rem", fontFamily: "Courier New,monospace" }}
+            >
               ⏱ {article.readTime}
             </div>
           </div>
 
           <BodyBlocks body={article.body} />
 
+          {/* Footer */}
           <div
-            style={{
-              marginTop: "2.5rem",
-              paddingTop: "1.5rem",
-              borderTop: "1px solid rgba(201,168,76,0.1)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "1rem",
-            }}
+            className="mt-10 pt-6 flex items-center justify-between flex-wrap gap-4"
+            style={{ borderTop: "1px solid rgba(201,168,76,0.1)" }}
           >
-            <div style={{ display: "flex", gap: "0.5rem" }}>
+            <div className="flex gap-2">
               <Tag>{article.tag}</Tag>
               <Tag color="#a8c9ad">{article.readTime}</Tag>
             </div>
             <button
               onClick={onClose}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full uppercase cursor-pointer transition-all duration-300"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.65rem 1.6rem",
                 border: "1px solid rgba(201,168,76,0.25)",
                 color: dim,
-                borderRadius: "3rem",
+                background: "transparent",
                 fontSize: "0.78rem",
                 letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                background: "transparent",
-                cursor: "pointer",
                 fontFamily: "Courier New,monospace",
-                transition: "all 0.3s",
               }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = GOLD; e.currentTarget.style.color = GOLD; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"; e.currentTarget.style.color = dim; }}
@@ -493,17 +340,8 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 200,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "1rem",
-        background: "rgba(3,6,5,0.92)",
-        backdropFilter: "blur(24px)",
-      }}
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-2xl"
+      style={{ background: "rgba(3,6,5,0.92)" }}
       onClick={onClose}
     >
       <motion.div
@@ -512,25 +350,20 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
         exit={{ scale: 0.88 }}
         transition={{ type: "spring", stiffness: 280, damping: 28 }}
         onClick={e => e.stopPropagation()}
-        style={{
-          background: bg.card,
-          border: "1px solid rgba(201,168,76,0.2)",
-          borderRadius: "1.25rem",
-          maxWidth: "50rem",
-          width: "100%",
-          maxHeight: "90vh",
-          overflowY: "auto",
-        }}
+        className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl"
+        style={{ background: bg.card, border: "1px solid rgba(201,168,76,0.2)" }}
       >
-        <div style={{ height: 2, background: G, borderRadius: "1.25rem 1.25rem 0 0" }} />
+        {/* Gold top bar */}
+        <div className="h-0.5 rounded-t-2xl" style={{ background: G }} />
 
-        <div style={{ position: "relative", height: "20rem", overflow: "hidden" }}>
+        {/* Image carousel */}
+        <div className="relative overflow-hidden" style={{ height: "20rem" }}>
           <AnimatePresence mode="wait">
             <motion.img
               key={imgIdx}
               src={md.imgs[imgIdx]}
               alt={md.title}
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              className="w-full h-full object-cover"
               initial={{ opacity: 0, scale: 1.04 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -538,30 +371,22 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
             />
           </AnimatePresence>
           <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: `linear-gradient(to top,${bg.card},transparent 50%)`,
-            }}
+            className="absolute inset-0"
+            style={{ background: `linear-gradient(to top,${bg.card},transparent 50%)` }}
           />
 
+          {/* Prev / Next */}
           {[
-            { s: "left",  fn: () => setImgIdx(p => (p - 1 + md.imgs.length) % md.imgs.length), I: ChevronLeft },
-            { s: "right", fn: () => setImgIdx(p => (p + 1) % md.imgs.length), I: ChevronRight },
-          ].map(({ s, fn, I }) => (
+            { side: "left",  fn: () => setImgIdx(p => (p - 1 + md.imgs.length) % md.imgs.length), I: ChevronLeft },
+            { side: "right", fn: () => setImgIdx(p => (p + 1) % md.imgs.length),                  I: ChevronRight },
+          ].map(({ side, fn, I }) => (
             <button
-              key={s}
+              key={side}
               onClick={fn}
+              className={`absolute ${side}-4 top-1/2 -translate-y-1/2 p-2 rounded-full cursor-pointer`}
               style={{
-                position: "absolute",
-                [s]: "1rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-                padding: "0.6rem",
-                borderRadius: "50%",
                 background: "rgba(3,6,5,0.75)",
                 border: "1px solid rgba(201,168,76,0.2)",
-                cursor: "pointer",
                 color: cream,
               }}
             >
@@ -569,30 +394,31 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
             </button>
           ))}
 
+          {/* Close */}
           <button
             onClick={onClose}
+            className="absolute top-4 right-4 p-1.5 rounded-full cursor-pointer"
             style={{
-              position: "absolute",
-              top: "1rem",
-              right: "1rem",
-              padding: "0.4rem",
-              borderRadius: "50%",
               background: "rgba(3,6,5,0.75)",
               border: "1px solid rgba(201,168,76,0.2)",
-              cursor: "pointer",
               color: cream,
             }}
           >
             <X size={16} />
           </button>
 
-          <h2 style={{ position: "absolute", bottom: "1.5rem", left: "2rem", fontSize: "2.2rem", fontWeight: 400 }}>
+          <h2
+            className="absolute bottom-6 left-8 text-4xl font-normal"
+            style={{ color: cream }}
+          >
             {md.title}
           </h2>
         </div>
 
-        <div style={{ padding: "2rem" }}>
-          <div style={{ display: "flex", gap: "0.4rem", justifyContent: "center", marginBottom: "1.5rem" }}>
+        {/* Body */}
+        <div className="p-8">
+          {/* Dot indicators */}
+          <div className="flex gap-1 justify-center mb-6">
             {md.imgs.map((_, i) => (
               <motion.button
                 key={i}
@@ -606,25 +432,23 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
             ))}
           </div>
 
-          <p style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.85, marginBottom: "1.5rem" }}>
+          <p
+            className="leading-loose mb-6"
+            style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.85 }}
+          >
             {md.desc}
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+          {/* Facts grid */}
+          <div className="grid grid-cols-2 gap-3">
             {md.facts.map((f, i) => (
               <div
                 key={i}
-                style={{
-                  padding: "0.9rem 1.1rem",
-                  borderRadius: "0.75rem",
-                  background: "rgba(201,168,76,0.06)",
-                  border: "1px solid rgba(201,168,76,0.15)",
-                  display: "flex",
-                  gap: "0.6rem",
-                }}
+                className="flex gap-2 items-start px-4 py-3 rounded-xl"
+                style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.15)" }}
               >
                 <span style={{ color: GOLD }}>✦</span>
-                <p style={{ color: dim, fontSize: "0.9rem", margin: 0 }}>{f}</p>
+                <p className="m-0" style={{ color: dim, fontSize: "0.9rem" }}>{f}</p>
               </div>
             ))}
           </div>

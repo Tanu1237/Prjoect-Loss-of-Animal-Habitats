@@ -197,7 +197,7 @@ function Home() {
             </p>
 
             <p className="text-gray-300">
-              conservation@email.com
+              tanviverma1237@email.com
             </p>
           </div>
 

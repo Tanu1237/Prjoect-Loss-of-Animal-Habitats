@@ -1,42 +1,41 @@
+// ── Brand tokens (kept as JS values — used dynamically in style={} props) ──
 export const GOLD = "#c9a84c";
-export const G = "linear-gradient(135deg, #c9a84c, #e2c578)";
+export const G    = "linear-gradient(135deg, #c9a84c, #e2c578)";
 
 export const bg = {
   main: "#060a07",
   deep: "#030605",
   card: "#0c1410",
-  mid: "#0f1a12",
+  mid:  "#0f1a12",
 };
 
 export const cream = "#f0ead8";
-export const dim = "#c4bba6";
+export const dim   = "#c4bba6";
 
-export const gBtn = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "0.5rem",
-  padding: "0.7rem 1.8rem",
-  border: "1px solid #c9a84c",
-  color: "#c9a84c",
-  borderRadius: "3rem",
-  fontSize: "0.8rem",
-  letterSpacing: "0.2em",
-  textTransform: "uppercase",
-  textDecoration: "none",
-  transition: "all 0.3s",
-  background: "transparent",
-};
+// ── Reusable Tailwind class strings (replaces inline style objects) ──
 
-export const cardStyle = {
-  borderRadius: "1rem",
-  overflow: "hidden",
-  border: "1px solid rgba(201,168,76,0.08)",
-};
+/**
+ * gBtn — outlined gold button / link
+ * Usage:  className={gBtn}
+ */
+export const gBtn =
+  "inline-flex items-center gap-2 px-7 py-3 border border-[#c9a84c] text-[#c9a84c] " +
+  "rounded-full text-xs uppercase tracking-[0.2em] no-underline bg-transparent " +
+  "transition-all duration-300 cursor-pointer";
 
-import Captain_Paul_Watson from "../assets/Captain_Paul_Watson.mp4";
-import WWF_s from "../assets/WWF_s.mp4";
-import Nature_Conservancy from "../assets/Nature_Conservancy.mp4";
+/**
+ * cardStyle — rounded card with subtle gold border
+ * Usage:  className={cardStyle}
+ */
+export const cardStyle = "rounded-2xl overflow-hidden border border-[#c9a84c]/[0.08]";
+
+// ── Asset imports ──
+import Captain_Paul_Watson    from "../assets/Captain_Paul_Watson.mp4";
+import WWF_s                  from "../assets/WWF_s.mp4";
+import Nature_Conservancy     from "../assets/Nature_Conservancy.mp4";
 import Conservation_International from "../assets/Conservation_International.mp4";
+
+// ── Data ──
 
 export const SLIDES = [
   {
@@ -129,7 +128,7 @@ export const STATS = [
   { val: "1M+", label: "Species at Risk" },
   { val: "68%", label: "Wildlife Decline" },
   { val: "30%", label: "Forests Lost" },
-  { val: "8M", label: "Tons Ocean Plastic/Yr" },
+  { val: "8M",  label: "Tons Ocean Plastic/Yr" },
 ];
 
 export const THREATS = [
@@ -307,8 +306,10 @@ export const MIGRATION = [
       "Weighs only 100g yet crosses two polar regions",
       "Navigates using the sun, stars, and Earth's magnetic field",
     ],
-    threats: "Light pollution disorients terns during night migration. Ocean warming is shifting fish populations, forcing terns to fly further to feed. Plastic pollution in both polar regions contaminates their food supply.",
-    heroImg: "https://cdn-kmfel.nitrocdn.com/uMVObCziJWycROCfTnqalPiKHatgnzNl/assets/images/optimized/rev-b569552/polar-latitudes.com/wp-content/uploads/2025/08/two-arctic-terns.jpg",
+    threats:
+      "Light pollution disorients terns during night migration. Ocean warming is shifting fish populations, forcing terns to fly further to feed. Plastic pollution in both polar regions contaminates their food supply.",
+    heroImg:
+      "https://cdn-kmfel.nitrocdn.com/uMVObCziJWycROCfTnqalPiKHatgnzNl/assets/images/optimized/rev-b569552/polar-latitudes.com/wp-content/uploads/2025/08/two-arctic-terns.jpg",
   },
   {
     img: "https://cdn.britannica.com/76/151376-050-13586FE2/monarch-butterfly-flowers-bush.jpg",
@@ -323,8 +324,10 @@ export const MIGRATION = [
       "Overwinter in the same oyamel fir forests every year",
       "Milkweed is essential — larvae eat nothing else",
     ],
-    threats: "Milkweed loss from herbicide use has destroyed the monarch's only larval food source. Illegal logging in Mexican overwintering forests threatens their last refuge. Climate change is desynchronising their migration timing with milkweed growth.",
-    heroImg: "https://cdn.britannica.com/76/151376-050-13586FE2/monarch-butterfly-flowers-bush.jpg",
+    threats:
+      "Milkweed loss from herbicide use has destroyed the monarch's only larval food source. Illegal logging in Mexican overwintering forests threatens their last refuge. Climate change is desynchronising their migration timing with milkweed growth.",
+    heroImg:
+      "https://cdn.britannica.com/76/151376-050-13586FE2/monarch-butterfly-flowers-bush.jpg",
   },
   {
     img: "https://www.marinemammalcenter.org/storage/app/uploads/public/3ad/5b0/309/thumb__2400_0_0_0_auto.jpg",
@@ -339,8 +342,10 @@ export const MIGRATION = [
       "Breach completely out of the water despite 40-tonne weight",
       "Calves are born in warm tropical waters, then guided north",
     ],
-    threats: "Ship strikes kill hundreds of whales annually along migration routes. Underwater noise pollution from shipping and sonar disrupts communication and navigation. Warming oceans are shifting krill populations, forcing whales to alter feeding ground locations.",
-    heroImg: "https://www.marinemammalcenter.org/storage/app/uploads/public/3ad/5b0/309/thumb__2400_0_0_0_auto.jpg",
+    threats:
+      "Ship strikes kill hundreds of whales annually along migration routes. Underwater noise pollution from shipping and sonar disrupts communication and navigation. Warming oceans are shifting krill populations, forcing whales to alter feeding ground locations.",
+    heroImg:
+      "https://www.marinemammalcenter.org/storage/app/uploads/public/3ad/5b0/309/thumb__2400_0_0_0_auto.jpg",
   },
   {
     img: "https://i.natgeofe.com/k/a3269dfa-670c-4317-9e6e-7563f57cc75a/Loggerhead_new.jpg?wp=1&w=1084.125&h=609",
@@ -355,8 +360,10 @@ export const MIGRATION = [
       "Dive up to 290 metres deep",
       "Navigate using Earth's magnetic field like a GPS",
     ],
-    threats: "Artificial beach lighting disorients hatchlings who navigate by moonlight. Longline fishing hooks kill thousands of turtles as bycatch each year. Rising sand temperatures from climate change are skewing hatchling sex ratios, with far more females being born.",
-    heroImg: "https://i.natgeofe.com/k/a3269dfa-670c-4317-9e6e-7563f57cc75a/Loggerhead_new.jpg?wp=1&w=1084.125&h=609",
+    threats:
+      "Artificial beach lighting disorients hatchlings who navigate by moonlight. Longline fishing hooks kill thousands of turtles as bycatch each year. Rising sand temperatures from climate change are skewing hatchling sex ratios, with far more females being born.",
+    heroImg:
+      "https://i.natgeofe.com/k/a3269dfa-670c-4317-9e6e-7563f57cc75a/Loggerhead_new.jpg?wp=1&w=1084.125&h=609",
   },
 ];
 
@@ -443,12 +450,14 @@ export const NEWS = [
     tag: "Species Recovery",
     date: "Feb 2026",
     title: "Snow Leopards Spotted in Record Numbers Across Central Asia",
-    excerpt: "New camera trap data reveals a 20% increase in snow leopard sightings across five countries, signalling a meaningful population rebound.",
+    excerpt:
+      "New camera trap data reveals a 20% increase in snow leopard sightings across five countries, signalling a meaningful population rebound.",
     img: "https://img.etimg.com/thumb/msid-120970322,width-650,height-488,imgsize-66484,resizemode-75/snow-leopard.jpg",
     readTime: "6 min read",
     author: "Dr. Aiko Tanaka",
     authorRole: "Wildlife Biologist, Snow Leopard Trust",
-    heroImg: "https://img.etimg.com/thumb/msid-120970322,width-650,height-488,imgsize-66484,resizemode-75/snow-leopard.jpg",
+    heroImg:
+      "https://img.etimg.com/thumb/msid-120970322,width-650,height-488,imgsize-66484,resizemode-75/snow-leopard.jpg",
     body: [
       {
         type: "intro",
@@ -466,9 +475,9 @@ export const NEWS = [
       {
         type: "stats",
         items: [
-          { val: "20%", label: "Population increase in 2 years" },
-          { val: "400+", label: "Camera traps deployed" },
-          { val: "5", label: "Countries monitored" },
+          { val: "20%",     label: "Population increase in 2 years" },
+          { val: "400+",    label: "Camera traps deployed" },
+          { val: "5",       label: "Countries monitored" },
           { val: "~10,000", label: "Estimated wild individuals" },
         ],
       },
@@ -493,12 +502,14 @@ export const NEWS = [
     tag: "Policy Win",
     date: "Jan 2026",
     title: "Global Plastics Treaty Signed by 175 Nations at UN Summit",
-    excerpt: "In a landmark agreement, world leaders committed to eliminating single-use plastics by 2035, protecting oceans and marine wildlife.",
+    excerpt:
+      "In a landmark agreement, world leaders committed to eliminating single-use plastics by 2035, protecting oceans and marine wildlife.",
     img: "https://www.un.org/sites/un2.un.org/files/styles/large-article-image-style-16-9/public/unep_pollution_resolution.jpg",
     readTime: "7 min read",
     author: "Lena Hargrove",
     authorRole: "Environmental Policy Correspondent",
-    heroImg: "https://www.un.org/sites/un2.un.org/files/styles/large-article-image-style-16-9/public/unep_pollution_resolution.jpg",
+    heroImg:
+      "https://www.un.org/sites/un2.un.org/files/styles/large-article-image-style-16-9/public/unep_pollution_resolution.jpg",
     body: [
       {
         type: "intro",
@@ -516,10 +527,10 @@ export const NEWS = [
       {
         type: "stats",
         items: [
-          { val: "175", label: "Nations signed" },
+          { val: "175",     label: "Nations signed" },
           { val: "8M tons", label: "Plastic entering oceans yearly" },
-          { val: "2035", label: "Target year for elimination" },
-          { val: "$5B", label: "Transition fund committed" },
+          { val: "2035",    label: "Target year for elimination" },
+          { val: "$5B",     label: "Transition fund committed" },
         ],
       },
       { type: "subheading", text: "What the Treaty Actually Bans" },
@@ -543,12 +554,14 @@ export const NEWS = [
     tag: "Habitat",
     date: "Dec 2025",
     title: "Brazil's Atlantic Forest Sees Largest Restoration in History",
-    excerpt: "A coalition of NGOs and government agencies announced the successful replanting of 500,000 hectares of Brazil's most biodiverse forest.",
+    excerpt:
+      "A coalition of NGOs and government agencies announced the successful replanting of 500,000 hectares of Brazil's most biodiverse forest.",
     img: "https://imgs.mongabay.com/wp-content/uploads/sites/20/2022/03/03185716/O-Eco-_-Marcio-Isensee-e-Sa-_-DJI_0189-1536x1024.jpg",
     readTime: "8 min read",
     author: "Carlos Mendez",
     authorRole: "Senior Ecologist, SOS Mata Atlântica",
-    heroImg: "https://imgs.mongabay.com/wp-content/uploads/sites/20/2022/03/03185716/O-Eco-_-Marcio-Isensee-e-Sa-_-DJI_0189-1536x1024.jpg",
+    heroImg:
+      "https://imgs.mongabay.com/wp-content/uploads/sites/20/2022/03/03185716/O-Eco-_-Marcio-Isensee-e-Sa-_-DJI_0189-1536x1024.jpg",
     body: [
       {
         type: "intro",
@@ -566,10 +579,10 @@ export const NEWS = [
       {
         type: "stats",
         items: [
-          { val: "500K", label: "Hectares replanted" },
-          { val: "12%", label: "Forest cover that remained" },
+          { val: "500K",    label: "Hectares replanted" },
+          { val: "12%",     label: "Forest cover that remained" },
           { val: "20,000+", label: "Plant species in the forest" },
-          { val: "148", label: "Communities involved" },
+          { val: "148",     label: "Communities involved" },
         ],
       },
       { type: "subheading", text: "How 500,000 Hectares Were Replanted" },

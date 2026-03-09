@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
-const BG = "#F5F0E8";
+// Dynamic accent colors per type — kept as JS values
+// because Tailwind cannot generate dynamic arbitrary color classes at runtime
 const TYPE_COLORS = {
-  Mammals: "#D97706",
-  Birds: "#F97316",
-  Reptiles: "#059669",
+  Mammals:   "#D97706",
+  Birds:     "#F97316",
+  Reptiles:  "#059669",
   Amphibian: "#0EA5E9",
-  Fish: "#6366F1",
-  Insects: "#EC4899",
+  Fish:      "#6366F1",
+  Insects:   "#EC4899",
 };
 
 export default function SlideUpInfo({ species, onClose }) {
@@ -26,37 +27,64 @@ export default function SlideUpInfo({ species, onClose }) {
         animate={{ y: 0 }}
         transition={{ type: "spring", damping: 26 }}
         className="w-full max-h-[90vh] rounded-t-[2.5rem] overflow-y-auto shadow-2xl border-t-4"
-        style={{ backgroundColor: BG, borderTopColor: accent }}
-        onClick={(e) => e.stopPropagation()}
+        // background (#F5F0E8) and border-top color are dynamic — kept as style
+        style={{ backgroundColor: "#F5F0E8", borderTopColor: accent }}
+        onClick={e => e.stopPropagation()}
       >
-        <header className="sticky top-0 px-6 py-6 border-b flex justify-between"
-          style={{ backgroundColor: BG }}>
+        {/* Sticky header */}
+        <header
+          className="sticky top-0 px-6 py-6 border-b border-stone-200 flex items-start justify-between"
+          style={{ backgroundColor: "#F5F0E8" }}
+        >
           <div>
-            <p className="text-xs uppercase tracking-widest font-semibold" style={{ color: accent }}>
+            <p
+              className="text-xs uppercase tracking-widest font-semibold"
+              style={{ color: accent }}
+            >
               {species.type}
             </p>
             <h2 className="text-3xl font-serif text-stone-800">{species.title}</h2>
           </div>
-          <button onClick={onClose} style={{ color: accent }}>
+          <button
+            onClick={onClose}
+            className="mt-1 transition-opacity hover:opacity-70"
+            style={{ color: accent }}
+          >
             <X size={24} />
           </button>
         </header>
 
+        {/* Content */}
         <div className="px-6 py-12 max-w-4xl mx-auto space-y-12">
           {species.details.map((block, i) => (
             <section key={i}>
-              <h3 className="text-2xl font-serif mb-4" style={{ color: accent }}>
+              {/* Section heading */}
+              <h3
+                className="text-2xl font-serif mb-4"
+                style={{ color: accent }}
+              >
                 {block.title}
               </h3>
+
+              {/* Body text */}
               <div className="text-stone-600 leading-relaxed space-y-4">
-                {block.content.split(/\n\s*\n/).map((p, j) => <p key={j}>{p}</p>)}
+                {block.content.split(/\n\s*\n/).map((p, j) => (
+                  <p key={j}>{p}</p>
+                ))}
               </div>
 
+              {/* Image grid */}
               {block.images && (
                 <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3">
                   {block.images.map((img, k) => (
-                    <img key={k} src={img} alt="" className="h-40 w-full object-cover rounded-lg border"
-                      style={{ borderColor: `${accent}40` }} />
+                    <img
+                      key={k}
+                      src={img}
+                      alt=""
+                      className="h-40 w-full object-cover rounded-lg border"
+                      // border color is a dynamic alpha-modified accent — kept as style
+                      style={{ borderColor: `${accent}40` }}
+                    />
                   ))}
                 </div>
               )}

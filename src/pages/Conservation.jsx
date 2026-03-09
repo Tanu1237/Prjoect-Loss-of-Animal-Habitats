@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import watchMovie from "../assets/watch movie.mp4";
 import { GL, Tag, SectionHeader, NewsModal, FocusModal } from "../components/ConservationComp.jsx";
 import {
-  GOLD, G, bg, cream, dim, gBtn, cardStyle,
+  GOLD, G, bg, cream, dim, gBtn,
   SLIDES, FOCUS, FOCUS_MODALS, STATS, THREATS,
   WINS, ANIMALS, MIGRATION, HELP_ACTIONS,
   VOLUNTEER_ROLES, NEWS, ORGS,
@@ -24,8 +24,8 @@ export default function Conservation() {
   const [migrationModal, setMigrationModal] = useState(null);
 
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const py = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
+  const { scrollY } = useScroll();
+  const py = useTransform(scrollY, [0, 600], ["0%", "35%"]);
 
   useEffect(() => {
     const t = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 6000);
@@ -34,12 +34,8 @@ export default function Conservation() {
 
   return (
     <div
-      style={{
-        background: bg.main,
-        color: cream,
-        fontFamily: "'Cinzel',Georgia,serif",
-        overflowX: "hidden",
-      }}
+      className="overflow-x-hidden"
+      style={{ background: bg.main, color: cream, fontFamily: "'Cinzel',Georgia,serif" }}
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
@@ -54,15 +50,8 @@ export default function Conservation() {
       `}</style>
 
       {/* ── 1. HERO ── */}
-      <section
-        ref={heroRef}
-        style={{
-          position: "relative",
-          height: "100vh",
-          overflow: "hidden",
-        }}
-      >
-        <motion.div style={{ y: py, position: "absolute", inset: 0, scale: 1.1 }}>
+      <section ref={heroRef} className="relative h-screen overflow-hidden">
+        <motion.div style={{ y: py }} className="absolute inset-0 scale-110">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide}
@@ -70,42 +59,22 @@ export default function Conservation() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.8 }}
-              style={{
-                position: "absolute",
-                inset: 0,
-                backgroundImage: `url(${SLIDES[slide].img})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${SLIDES[slide].img})` }}
             />
           </AnimatePresence>
         </motion.div>
 
         <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "linear-gradient(to right,rgba(6,10,7,0.92) 0%,rgba(6,10,7,0.6) 55%,transparent 100%)",
-          }}
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right,rgba(6,10,7,0.92) 0%,rgba(6,10,7,0.6) 55%,transparent 100%)" }}
         />
         <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: `linear-gradient(to top,${bg.main},transparent 40%)`,
-          }}
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(to top,${bg.main},transparent 40%)` }}
         />
 
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            display: "flex",
-            alignItems: "center",
-            height: "100%",
-            padding: "0 5rem",
-          }}
-        >
+        <div className="relative z-10 flex items-center h-full px-20">
           <AnimatePresence mode="wait">
             <motion.div
               key={slide}
@@ -114,68 +83,36 @@ export default function Conservation() {
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.9 }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
-                  marginBottom: "1.25rem",
-                }}
-              >
-                <div style={{ height: 1, width: 36, background: G }} />
+              <div className="flex items-center gap-4 mb-5">
+                <div className="h-px w-9" style={{ background: G }} />
                 <span
-                  style={{
-                    color: GOLD,
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.5em",
-                    textTransform: "uppercase",
-                    fontFamily: "Courier New,monospace",
-                  }}
+                  className="text-xs uppercase tracking-widest"
+                  style={{ color: GOLD, fontFamily: "Courier New,monospace", letterSpacing: "0.5em" }}
                 >
                   {SLIDES[slide].label}
                 </span>
               </div>
 
               <h1
-                style={{
-                  fontSize: "clamp(4rem,10vw,8rem)",
-                  lineHeight: 0.95,
-                  letterSpacing: "-0.02em",
-                  marginBottom: "1.5rem",
-                }}
+                className="leading-none tracking-tight mb-6"
+                style={{ fontSize: "clamp(4rem,10vw,8rem)", letterSpacing: "-0.02em" }}
               >
                 {SLIDES[slide].title}
               </h1>
 
               <p
-                style={{
-                  color: dim,
-                  fontSize: "1.2rem",
-                  lineHeight: 1.8,
-                  maxWidth: "34rem",
-                  marginBottom: "2.5rem",
-                  opacity: 0.8,
-                }}
+                className="text-xl leading-relaxed mb-10"
+                style={{ color: dim, maxWidth: "34rem", opacity: 0.8, lineHeight: 1.8 }}
               >
                 Every action we take today shapes the world our children will inherit.
               </p>
 
-              <div style={{ display: "flex", gap: "1rem" }}>
+              <div className="flex gap-4">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(201,168,76,0.3)" }}
                   onClick={() => document.getElementById("act-now").scrollIntoView({ behavior: "smooth" })}
-                  style={{
-                    padding: "0.9rem 2.2rem",
-                    background: G,
-                    color: bg.main,
-                    border: "none",
-                    borderRadius: "3rem",
-                    cursor: "pointer",
-                    fontSize: "0.8rem",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    fontWeight: 600,
-                  }}
+                  className="px-9 py-4 rounded-full border-none cursor-pointer text-xs uppercase font-semibold tracking-widest"
+                  style={{ background: G, color: bg.main, letterSpacing: "0.2em" }}
                 >
                   Take Action
                 </motion.button>
@@ -183,17 +120,11 @@ export default function Conservation() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setVideo(watchMovie)}
+                  className="px-9 py-4 rounded-full cursor-pointer flex items-center gap-2 text-xs uppercase tracking-widest"
                   style={{
-                    padding: "0.9rem 2.2rem",
                     background: "rgba(201,168,76,0.07)",
                     color: cream,
                     border: "1px solid rgba(201,168,76,0.35)",
-                    borderRadius: "3rem",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    fontSize: "0.8rem",
                     letterSpacing: "0.2em",
                   }}
                 >
@@ -204,17 +135,7 @@ export default function Conservation() {
           </AnimatePresence>
         </div>
 
-        <div
-          style={{
-            position: "absolute",
-            bottom: "2.5rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: "0.6rem",
-            zIndex: 10,
-          }}
-        >
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-10">
           {SLIDES.map((_, i) => (
             <motion.button
               key={i}
@@ -231,15 +152,8 @@ export default function Conservation() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2.5, repeat: Infinity }}
+          className="absolute bottom-10 right-12 z-10 flex flex-col items-center gap-1"
           style={{
-            position: "absolute",
-            bottom: "2.5rem",
-            right: "3rem",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "0.4rem",
             color: "rgba(201,168,76,0.45)",
             fontFamily: "Courier New,monospace",
             fontSize: "0.6rem",
@@ -252,10 +166,9 @@ export default function Conservation() {
 
       {/* ── 2. TICKER ── */}
       <div
+        className="overflow-hidden py-3"
         style={{
-          overflow: "hidden",
           background: bg.deep,
-          padding: "13px 0",
           borderTop: "1px solid rgba(201,168,76,0.12)",
           borderBottom: "1px solid rgba(201,168,76,0.12)",
         }}
@@ -263,15 +176,8 @@ export default function Conservation() {
         <motion.div
           animate={{ x: [0, -1400] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          style={{
-            display: "flex",
-            gap: "3rem",
-            whiteSpace: "nowrap",
-            fontSize: "0.75rem",
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            fontFamily: "Courier New,monospace",
-          }}
+          className="flex gap-12 whitespace-nowrap uppercase"
+          style={{ fontSize: "0.75rem", letterSpacing: "0.3em", fontFamily: "Courier New,monospace" }}
         >
           {Array(12).fill(["✦ Protect Wildlife", "◆ Restore Habitats", "✦ Clean Oceans", "◆ Save Species", "✦ Plant Forests"]).flat().map((t, i) => (
             <span key={i} style={{ color: i % 2 === 0 ? GOLD : dim, flexShrink: 0 }}>{t}</span>
@@ -281,79 +187,35 @@ export default function Conservation() {
 
       {/* ── 3. MISSION ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(160deg,#060d09,#0a150c,#060d09)",
-        }}
+        className="py-28 px-8"
+        style={{ background: "linear-gradient(160deg,#060d09,#0a150c,#060d09)" }}
       >
-        <div
-          style={{
-            maxWidth: "72rem",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "5rem",
-            alignItems: "center",
-          }}
-        >
+        <div className="max-w-6xl mx-auto grid grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
             <p
-              style={{
-                color: GOLD,
-                fontSize: "0.65rem",
-                letterSpacing: "0.5em",
-                textTransform: "uppercase",
-                fontFamily: "Courier New,monospace",
-                marginBottom: "0.75rem",
-              }}
+              className="text-xs uppercase tracking-widest mb-3"
+              style={{ color: GOLD, fontFamily: "Courier New,monospace", letterSpacing: "0.5em" }}
             >
               Our Mission
             </p>
             <GL />
             <h2
-              style={{
-                fontSize: "clamp(2.2rem,3.5vw,3rem)",
-                color: cream,
-                fontWeight: 400,
-                marginBottom: "1.5rem",
-                lineHeight: 1.1,
-              }}
+              className="font-normal mb-6"
+              style={{ fontSize: "clamp(2.2rem,3.5vw,3rem)", color: cream, lineHeight: 1.1 }}
             >
               One Planet. One Chance. Act Together.
             </h2>
-            <p
-              style={{
-                color: dim,
-                fontSize: "1.1rem",
-                lineHeight: 1.9,
-                marginBottom: "1.25rem",
-                opacity: 0.85,
-              }}
-            >
+            <p className="text-lg leading-loose mb-5" style={{ color: dim, opacity: 0.85, lineHeight: 1.9 }}>
               Green Nature is a conservation awareness platform dedicated to educating, inspiring, and connecting people with the organisations and actions that protect our planet's wildlife and wild places.
             </p>
-            <p
-              style={{
-                color: dim,
-                fontSize: "1.05rem",
-                lineHeight: 1.9,
-                opacity: 0.7,
-                marginBottom: "2rem",
-              }}
-            >
+            <p className="leading-loose mb-8" style={{ color: dim, fontSize: "1.05rem", opacity: 0.7, lineHeight: 1.9 }}>
               We believe informed people make better choices — for animals, ecosystems, and the future of all life on Earth. Every section of this platform is designed to turn awareness into action.
             </p>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "1rem",
-              }}
-            >
+            <div className="grid grid-cols-2 gap-4">
               {[
                 ["🌍", "Global Reach",   "Covering conservation across 6 continents"],
                 ["🔬", "Science-Backed", "All data from peer-reviewed research"],
@@ -362,16 +224,12 @@ export default function Conservation() {
               ].map(([ic, t, d]) => (
                 <div
                   key={t}
-                  style={{
-                    padding: "1rem",
-                    borderRadius: "0.75rem",
-                    background: "rgba(201,168,76,0.04)",
-                    border: "1px solid rgba(201,168,76,0.1)",
-                  }}
+                  className="p-4 rounded-xl"
+                  style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.1)" }}
                 >
-                  <span style={{ fontSize: "1.4rem" }}>{ic}</span>
-                  <p style={{ color: cream, fontSize: "0.95rem", fontWeight: 500, margin: "0.4rem 0 0.2rem" }}>{t}</p>
-                  <p style={{ color: dim, fontSize: "0.85rem", opacity: 0.7, margin: 0 }}>{d}</p>
+                  <span className="text-2xl">{ic}</span>
+                  <p className="font-medium mt-1 mb-1" style={{ color: cream, fontSize: "0.95rem" }}>{t}</p>
+                  <p className="m-0" style={{ color: dim, fontSize: "0.85rem", opacity: 0.7 }}>{d}</p>
                 </div>
               ))}
             </div>
@@ -381,15 +239,15 @@ export default function Conservation() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            style={{ position: "relative" }}
+            className="relative"
           >
             <div
-              style={{ ...cardStyle, height: "32rem", border: "1px solid rgba(201,168,76,0.12)" }}
-              className="hi"
+              className="hi overflow-hidden rounded-2xl"
+              style={{ height: "32rem", border: "1px solid rgba(201,168,76,0.12)" }}
             >
               <img
                 src="https://i0.wp.com/charities2love.org/wp-content/uploads/2023/04/One-Earth-One-Chance-Logo.png?fit=500%2C500&ssl=1"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                className="w-full h-full object-cover"
               />
             </div>
             <motion.div
@@ -397,18 +255,13 @@ export default function Conservation() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
+              className="absolute -bottom-6 -right-6 px-7 py-5 rounded-2xl backdrop-blur-xl"
               style={{
-                position: "absolute",
-                bottom: "-1.5rem",
-                right: "-1.5rem",
-                padding: "1.25rem 1.75rem",
-                borderRadius: "1rem",
                 background: "rgba(3,6,5,0.9)",
                 border: "1px solid rgba(201,168,76,0.2)",
-                backdropFilter: "blur(20px)",
               }}
             >
-              <div style={{ height: 2, background: G, marginBottom: "0.6rem" }} />
+              <div className="h-0.5 mb-2" style={{ background: G }} />
               <p style={{ fontSize: "2rem", color: GOLD, fontFamily: "'Cinzel',serif" }}>Since 2018</p>
               <p style={{ color: dim, fontSize: "0.85rem", opacity: 0.7 }}>Raising awareness for wildlife</p>
             </motion.div>
@@ -417,16 +270,10 @@ export default function Conservation() {
       </section>
 
       {/* ── 4. WHAT WE PROTECT ── */}
-      <section style={{ padding: "7rem 2rem", background: bg.main }}>
-        <div style={{ maxWidth: "78rem", margin: "0 auto" }}>
+      <section className="py-28 px-8" style={{ background: bg.main }}>
+        <div className="max-w-7xl mx-auto">
           <SectionHeader label="Our Focus" title="What We Protect" center />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
-              gap: "1.5rem",
-            }}
-          >
+          <div className="grid grid-cols-3 gap-6">
             {FOCUS.map((f, i) => {
               const Icon = FOCUS_ICONS[f.icon];
               return (
@@ -436,50 +283,27 @@ export default function Conservation() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
-                  className="hi"
+                  className="hi relative cursor-pointer overflow-hidden rounded-2xl"
                   onClick={() => setFocusModal(f.key)}
-                  style={{
-                    ...cardStyle,
-                    position: "relative",
-                    height: "25rem",
-                    cursor: "pointer",
-                  }}
+                  style={{ height: "25rem" }}
                 >
-                  <img src={f.img} alt={f.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={f.img} alt={f.title} className="w-full h-full object-cover" />
                   <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to top,rgba(6,10,7,0.94) 0%,rgba(6,10,7,0.3) 55%,transparent 100%)",
-                    }}
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top,rgba(6,10,7,0.94) 0%,rgba(6,10,7,0.3) 55%,transparent 100%)" }}
                   />
-                  <div style={{ position: "absolute", bottom: 0, padding: "2rem" }}>
+                  <div className="absolute bottom-0 p-8">
                     <div
-                      style={{
-                        width: "3rem",
-                        height: "3rem",
-                        borderRadius: "0.6rem",
-                        background: "rgba(201,168,76,0.1)",
-                        border: "1px solid rgba(201,168,76,0.28)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: "1rem",
-                      }}
+                      className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                      style={{ background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.28)" }}
                     >
                       {Icon && <Icon size={20} color={GOLD} />}
                     </div>
-                    <h3 style={{ fontSize: "1.7rem", color: cream, fontWeight: 400 }}>{f.title}</h3>
+                    <h3 className="font-normal" style={{ fontSize: "1.7rem", color: cream }}>{f.title}</h3>
                     <GL />
                     <span
-                      style={{
-                        color: GOLD,
-                        fontSize: "0.75rem",
-                        letterSpacing: "0.15em",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.4rem",
-                      }}
+                      className="flex items-center gap-1 uppercase"
+                      style={{ color: GOLD, fontSize: "0.75rem", letterSpacing: "0.15em" }}
                     >
                       Explore <ChevronRight size={13} />
                     </span>
@@ -493,70 +317,29 @@ export default function Conservation() {
 
       {/* ── 5. THE CRISIS ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(160deg,#060d09,#0a1a0e,#060d09)",
-          position: "relative",
-          overflow: "hidden",
-        }}
+        className="py-28 px-8 relative overflow-hidden"
+        style={{ background: "linear-gradient(160deg,#060d09,#0a1a0e,#060d09)" }}
       >
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "5rem",
-              alignItems: "center",
-              marginBottom: "5rem",
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 gap-20 items-center mb-20">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <p
-                style={{
-                  color: GOLD,
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.5em",
-                  textTransform: "uppercase",
-                  fontFamily: "Courier New,monospace",
-                  marginBottom: "0.75rem",
-                }}
+                className="text-xs uppercase tracking-widest mb-3"
+                style={{ color: GOLD, fontFamily: "Courier New,monospace", letterSpacing: "0.5em" }}
               >
                 The Crisis
               </p>
               <GL />
               <h2
-                style={{
-                  fontSize: "clamp(2.2rem,3.5vw,3rem)",
-                  color: cream,
-                  fontWeight: 400,
-                  marginBottom: "1.5rem",
-                }}
+                className="font-normal mb-6"
+                style={{ fontSize: "clamp(2.2rem,3.5vw,3rem)", color: cream }}
               >
                 Why Animal Conservation Matters
               </h2>
-              <p
-                style={{
-                  color: dim,
-                  fontSize: "1.1rem",
-                  lineHeight: 1.9,
-                  marginBottom: "1.25rem",
-                  opacity: 0.85,
-                }}
-              >
+              <p className="text-lg mb-5" style={{ color: dim, lineHeight: 1.9, opacity: 0.85 }}>
                 Every species plays a crucial role in maintaining ecological balance. When one disappears, it disrupts the entire food chain. Biodiversity ensures clean air, clean water, and climate stability for all life.
               </p>
-              <p
-                style={{
-                  color: dim,
-                  fontSize: "1.05rem",
-                  lineHeight: 1.9,
-                  opacity: 0.7,
-                }}
-              >
+              <p style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.9, opacity: 0.7 }}>
                 We are currently in the sixth mass extinction — the first one driven not by asteroids or volcanoes, but by human activity. The good news: it can be stopped.
               </p>
             </motion.div>
@@ -565,16 +348,16 @@ export default function Conservation() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              style={{ position: "relative" }}
+              className="relative"
             >
               <div
-                style={{ ...cardStyle, height: "24rem", border: "1px solid rgba(201,168,76,0.1)" }}
-                className="hi"
+                className="hi overflow-hidden rounded-2xl"
+                style={{ height: "24rem", border: "1px solid rgba(201,168,76,0.1)" }}
               >
                 <img
                   src="https://img.volunteerworld.com/img/default/1b8ff06780f2c238d9cbef775e9a4309b6b3eefb/IMG4648.jpg?Height=317&Width=562"
                   alt="Wildlife"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  className="w-full h-full object-cover"
                 />
               </div>
               <motion.div
@@ -582,32 +365,17 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                style={{
-                  position: "absolute",
-                  bottom: "-1.5rem",
-                  left: "-1.5rem",
-                  padding: "1.25rem 1.75rem",
-                  borderRadius: "1rem",
-                  background: "rgba(3,6,5,0.88)",
-                  border: "1px solid rgba(201,168,76,0.2)",
-                  backdropFilter: "blur(20px)",
-                }}
+                className="absolute -bottom-6 -left-6 px-7 py-5 rounded-2xl backdrop-blur-xl"
+                style={{ background: "rgba(3,6,5,0.88)", border: "1px solid rgba(201,168,76,0.2)" }}
               >
-                <div style={{ height: 2, background: G, marginBottom: "0.6rem" }} />
+                <div className="h-0.5 mb-2" style={{ background: G }} />
                 <p style={{ fontSize: "2.2rem", color: GOLD, fontFamily: "'Cinzel',serif" }}>3,682</p>
                 <p style={{ color: dim, fontSize: "0.85rem", opacity: 0.7 }}>Tigers in India — up from 1,200</p>
               </motion.div>
             </motion.div>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4,1fr)",
-              gap: "1.25rem",
-              marginBottom: "4rem",
-            }}
-          >
+          <div className="grid grid-cols-4 gap-5 mb-16">
             {STATS.map((s, i) => (
               <motion.div
                 key={i}
@@ -615,25 +383,20 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                style={{
-                  padding: "2rem 1.25rem",
-                  textAlign: "center",
-                  borderRadius: "1rem",
-                  background: "rgba(201,168,76,0.04)",
-                  border: "1px solid rgba(201,168,76,0.14)",
-                }}
+                className="py-8 px-5 text-center rounded-2xl"
+                style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.14)" }}
               >
-                <p style={{ fontSize: "2.6rem", color: GOLD, fontWeight: 400, marginBottom: "0.4rem" }}>{s.val}</p>
-                <div style={{ height: 1, width: 24, background: G, margin: "0.4rem auto" }} />
+                <p className="font-normal mb-1" style={{ fontSize: "2.6rem", color: GOLD }}>{s.val}</p>
+                <div className="h-px w-6 mx-auto my-1" style={{ background: G }} />
                 <p style={{ color: dim, fontSize: "0.85rem", opacity: 0.7 }}>{s.label}</p>
               </motion.div>
             ))}
           </div>
 
-          <h3 style={{ fontSize: "1.8rem", fontWeight: 400, color: cream, marginBottom: "1.5rem" }}>
+          <h3 className="font-normal mb-6" style={{ fontSize: "1.8rem", color: cream }}>
             Major Threats to Wildlife
           </h3>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+          <div className="grid grid-cols-2 gap-4">
             {THREATS.map((t, i) => (
               <motion.div
                 key={i}
@@ -642,16 +405,11 @@ export default function Conservation() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                style={{
-                  padding: "1.75rem",
-                  borderRadius: "1rem",
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(201,168,76,0.1)",
-                  transition: "all 0.3s",
-                }}
+                className="p-7 rounded-2xl transition-all duration-300"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>{t.icon}</span>
-                <h4 style={{ fontSize: "1.25rem", fontWeight: 400, color: cream, marginBottom: "0.5rem" }}>{t.title}</h4>
+                <span className="text-4xl block mb-3">{t.icon}</span>
+                <h4 className="font-normal mb-2" style={{ fontSize: "1.25rem", color: cream }}>{t.title}</h4>
                 <p style={{ color: dim, fontSize: "0.95rem", lineHeight: 1.7, opacity: 0.7 }}>{t.desc}</p>
               </motion.div>
             ))}
@@ -661,19 +419,17 @@ export default function Conservation() {
 
       {/* ── 6. CONSERVATION WINS ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(160deg,#060d09,#071a0e,#060d09)",
-        }}
+        className="py-28 px-8"
+        style={{ background: "linear-gradient(160deg,#060d09,#071a0e,#060d09)" }}
       >
-        <div style={{ maxWidth: "78rem", margin: "0 auto" }}>
+        <div className="max-w-7xl mx-auto">
           <SectionHeader
             label="Proof It Works"
             title="Conservation Wins"
             sub="The crisis is real — but so is the recovery. These stories prove conservation works when we commit to it."
             center
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
+          <div className="grid grid-cols-3 gap-6">
             {WINS.map((w, i) => {
               const isOpen = expandedWin === i;
               return (
@@ -683,64 +439,37 @@ export default function Conservation() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
+                  className="rounded-2xl overflow-hidden cursor-pointer transition-colors duration-300"
                   style={{
-                    borderRadius: "1rem",
-                    overflow: "hidden",
                     border: `1px solid ${isOpen ? "rgba(201,168,76,0.3)" : "rgba(201,168,76,0.08)"}`,
                     background: bg.card,
-                    transition: "border-color 0.3s",
-                    cursor: "pointer",
                   }}
                   onClick={() => setExpandedWin(isOpen ? null : i)}
                 >
-                  {/* Image area */}
-                  <div className="hi" style={{ position: "relative", height: "22rem", overflow: "hidden" }}>
-                    <img src={w.img} alt={w.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <div className="hi relative overflow-hidden" style={{ height: "22rem" }}>
+                    <img src={w.img} alt={w.title} className="w-full h-full object-cover" />
                     <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        background: "linear-gradient(to top,rgba(3,6,5,0.97) 0%,rgba(3,6,5,0.45) 55%,transparent 100%)",
-                      }}
+                      className="absolute inset-0"
+                      style={{ background: "linear-gradient(to top,rgba(3,6,5,0.97) 0%,rgba(3,6,5,0.45) 55%,transparent 100%)" }}
                     />
                     <div
-                      style={{
-                        position: "absolute",
-                        top: "1rem",
-                        right: "1rem",
-                        background: "rgba(201,168,76,0.15)",
-                        border: "1px solid rgba(201,168,76,0.4)",
-                        borderRadius: "2rem",
-                        padding: "0.25rem 0.75rem",
-                        backdropFilter: "blur(10px)",
-                      }}
+                      className="absolute top-4 right-4 rounded-full px-3 py-1 backdrop-blur-md"
+                      style={{ background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}
                     >
                       <span
-                        style={{
-                          color: GOLD,
-                          fontSize: "0.6rem",
-                          letterSpacing: "0.2em",
-                          textTransform: "uppercase",
-                          fontFamily: "Courier New,monospace",
-                        }}
+                        className="uppercase"
+                        style={{ color: GOLD, fontSize: "0.6rem", letterSpacing: "0.2em", fontFamily: "Courier New,monospace" }}
                       >
                         ✦ Success
                       </span>
                     </div>
-                    <div style={{ position: "absolute", bottom: 0, padding: "1.5rem", width: "100%" }}>
-                      <span style={{ fontSize: "1.5rem" }}>{w.emoji}</span>
-                      <h3 style={{ fontSize: "1.2rem", fontWeight: 400, color: cream, margin: "0.4rem 0 0.2rem" }}>{w.title}</h3>
+                    <div className="absolute bottom-0 p-6 w-full">
+                      <span className="text-2xl">{w.emoji}</span>
+                      <h3 className="font-normal mt-1 mb-1" style={{ fontSize: "1.2rem", color: cream }}>{w.title}</h3>
                       <p style={{ fontSize: "1.9rem", color: GOLD, fontFamily: "'Cinzel',serif", margin: "0 0 0.15rem" }}>{w.stat}</p>
                       <p style={{ color: dim, fontSize: "0.82rem", opacity: 0.8, margin: "0 0 0.25rem" }}>{w.unit}</p>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <p
-                          style={{
-                            color: "rgba(196,187,166,0.45)",
-                            fontSize: "0.75rem",
-                            fontFamily: "Courier New,monospace",
-                            margin: 0,
-                          }}
-                        >
+                      <div className="flex justify-between items-center">
+                        <p style={{ color: "rgba(196,187,166,0.45)", fontSize: "0.75rem", fontFamily: "Courier New,monospace", margin: 0 }}>
                           ↑ {w.before}
                         </p>
                         <motion.span
@@ -754,7 +483,6 @@ export default function Conservation() {
                     </div>
                   </div>
 
-                  {/* Expandable content */}
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
@@ -762,89 +490,57 @@ export default function Conservation() {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                        style={{ overflow: "hidden" }}
+                        className="overflow-hidden"
                       >
-                        <div style={{ padding: "1.75rem", borderTop: "1px solid rgba(201,168,76,0.12)" }}>
-                          {/* Description */}
+                        <div
+                          className="p-7"
+                          style={{ borderTop: "1px solid rgba(201,168,76,0.12)" }}
+                        >
                           <p
+                            className="mb-6 pl-4"
                             style={{
                               color: cream,
                               fontSize: "0.97rem",
                               lineHeight: 1.8,
-                              marginBottom: "1.5rem",
                               opacity: 0.88,
                               borderLeft: `3px solid ${GOLD}`,
-                              paddingLeft: "1rem",
                             }}
                           >
                             {w.desc}
                           </p>
 
-                          {/* How it happened */}
-                          <div style={{ marginBottom: "1.5rem" }}>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.6rem",
-                                marginBottom: "0.6rem",
-                              }}
-                            >
-                              <div style={{ height: 1, width: 20, background: G }} />
+                          <div className="mb-6">
+                            <div className="flex items-center gap-2 mb-2">
+                              <div className="h-px w-5" style={{ background: G }} />
                               <span
-                                style={{
-                                  color: GOLD,
-                                  fontSize: "0.6rem",
-                                  letterSpacing: "0.4em",
-                                  textTransform: "uppercase",
-                                  fontFamily: "Courier New,monospace",
-                                }}
+                                className="uppercase"
+                                style={{ color: GOLD, fontSize: "0.6rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}
                               >
                                 How It Happened
                               </span>
                             </div>
-                            <p style={{ color: dim, fontSize: "0.92rem", lineHeight: 1.8, opacity: 0.78, margin: 0 }}>{w.how}</p>
+                            <p className="m-0" style={{ color: dim, fontSize: "0.92rem", lineHeight: 1.8, opacity: 0.78 }}>{w.how}</p>
                           </div>
 
-                          {/* Key facts */}
                           <div>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.6rem",
-                                marginBottom: "0.75rem",
-                              }}
-                            >
-                              <div style={{ height: 1, width: 20, background: G }} />
+                            <div className="flex items-center gap-2 mb-3">
+                              <div className="h-px w-5" style={{ background: G }} />
                               <span
-                                style={{
-                                  color: GOLD,
-                                  fontSize: "0.6rem",
-                                  letterSpacing: "0.4em",
-                                  textTransform: "uppercase",
-                                  fontFamily: "Courier New,monospace",
-                                }}
+                                className="uppercase"
+                                style={{ color: GOLD, fontSize: "0.6rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}
                               >
                                 Key Facts
                               </span>
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                            <div className="flex flex-col gap-2">
                               {w.facts.map((f, j) => (
                                 <div
                                   key={j}
-                                  style={{
-                                    display: "flex",
-                                    gap: "0.75rem",
-                                    alignItems: "flex-start",
-                                    padding: "0.6rem 0.85rem",
-                                    borderRadius: "0.5rem",
-                                    background: "rgba(201,168,76,0.04)",
-                                    border: "1px solid rgba(201,168,76,0.1)",
-                                  }}
+                                  className="flex gap-3 items-start px-3 py-2 rounded-lg"
+                                  style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.1)" }}
                                 >
-                                  <span style={{ color: GOLD, fontSize: "0.7rem", marginTop: "0.15rem", flexShrink: 0 }}>✦</span>
-                                  <p style={{ color: dim, fontSize: "0.88rem", lineHeight: 1.6, margin: 0, opacity: 0.82 }}>{f}</p>
+                                  <span className="shrink-0 mt-0.5" style={{ color: GOLD, fontSize: "0.7rem" }}>✦</span>
+                                  <p className="m-0" style={{ color: dim, fontSize: "0.88rem", lineHeight: 1.6, opacity: 0.82 }}>{f}</p>
                                 </div>
                               ))}
                             </div>
@@ -862,19 +558,17 @@ export default function Conservation() {
 
       {/* ── 7. ANIMALS ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: `linear-gradient(180deg,${bg.main},${bg.mid})`,
-        }}
+        className="py-28 px-8"
+        style={{ background: `linear-gradient(180deg,${bg.main},${bg.mid})` }}
       >
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+        <div className="max-w-5xl mx-auto">
           <SectionHeader
             label="In Focus"
             title="Animals Worth Saving"
             sub="Each of these species faces an uncertain future. Their survival depends on the actions we take today."
             center
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.25rem" }}>
+          <div className="grid grid-cols-3 gap-5">
             {ANIMALS.map((a, i) => (
               <motion.div
                 key={i}
@@ -882,45 +576,30 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="hi"
-                style={{ ...cardStyle, position: "relative", height: "22rem" }}
+                className="hi relative overflow-hidden rounded-2xl"
+                style={{ height: "22rem" }}
               >
-                <img src={a.img} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src={a.img} className="w-full h-full object-cover" />
                 <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top,rgba(3,6,5,0.92) 0%,rgba(0,0,0,0.15) 55%,transparent 100%)",
-                  }}
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top,rgba(3,6,5,0.92) 0%,rgba(0,0,0,0.15) 55%,transparent 100%)" }}
                 />
                 <span
+                  className="absolute top-4 left-4 px-3 py-1 rounded-full uppercase backdrop-blur-md"
                   style={{
-                    position: "absolute",
-                    top: "1rem",
-                    left: "1rem",
-                    padding: "0.25rem 0.75rem",
-                    borderRadius: "2rem",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
                     color: a.color,
                     background: `${a.color}18`,
                     border: `1px solid ${a.color}44`,
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.2em",
                     fontFamily: "Courier New,monospace",
-                    backdropFilter: "blur(8px)",
                   }}
                 >
                   {a.status}
                 </span>
                 <h3
-                  style={{
-                    position: "absolute",
-                    bottom: "1.5rem",
-                    left: "1.5rem",
-                    fontSize: "1.5rem",
-                    fontWeight: 400,
-                    color: cream,
-                  }}
+                  className="absolute bottom-6 left-6 font-normal"
+                  style={{ fontSize: "1.5rem", color: cream }}
                 >
                   {a.name}
                 </h3>
@@ -932,14 +611,10 @@ export default function Conservation() {
 
       {/* ── 8. MIGRATION ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(180deg,#040d07,#071408,#040d07)",
-          position: "relative",
-          overflow: "hidden",
-        }}
+        className="py-28 px-8 relative overflow-hidden"
+        style={{ background: "linear-gradient(180deg,#040d07,#071408,#040d07)" }}
       >
-        <div style={{ maxWidth: "72rem", margin: "0 auto", position: "relative" }}>
+        <div className="max-w-5xl mx-auto relative">
           <SectionHeader
             label="Nature's Greatest Journey"
             title="Wildlife Migration"
@@ -950,57 +625,45 @@ export default function Conservation() {
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            style={{
-              position: "relative",
-              overflow: "hidden",
-              borderRadius: "1.25rem",
-              height: "28rem",
-              marginBottom: "4rem",
-              border: "1px solid rgba(201,168,76,0.1)",
-            }}
+            className="relative overflow-hidden rounded-2xl mb-16"
+            style={{ height: "28rem", border: "1px solid rgba(201,168,76,0.1)" }}
           >
             <img
               src="https://static.wixstatic.com/media/0c30ac_b35519427750445db2618fb0dcc22853~mv2.png/v1/fill/w_1110,h_624,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/0c30ac_b35519427750445db2618fb0dcc22853~mv2.png"
               alt="Great Migration"
-              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              className="w-full h-full object-cover"
             />
             <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to top,rgba(4,13,7,0.92) 0%,rgba(0,0,0,0.2) 60%,transparent 100%)",
-              }}
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(to top,rgba(4,13,7,0.92) 0%,rgba(0,0,0,0.2) 60%,transparent 100%)" }}
             />
-            <div style={{ position: "absolute", bottom: "2.5rem", left: "2.5rem" }}>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "1rem" }}>
+            <div className="absolute bottom-10 left-10">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {["1.5M Wildebeest", "250K Zebra", "500km Journey", "Annual Event"].map(t => (
                   <span
                     key={t}
+                    className="px-3 py-1 rounded-full uppercase backdrop-blur-md"
                     style={{
-                      padding: "0.3rem 0.85rem",
-                      borderRadius: "2rem",
                       color: GOLD,
                       background: "rgba(201,168,76,0.1)",
                       border: "1px solid rgba(201,168,76,0.25)",
                       fontSize: "0.65rem",
                       letterSpacing: "0.15em",
-                      textTransform: "uppercase",
                       fontFamily: "Courier New,monospace",
-                      backdropFilter: "blur(8px)",
                     }}
                   >
                     {t}
                   </span>
                 ))}
               </div>
-              <h3 style={{ fontSize: "2.4rem", fontWeight: 400, color: cream }}>The Great Wildebeest Migration</h3>
-              <p style={{ color: dim, marginTop: "0.5rem", opacity: 0.7, fontSize: "1.05rem" }}>
+              <h3 className="font-normal" style={{ fontSize: "2.4rem", color: cream }}>The Great Wildebeest Migration</h3>
+              <p className="mt-2" style={{ color: dim, opacity: 0.7, fontSize: "1.05rem" }}>
                 The largest terrestrial migration on Earth — Serengeti to Masai Mara and back, every single year.
               </p>
             </div>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "4rem" }}>
+          <div className="grid grid-cols-2 gap-6 mb-16">
             {MIGRATION.map((s, i) => (
               <motion.div
                 key={i}
@@ -1008,56 +671,37 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="hi"
+                className="hi overflow-hidden rounded-2xl cursor-pointer transition-colors duration-300"
                 onClick={() => setMigrationModal(s)}
                 style={{
-                  ...cardStyle,
                   background: bg.card,
                   border: "1px solid rgba(201,168,76,0.1)",
-                  cursor: "pointer",
-                  transition: "border-color 0.3s",
                 }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(201,168,76,0.3)"}
                 onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(201,168,76,0.1)"}
               >
-                <div style={{ position: "relative", height: "13rem", overflow: "hidden" }}>
-                  <img src={s.img} alt={s.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div className="relative overflow-hidden" style={{ height: "13rem" }}>
+                  <img src={s.img} alt={s.name} className="w-full h-full object-cover" />
                   <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: `linear-gradient(to bottom,transparent 40%,${bg.card} 100%)`,
-                    }}
+                    className="absolute inset-0"
+                    style={{ background: `linear-gradient(to bottom,transparent 40%,${bg.card} 100%)` }}
                   />
-                  <span style={{ position: "absolute", top: "1rem", right: "1rem", fontSize: "1.75rem" }}>{s.icon}</span>
+                  <span className="absolute top-4 right-4 text-3xl">{s.icon}</span>
                   <div
-                    style={{
-                      position: "absolute",
-                      bottom: "1rem",
-                      right: "1rem",
-                      padding: "0.25rem 0.75rem",
-                      borderRadius: "2rem",
-                      background: "rgba(201,168,76,0.12)",
-                      border: "1px solid rgba(201,168,76,0.3)",
-                      backdropFilter: "blur(8px)",
-                    }}
+                    className="absolute bottom-4 right-4 px-3 py-1 rounded-full backdrop-blur-md"
+                    style={{ background: "rgba(201,168,76,0.12)", border: "1px solid rgba(201,168,76,0.3)" }}
                   >
                     <span
-                      style={{
-                        color: GOLD,
-                        fontSize: "0.6rem",
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        fontFamily: "Courier New,monospace",
-                      }}
+                      className="uppercase"
+                      style={{ color: GOLD, fontSize: "0.6rem", letterSpacing: "0.2em", fontFamily: "Courier New,monospace" }}
                     >
                       View Details →
                     </span>
                   </div>
                 </div>
-                <div style={{ padding: "1.5rem" }}>
-                  <h4 style={{ fontSize: "1.4rem", fontWeight: 400, color: cream, marginBottom: "0.75rem" }}>{s.name}</h4>
-                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "0.75rem" }}>
+                <div className="p-6">
+                  <h4 className="font-normal mb-3" style={{ fontSize: "1.4rem", color: cream }}>{s.name}</h4>
+                  <div className="flex gap-2 flex-wrap mb-3">
                     <Tag>📍 {s.route}</Tag>
                     <Tag color="#a8c9ad">📏 {s.dist}</Tag>
                   </div>
@@ -1071,32 +715,13 @@ export default function Conservation() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{
-              borderRadius: "1.25rem",
-              padding: "3rem",
-              background: "rgba(201,168,76,0.04)",
-              border: "1px solid rgba(201,168,76,0.14)",
-            }}
+            className="rounded-2xl p-12"
+            style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.14)" }}
           >
-            <h3
-              style={{
-                textAlign: "center",
-                fontSize: "1.7rem",
-                fontWeight: 400,
-                color: cream,
-                marginBottom: "2.5rem",
-              }}
-            >
+            <h3 className="text-center font-normal mb-10" style={{ fontSize: "1.7rem", color: cream }}>
               Migration by the Numbers
             </h3>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4,1fr)",
-                gap: "2rem",
-                textAlign: "center",
-              }}
-            >
+            <div className="grid grid-cols-4 gap-8 text-center">
               {[
                 { v: "1.5B",   l: "Birds migrate each year in North America", i: "🐦" },
                 { v: "90K km", l: "Distance Arctic Tern travels annually",     i: "🗺️" },
@@ -1110,9 +735,9 @@ export default function Conservation() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <div style={{ fontSize: "2rem", marginBottom: "0.6rem" }}>{s.i}</div>
+                  <div className="text-3xl mb-2">{s.i}</div>
                   <p style={{ fontSize: "1.9rem", color: GOLD, fontFamily: "'Cinzel',serif", marginBottom: "0.4rem" }}>{s.v}</p>
-                  <div style={{ height: 1, width: 20, background: G, margin: "0.4rem auto" }} />
+                  <div className="h-px w-5 mx-auto my-1" style={{ background: G }} />
                   <p style={{ color: dim, fontSize: "0.82rem", lineHeight: 1.6, opacity: 0.65 }}>{s.l}</p>
                 </motion.div>
               ))}
@@ -1123,26 +748,17 @@ export default function Conservation() {
 
       {/* ── 9. HOW YOU CAN HELP ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(160deg,#060d09,#0a1a0e,#060d09)",
-        }}
+        className="py-28 px-8"
+        style={{ background: "linear-gradient(160deg,#060d09,#0a1a0e,#060d09)" }}
       >
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+        <div className="max-w-5xl mx-auto">
           <SectionHeader
             label="Daily Actions"
             title="How You Can Help"
             sub="You don't have to donate to make a difference. These everyday actions have real, measurable impact on wildlife and ecosystems."
             center
           />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
-              gap: "1.25rem",
-              marginBottom: "4rem",
-            }}
-          >
+          <div className="grid grid-cols-3 gap-5 mb-16">
             {HELP_ACTIONS.map((a, i) => (
               <motion.div
                 key={i}
@@ -1150,16 +766,11 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="hov-card"
-                style={{
-                  padding: "2rem",
-                  borderRadius: "1rem",
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(201,168,76,0.1)",
-                }}
+                className="hov-card p-8 rounded-2xl"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <span style={{ fontSize: "2.2rem", display: "block", marginBottom: "0.75rem" }}>{a.icon}</span>
-                <h4 style={{ fontSize: "1.2rem", fontWeight: 400, color: cream, marginBottom: "0.5rem" }}>{a.title}</h4>
+                <span className="text-4xl block mb-3">{a.icon}</span>
+                <h4 className="font-normal mb-2" style={{ fontSize: "1.2rem", color: cream }}>{a.title}</h4>
                 <p style={{ color: dim, fontSize: "0.95rem", lineHeight: 1.75, opacity: 0.7 }}>{a.desc}</p>
               </motion.div>
             ))}
@@ -1169,50 +780,25 @@ export default function Conservation() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            style={{
-              padding: "2.5rem 3rem",
-              borderRadius: "1.25rem",
-              background: "rgba(201,168,76,0.04)",
-              border: "1px solid rgba(201,168,76,0.15)",
-              textAlign: "center",
-              position: "relative",
-            }}
+            className="px-12 py-10 rounded-2xl text-center relative"
+            style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.15)" }}
           >
             <span
-              style={{
-                fontSize: "4rem",
-                color: "rgba(201,168,76,0.12)",
-                position: "absolute",
-                top: "1rem",
-                left: "2rem",
-                fontFamily: "Georgia,serif",
-                lineHeight: 1,
-              }}
+              className="absolute top-4 left-8 leading-none"
+              style={{ fontSize: "4rem", color: "rgba(201,168,76,0.12)", fontFamily: "Georgia,serif" }}
             >
               "
             </span>
             <p
-              style={{
-                fontSize: "1.4rem",
-                color: cream,
-                lineHeight: 1.7,
-                fontStyle: "italic",
-                maxWidth: "48rem",
-                margin: "0 auto",
-                opacity: 0.9,
-              }}
+              className="italic mx-auto"
+              style={{ fontSize: "1.4rem", color: cream, lineHeight: 1.7, maxWidth: "48rem", opacity: 0.9 }}
             >
               The Earth does not belong to us. We belong to the Earth. What we do to the web of life, we do to ourselves.
             </p>
-            <div style={{ height: 1, width: 50, background: G, margin: "1.5rem auto 0.75rem" }} />
+            <div className="h-px w-12 mx-auto mt-6 mb-3" style={{ background: G }} />
             <p
-              style={{
-                color: GOLD,
-                fontSize: "0.8rem",
-                letterSpacing: "0.3em",
-                textTransform: "uppercase",
-                fontFamily: "Courier New,monospace",
-              }}
+              className="uppercase tracking-widest"
+              style={{ color: GOLD, fontSize: "0.8rem", letterSpacing: "0.3em", fontFamily: "Courier New,monospace" }}
             >
               Chief Seattle
             </p>
@@ -1221,22 +807,15 @@ export default function Conservation() {
       </section>
 
       {/* ── 10. VOLUNTEER ── */}
-      <section style={{ padding: "7rem 2rem", background: bg.main }}>
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+      <section className="py-28 px-8" style={{ background: bg.main }}>
+        <div className="max-w-5xl mx-auto">
           <SectionHeader
             label="Get Involved"
             title="Volunteer for Wildlife"
             sub="Go beyond awareness — give your time, skills, and energy directly to conservation in the field or from home."
             center
           />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
-              gap: "1.25rem",
-              marginBottom: "4rem",
-            }}
-          >
+          <div className="grid grid-cols-3 gap-5 mb-16">
             {VOLUNTEER_ROLES.map((r, i) => (
               <motion.div
                 key={i}
@@ -1244,18 +823,13 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="hov-card"
-                style={{
-                  padding: "2rem",
-                  borderRadius: "1rem",
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(201,168,76,0.1)",
-                }}
+                className="hov-card p-8 rounded-2xl"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <span style={{ fontSize: "2.2rem", display: "block", marginBottom: "0.75rem" }}>{r.icon}</span>
-                <h4 style={{ fontSize: "1.15rem", fontWeight: 400, color: cream, marginBottom: "0.4rem" }}>{r.title}</h4>
-                <p style={{ color: dim, fontSize: "0.92rem", lineHeight: 1.75, opacity: 0.7, marginBottom: "1rem" }}>{r.desc}</p>
-                <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+                <span className="text-4xl block mb-3">{r.icon}</span>
+                <h4 className="font-normal mb-1" style={{ fontSize: "1.15rem", color: cream }}>{r.title}</h4>
+                <p className="mb-4" style={{ color: dim, fontSize: "0.92rem", lineHeight: 1.75, opacity: 0.7 }}>{r.desc}</p>
+                <div className="flex gap-2 flex-wrap">
                   <Tag color="#7aab82">⏱ {r.time}</Tag>
                   <Tag color="#a8c9ad">📍 {r.loc}</Tag>
                 </div>
@@ -1267,43 +841,25 @@ export default function Conservation() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="grid gap-8 items-center px-12 py-10 rounded-2xl relative overflow-hidden"
             style={{
-              display: "grid",
               gridTemplateColumns: "1fr auto",
-              gap: "2rem",
-              alignItems: "center",
-              padding: "2.5rem 3rem",
-              borderRadius: "1.25rem",
               background: "rgba(201,168,76,0.06)",
               border: "1px solid rgba(201,168,76,0.22)",
-              position: "relative",
-              overflow: "hidden",
             }}
           >
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: G }} />
+            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: G }} />
             <div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                  marginBottom: "0.75rem",
-                }}
-              >
+              <div className="flex items-center gap-3 mb-3">
                 <Users size={20} color={GOLD} />
                 <span
-                  style={{
-                    color: GOLD,
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.4em",
-                    textTransform: "uppercase",
-                    fontFamily: "Courier New,monospace",
-                  }}
+                  className="uppercase"
+                  style={{ color: GOLD, fontSize: "0.65rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}
                 >
                   Join the Movement
                 </span>
               </div>
-              <h3 style={{ fontSize: "1.7rem", fontWeight: 400, color: cream, marginBottom: "0.5rem" }}>
+              <h3 className="font-normal mb-2" style={{ fontSize: "1.7rem", color: cream }}>
                 12,000+ volunteers active worldwide
               </h3>
               <p style={{ color: dim, fontSize: "1rem", opacity: 0.7 }}>
@@ -1315,18 +871,8 @@ export default function Conservation() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(201,168,76,0.3)" }}
-              style={{
-                padding: "1.1rem 2.5rem",
-                background: G,
-                color: bg.main,
-                borderRadius: "3rem",
-                textDecoration: "none",
-                fontSize: "0.85rem",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                fontWeight: 700,
-                whiteSpace: "nowrap",
-              }}
+              className="px-10 py-4 rounded-full no-underline uppercase font-bold whitespace-nowrap"
+              style={{ background: G, color: bg.main, fontSize: "0.85rem", letterSpacing: "0.15em" }}
             >
               Find a Role
             </motion.a>
@@ -1336,58 +882,32 @@ export default function Conservation() {
 
       {/* ── 11. ORGANISATIONS ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(180deg,#060a07,#0a120a)",
-        }}
+        className="py-28 px-8"
+        style={{ background: "linear-gradient(180deg,#060a07,#0a120a)" }}
       >
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
+        <div className="max-w-5xl mx-auto">
           <SectionHeader
             label="Partners"
             title="Leading the Movement"
             sub="These organisations protect animals, restore habitats, and safeguard biodiversity globally."
             center
           />
-          <div style={{ display: "flex", flexDirection: "column", gap: "7rem" }}>
+          <div className="flex flex-col gap-28">
             {ORGS.map((o, i) => {
               const ImgCol = (
                 <div
-                  className="hi"
+                  className="hi relative overflow-hidden rounded-2xl cursor-pointer"
                   onClick={() => setVideo(o.vid)}
-                  style={{
-                    position: "relative",
-                    height: "22rem",
-                    borderRadius: "1.1rem",
-                    overflow: "hidden",
-                    border: "1px solid rgba(201,168,76,0.1)",
-                    cursor: "pointer",
-                  }}
+                  style={{ height: "22rem", border: "1px solid rgba(201,168,76,0.1)" }}
                 >
-                  <img src={o.img} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={o.img} className="w-full h-full object-cover" />
                   <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to top,rgba(3,6,5,0.55),transparent)",
-                    }}
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top,rgba(3,6,5,0.55),transparent)" }}
                   />
                   <div
-                    className="po"
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%,-50%)",
-                      width: "3.5rem",
-                      height: "3.5rem",
-                      borderRadius: "50%",
-                      background: G,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      opacity: 0,
-                      transition: "opacity 0.3s",
-                    }}
+                    className="po absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center"
+                    style={{ background: G, opacity: 0, transition: "opacity 0.3s" }}
                   >
                     <Play size={18} color={bg.main} style={{ marginLeft: 2 }} />
                   </div>
@@ -1396,16 +916,16 @@ export default function Conservation() {
               const TextCol = (
                 <div>
                   <GL />
-                  <h3 style={{ fontSize: "2rem", fontWeight: 400, marginBottom: "1rem", color: cream }}>{o.name}</h3>
-                  <p style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.85, marginBottom: "1.5rem", opacity: 0.75 }}>{o.desc}</p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.75rem" }}>
+                  <h3 className="font-normal mb-4" style={{ fontSize: "2rem", color: cream }}>{o.name}</h3>
+                  <p className="mb-6" style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.85, opacity: 0.75 }}>{o.desc}</p>
+                  <div className="flex flex-wrap gap-2 mb-7">
                     {o.tags.map(t => <Tag key={t}>{t}</Tag>)}
                   </div>
                   <a
                     href={o.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={gBtn}
+                    className={gBtn}
                     onMouseEnter={e => { e.currentTarget.style.background = GOLD; e.currentTarget.style.color = bg.main; }}
                     onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = GOLD; }}
                   >
@@ -1420,12 +940,7 @@ export default function Conservation() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.8 }}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "4rem",
-                    alignItems: "center",
-                  }}
+                  className="grid grid-cols-2 gap-16 items-center"
                 >
                   {i % 2 === 0 ? <>{ImgCol}{TextCol}</> : <>{TextCol}{ImgCol}</>}
                 </motion.div>
@@ -1442,17 +957,8 @@ export default function Conservation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 300,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "1.5rem",
-              background: "rgba(3,6,5,0.95)",
-              backdropFilter: "blur(24px)",
-            }}
+            className="fixed inset-0 z-300 flex items-center justify-center p-6 backdrop-blur-2xl"
+            style={{ background: "rgba(3,6,5,0.95)", zIndex: 300 }}
             onClick={() => setVideo(null)}
           >
             <motion.div
@@ -1460,40 +966,25 @@ export default function Conservation() {
               animate={{ scale: 1 }}
               exit={{ scale: 0.84 }}
               onClick={e => e.stopPropagation()}
+              className="relative w-full rounded-2xl overflow-hidden"
               style={{
-                position: "relative",
-                width: "100%",
                 maxWidth: "54rem",
                 aspectRatio: "16/9",
-                borderRadius: "1rem",
-                overflow: "hidden",
                 border: "1px solid rgba(201,168,76,0.2)",
               }}
             >
-              {/* Gold top bar */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 2,
-                  background: G,
-                  zIndex: 2,
-                }}
-              />
+              <div className="absolute top-0 left-0 right-0 h-0.5 z-10" style={{ background: G }} />
 
-              {/* Local asset video OR YouTube — auto detected */}
               {typeof video === "string" && (video.startsWith("/") || video.startsWith("blob") || video.includes("assets") || video.endsWith(".mp4")) ? (
                 <video
                   src={video}
                   autoPlay
                   controls
-                  style={{ width: "100%", height: "100%", objectFit: "cover", background: "#000" }}
+                  className="w-full h-full object-cover bg-black"
                 />
               ) : (
                 <iframe
-                  style={{ width: "100%", height: "100%" }}
+                  className="w-full h-full"
                   src={`https://www.youtube.com/embed/${video}?autoplay=1`}
                   title="Video"
                   allowFullScreen
@@ -1501,20 +992,13 @@ export default function Conservation() {
                 />
               )}
 
-              {/* Close button */}
               <button
                 onClick={() => setVideo(null)}
+                className="absolute top-2 right-2 p-1.5 rounded-full cursor-pointer flex items-center justify-center z-10 backdrop-blur-md"
                 style={{
-                  position: "absolute",
-                  top: "0.6rem",
-                  right: "0.6rem",
-                  padding: "0.35rem",
-                  borderRadius: "50%",
                   background: "rgba(6,10,7,0.85)",
                   border: "1px solid rgba(201,168,76,0.25)",
-                  cursor: "pointer",
                   color: cream,
-                  zIndex: 3,
                 }}
               >
                 <X size={15} />
@@ -1526,22 +1010,11 @@ export default function Conservation() {
 
       {/* ── 12. LATEST NEWS ── */}
       <section
-        style={{
-          padding: "7rem 2rem",
-          background: "linear-gradient(160deg,#060d09,#0a150c,#060d09)",
-        }}
+        className="py-28 px-8"
+        style={{ background: "linear-gradient(160deg,#060d09,#0a150c,#060d09)" }}
       >
-        <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              flexWrap: "wrap",
-              gap: "1rem",
-              marginBottom: "3.5rem",
-            }}
-          >
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-between items-end flex-wrap gap-4 mb-14">
             <SectionHeader label="Stay Informed" title="Latest News" />
             <motion.a
               href="https://iucn.org/news-events"
@@ -1550,7 +1023,7 @@ export default function Conservation() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              style={{ ...gBtn, marginBottom: "3.5rem" }}
+              className={`mb-14 ${gBtn}`}
               onMouseEnter={e => { e.currentTarget.style.background = GOLD; e.currentTarget.style.color = bg.main; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = GOLD; }}
             >
@@ -1558,7 +1031,7 @@ export default function Conservation() {
             </motion.a>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
+          <div className="grid grid-cols-3 gap-6">
             {NEWS.map((n, i) => (
               <motion.div
                 key={n.title || i}
@@ -1566,127 +1039,60 @@ export default function Conservation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="hi news-card hov-card"
+                className="hi news-card hov-card overflow-hidden rounded-2xl cursor-pointer flex flex-col transition-all duration-300"
                 onClick={() => setNewsArticle(n)}
-                style={{
-                  ...cardStyle,
-                  background: bg.card,
-                  border: "1px solid rgba(201,168,76,0.1)",
-                  transition: "all 0.35s",
-                  cursor: "pointer",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
+                style={{ background: bg.card, border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <div style={{ position: "relative", height: "13rem", overflow: "hidden", flexShrink: 0 }}>
-                  <img src={n.img} alt={n.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div className="relative overflow-hidden shrink-0" style={{ height: "13rem" }}>
+                  <img src={n.img} alt={n.title} className="w-full h-full object-cover" />
                   <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: `linear-gradient(to bottom,transparent 50%,${bg.card} 100%)`,
-                    }}
+                    className="absolute inset-0"
+                    style={{ background: `linear-gradient(to bottom,transparent 50%,${bg.card} 100%)` }}
                   />
                   <div
-                    style={{
-                      position: "absolute",
-                      top: "0.9rem",
-                      right: "0.9rem",
-                      padding: "0.2rem 0.65rem",
-                      borderRadius: "2rem",
-                      background: "rgba(6,10,7,0.8)",
-                      border: "1px solid rgba(201,168,76,0.2)",
-                      backdropFilter: "blur(8px)",
-                    }}
+                    className="absolute top-3 right-3 px-2 py-0.5 rounded-full backdrop-blur-md"
+                    style={{ background: "rgba(6,10,7,0.8)", border: "1px solid rgba(201,168,76,0.2)" }}
                   >
-                    <span
-                      style={{
-                        color: "rgba(201,168,76,0.7)",
-                        fontSize: "0.62rem",
-                        fontFamily: "Courier New,monospace",
-                      }}
-                    >
+                    <span style={{ color: "rgba(201,168,76,0.7)", fontSize: "0.62rem", fontFamily: "Courier New,monospace" }}>
                       ⏱ {n.readTime}
                     </span>
                   </div>
                 </div>
 
-                <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", flex: 1 }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      marginBottom: "0.75rem",
-                    }}
-                  >
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex justify-between items-center mb-3">
                     <Tag>{n.tag}</Tag>
-                    <span
-                      style={{
-                        color: "rgba(196,187,166,0.4)",
-                        fontSize: "0.75rem",
-                        fontFamily: "Courier New,monospace",
-                      }}
-                    >
+                    <span style={{ color: "rgba(196,187,166,0.4)", fontSize: "0.75rem", fontFamily: "Courier New,monospace" }}>
                       {n.date}
                     </span>
                   </div>
-                  <h4 style={{ fontSize: "1.15rem", fontWeight: 400, color: cream, marginBottom: "0.75rem", lineHeight: 1.4 }}>{n.title}</h4>
-                  <p style={{ color: dim, fontSize: "0.9rem", lineHeight: 1.7, opacity: 0.65, flex: 1 }}>{n.excerpt}</p>
+                  <h4 className="font-normal mb-3" style={{ fontSize: "1.15rem", color: cream, lineHeight: 1.4 }}>{n.title}</h4>
+                  <p className="flex-1" style={{ color: dim, fontSize: "0.9rem", lineHeight: 1.7, opacity: 0.65 }}>{n.excerpt}</p>
                   <div
-                    style={{
-                      marginTop: "1.1rem",
-                      paddingTop: "1rem",
-                      borderTop: "1px solid rgba(201,168,76,0.08)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.65rem",
-                    }}
+                    className="mt-4 pt-4 flex items-center gap-2"
+                    style={{ borderTop: "1px solid rgba(201,168,76,0.08)" }}
                   >
                     <div
+                      className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
                       style={{
-                        width: "1.8rem",
-                        height: "1.8rem",
-                        borderRadius: "50%",
                         background: "linear-gradient(135deg,rgba(201,168,76,0.18),rgba(201,168,76,0.04))",
                         border: "1px solid rgba(201,168,76,0.18)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "0.65rem",
                         color: GOLD,
-                        flexShrink: 0,
+                        fontSize: "0.65rem",
                       }}
                     >
                       {n.author.charAt(0)}
                     </div>
                     <p
-                      style={{
-                        color: cream,
-                        fontSize: "0.78rem",
-                        margin: 0,
-                        opacity: 0.8,
-                        flex: 1,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                      }}
+                      className="flex-1 m-0 truncate"
+                      style={{ color: cream, fontSize: "0.78rem", opacity: 0.8 }}
                     >
                       {n.author}
                     </p>
                     <motion.div
                       whileHover={{ x: 3 }}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.35rem",
-                        color: GOLD,
-                        fontSize: "0.75rem",
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        fontFamily: "Courier New,monospace",
-                        flexShrink: 0,
-                      }}
+                      className="flex items-center gap-1 uppercase shrink-0"
+                      style={{ color: GOLD, fontSize: "0.75rem", letterSpacing: "0.12em", fontFamily: "Courier New,monospace" }}
                     >
                       Read <ChevronRight size={11} />
                     </motion.div>
@@ -1701,61 +1107,43 @@ export default function Conservation() {
       {/* ── 13. ACT NOW ── */}
       <section
         id="act-now"
-        style={{
-          padding: "9rem 2rem",
-          position: "relative",
-          overflow: "hidden",
-          background: "linear-gradient(135deg,#0a1a08,#142810,#0a1a08)",
-        }}
+        className="py-36 px-8 relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg,#0a1a08,#142810,#0a1a08)" }}
       >
         <motion.div
           animate={{ scale: [1, 1.25, 1], opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 7, repeat: Infinity }}
+          className="absolute pointer-events-none rounded-full"
           style={{
-            position: "absolute",
             top: "20%",
             left: "50%",
             transform: "translate(-50%,-50%)",
             width: "40rem",
             height: "40rem",
-            borderRadius: "50%",
             background: "rgba(201,168,76,0.08)",
             filter: "blur(80px)",
-            pointerEvents: "none",
           }}
         />
-        <div style={{ maxWidth: "72rem", margin: "0 auto", position: "relative" }}>
+        <div className="max-w-5xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ textAlign: "center", marginBottom: "5rem" }}
+            className="text-center mb-20"
           >
             <p
-              style={{
-                color: GOLD,
-                fontSize: "0.65rem",
-                letterSpacing: "0.55em",
-                textTransform: "uppercase",
-                fontFamily: "Courier New,monospace",
-                marginBottom: "1rem",
-              }}
+              className="uppercase mb-4"
+              style={{ color: GOLD, fontSize: "0.65rem", letterSpacing: "0.55em", fontFamily: "Courier New,monospace" }}
             >
               The Time Is Now
             </p>
-            <div style={{ height: 1, width: 70, background: G, margin: "0 auto 1.25rem" }} />
-            <h2 style={{ fontSize: "clamp(3.5rem,8vw,6rem)", lineHeight: 0.9, marginBottom: "1.5rem", color: cream }}>
+            <div className="h-px w-16 mx-auto mb-5" style={{ background: G }} />
+            <h2 className="leading-none mb-6" style={{ fontSize: "clamp(3.5rem,8vw,6rem)", color: cream }}>
               Act Now.
             </h2>
             <p
-              style={{
-                color: dim,
-                fontSize: "1.15rem",
-                lineHeight: 1.85,
-                maxWidth: "38rem",
-                margin: "0 auto",
-                opacity: 0.75,
-              }}
+              className="mx-auto"
+              style={{ color: dim, fontSize: "1.15rem", lineHeight: 1.85, maxWidth: "38rem", opacity: 0.75 }}
             >
               The window to protect our planet's biodiversity is narrowing. Choose how you want to make a difference.
             </p>
@@ -1765,69 +1153,33 @@ export default function Conservation() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{
-              borderRadius: "1.25rem",
-              padding: "3rem",
-              marginBottom: "2rem",
-              background: "rgba(201,168,76,0.06)",
-              border: "1px solid rgba(201,168,76,0.25)",
-              position: "relative",
-              overflow: "hidden",
-            }}
+            className="rounded-2xl p-12 mb-8 relative overflow-hidden"
+            style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.25)" }}
           >
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: G }} />
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr auto",
-                gap: "2rem",
-                alignItems: "center",
-              }}
-            >
+            <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: G }} />
+            <div className="grid gap-8 items-center" style={{ gridTemplateColumns: "1fr auto" }}>
               <div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <span style={{ fontSize: "1.4rem" }}>🌍</span>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-2xl">🌍</span>
                   <span
-                    style={{
-                      color: GOLD,
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.4em",
-                      textTransform: "uppercase",
-                      fontFamily: "Courier New,monospace",
-                    }}
+                    className="uppercase"
+                    style={{ color: GOLD, fontSize: "0.65rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}
                   >
                     Featured Platform
                   </span>
                 </div>
-                <h3 style={{ fontSize: "1.9rem", fontWeight: 400, color: cream, marginBottom: "0.75rem" }}>
+                <h3 className="font-normal mb-3" style={{ fontSize: "1.9rem", color: cream }}>
                   Wildlife Conservation Network
                 </h3>
-                <p
-                  style={{
-                    color: dim,
-                    fontSize: "1.05rem",
-                    lineHeight: 1.8,
-                    marginBottom: "1.25rem",
-                    opacity: 0.8,
-                    maxWidth: "42rem",
-                  }}
-                >
+                <p className="mb-5" style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.8, opacity: 0.8, maxWidth: "42rem" }}>
                   A hub for wildlife conservation projects worldwide. Choose which animal, habitat, or program you want to support — from elephants to sea turtles to front-line conservationists.
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                <div className="flex flex-wrap gap-2">
                   {["💰 Donate to Projects", "🐘 Support Specific Animals", "🌳 Fund Habitats", "🎯 Run Fundraisers", "🎓 Join Communities"].map(t => (
                     <span
                       key={t}
+                      className="px-3 py-1 rounded-full"
                       style={{
-                        padding: "0.3rem 0.85rem",
-                        borderRadius: "2rem",
                         fontSize: "0.8rem",
                         color: dim,
                         background: "rgba(255,255,255,0.04)",
@@ -1844,32 +1196,21 @@ export default function Conservation() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.06, boxShadow: "0 0 50px rgba(201,168,76,0.3)" }}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "0.4rem",
-                  padding: "1.4rem 2.2rem",
-                  background: G,
-                  color: bg.main,
-                  borderRadius: "1rem",
-                  textDecoration: "none",
-                  textAlign: "center",
-                  minWidth: "10rem",
-                }}
+                className="flex flex-col items-center gap-1 px-9 py-6 rounded-2xl no-underline text-center"
+                style={{ background: G, color: bg.main, minWidth: "10rem" }}
               >
-                <span style={{ fontSize: "1.4rem" }}>🐾</span>
-                <span style={{ fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Take Action</span>
+                <span className="text-2xl">🐾</span>
+                <span className="font-bold uppercase" style={{ fontSize: "0.85rem", letterSpacing: "0.1em" }}>Take Action</span>
                 <span style={{ fontSize: "0.72rem", opacity: 0.65 }}>wildnet.org</span>
               </motion.a>
             </div>
           </motion.div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.25rem" }}>
+          <div className="grid grid-cols-3 gap-5">
             {[
-              { emoji: "🌱", name: "GlobalGiving", desc: "Choose from hundreds of conservation projects worldwide.", tag: "Fund Projects", url: "https://www.globalgiving.org", color: "#7aab82" },
-              { emoji: "🌿", name: "Rainforest Trust", desc: "Protect critical rainforest habitats and biodiversity.", tag: "Protect Habitats", url: "https://www.rainforesttrust.org", color: "#2a8c7a" },
-              { emoji: "✊", name: "Change.org", desc: "Sign petitions to stop illegal wildlife trade globally.", tag: "Sign Petitions",   url: "https://www.change.org", color: GOLD },
+              { emoji: "🌱", name: "GlobalGiving",    desc: "Choose from hundreds of conservation projects worldwide.", tag: "Fund Projects",    url: "https://www.globalgiving.org",     color: "#7aab82" },
+              { emoji: "🌿", name: "Rainforest Trust", desc: "Protect critical rainforest habitats and biodiversity.",  tag: "Protect Habitats", url: "https://www.rainforesttrust.org",   color: "#2a8c7a" },
+              { emoji: "✊", name: "Change.org",       desc: "Sign petitions to stop illegal wildlife trade globally.", tag: "Sign Petitions",   url: "https://www.change.org",           color: GOLD },
             ].map((p, i) => (
               <motion.a
                 key={i}
@@ -1881,19 +1222,12 @@ export default function Conservation() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                style={{
-                  display: "block",
-                  padding: "2rem",
-                  borderRadius: "1rem",
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(201,168,76,0.1)",
-                  textDecoration: "none",
-                  transition: "all 0.3s",
-                }}
+                className="block p-8 rounded-2xl no-underline transition-all duration-300"
+                style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(201,168,76,0.1)" }}
               >
-                <span style={{ fontSize: "2rem", display: "block", marginBottom: "0.75rem" }}>{p.emoji}</span>
-                <h4 style={{ fontSize: "1.3rem", fontWeight: 400, color: cream, marginBottom: "0.5rem" }}>{p.name}</h4>
-                <p style={{ color: dim, fontSize: "0.95rem", lineHeight: 1.7, opacity: 0.7, marginBottom: "1.25rem" }}>{p.desc}</p>
+                <span className="text-3xl block mb-3">{p.emoji}</span>
+                <h4 className="font-normal mb-2" style={{ fontSize: "1.3rem", color: cream }}>{p.name}</h4>
+                <p className="mb-5" style={{ color: dim, fontSize: "0.95rem", lineHeight: 1.7, opacity: 0.7 }}>{p.desc}</p>
                 <Tag color={p.color}>{p.tag} →</Tag>
               </motion.a>
             ))}
@@ -1904,19 +1238,14 @@ export default function Conservation() {
       {/* ── 14. FOOTER ── */}
       <footer style={{ background: bg.deep, borderTop: "1px solid rgba(201,168,76,0.1)" }}>
         <div
-          style={{
-            padding: "2.5rem 2rem",
-            borderBottom: "1px solid rgba(201,168,76,0.06)",
-            display: "flex",
-            justifyContent: "center",
-            gap: "1.25rem",
-          }}
+          className="py-10 px-8 flex justify-center gap-5"
+          style={{ borderBottom: "1px solid rgba(201,168,76,0.06)" }}
         >
           {[
-            { Icon: Instagram, label: "Instagram", url: "https://www.instagram.com/wwf/?hl=en" },
-            { Icon: Twitter,   label: "Twitter",   url: "https://x.com/nature_org" },
-            { Icon: Facebook,  label: "Facebook",  url: "https://www.facebook.com/conservation.intl/" },
-            { Icon: Youtube,   label: "YouTube",   url: "https://www.youtube.com/c/CaptPaulWatson" },
+            { Icon: Instagram, label: "Instagram", url: "https://instagram.com" },
+            { Icon: Twitter,   label: "Twitter",   url: "https://twitter.com" },
+            { Icon: Facebook,  label: "Facebook",  url: "https://facebook.com" },
+            { Icon: Youtube,   label: "YouTube",   url: "https://youtube.com" },
           ].map(({ Icon, label, url }) => (
             <motion.a
               key={label}
@@ -1924,18 +1253,11 @@ export default function Conservation() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.12, y: -3 }}
+              className="w-11 h-11 rounded-full flex items-center justify-center no-underline transition-all duration-300"
               style={{
-                width: "2.8rem",
-                height: "2.8rem",
-                borderRadius: "50%",
                 background: "rgba(201,168,76,0.07)",
                 border: "1px solid rgba(201,168,76,0.18)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 color: "rgba(201,168,76,0.6)",
-                transition: "all 0.3s",
-                textDecoration: "none",
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = "rgba(201,168,76,0.18)";
@@ -1953,48 +1275,28 @@ export default function Conservation() {
           ))}
         </div>
 
-        <div
-          style={{
-            padding: "2rem 2.5rem",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "1rem",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "0.7rem" }}>
+        <div className="px-10 py-8 flex justify-between items-center flex-wrap gap-4">
+          <div className="flex items-center gap-3">
             <div
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: "50%",
-                background: G,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              className="w-7 h-7 rounded-full flex items-center justify-center"
+              style={{ background: G }}
             >
               <Leaf size={12} color={bg.main} />
             </div>
-            <span style={{ fontSize: "0.8rem", letterSpacing: "0.25em" }}>
+            <span className="uppercase tracking-widest" style={{ fontSize: "0.8rem", letterSpacing: "0.25em" }}>
               GREEN <span style={{ color: GOLD }}>NATURE</span>
             </span>
           </div>
           <p style={{ color: "rgba(201,168,76,0.25)", fontSize: "0.82rem" }}>
             © 2026 Green Nature Conservation. All rights reserved.
           </p>
-          <div style={{ display: "flex", gap: "1.75rem" }}>
+          <div className="flex gap-7">
             {["Privacy", "Terms", "Contact"].map(t => (
               <a
                 key={t}
-
-                style={{
-                  color: "rgba(201,168,76,0.3)",
-                  fontSize: "0.82rem",
-                  textDecoration: "none",
-                  transition: "color 0.3s",
-                }}
+                href="#"
+                className="no-underline transition-colors duration-300"
+                style={{ color: "rgba(201,168,76,0.3)", fontSize: "0.82rem" }}
                 onMouseEnter={e => e.target.style.color = GOLD}
                 onMouseLeave={e => e.target.style.color = "rgba(201,168,76,0.3)"}
               >
@@ -2012,17 +1314,8 @@ export default function Conservation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 400,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "1rem",
-              background: "rgba(3,6,5,0.95)",
-              backdropFilter: "blur(28px)",
-            }}
+            className="fixed inset-0 flex items-center justify-center p-4 backdrop-blur-3xl"
+            style={{ background: "rgba(3,6,5,0.95)", zIndex: 400 }}
             onClick={() => setMigrationModal(null)}
           >
             <motion.div
@@ -2031,209 +1324,125 @@ export default function Conservation() {
               exit={{ scale: 0.9, y: 40, opacity: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 26 }}
               onClick={e => e.stopPropagation()}
+              className="relative w-full max-w-2xl overflow-y-auto rounded-3xl"
               style={{
                 background: bg.card,
                 border: "1px solid rgba(201,168,76,0.2)",
-                borderRadius: "1.5rem",
-                maxWidth: "50rem",
-                width: "100%",
                 maxHeight: "92vh",
-                overflowY: "auto",
-                position: "relative",
               }}
             >
-              {/* Gold top bar */}
-              <div
-                style={{
-                  height: 2,
-                  background: G,
-                  borderRadius: "1.5rem 1.5rem 0 0",
-                  position: "sticky",
-                  top: 0,
-                  zIndex: 10,
-                }}
-              />
+              <div className="h-0.5 rounded-t-3xl sticky top-0 z-10" style={{ background: G }} />
 
-              {/* Hero image */}
-              <div style={{ position: "relative", height: "20rem", overflow: "hidden" }}>
+              <div className="relative overflow-hidden" style={{ height: "20rem" }}>
                 <img
                   src={migrationModal.heroImg}
                   alt={migrationModal.name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  className="w-full h-full object-cover"
                 />
                 <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top,rgba(12,20,16,1) 0%,rgba(12,20,16,0.3) 60%,transparent 100%)",
-                  }}
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top,rgba(12,20,16,1) 0%,rgba(12,20,16,0.3) 60%,transparent 100%)" }}
                 />
                 <button
                   onClick={() => setMigrationModal(null)}
+                  className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md"
                   style={{
-                    position: "absolute",
-                    top: "1.25rem",
-                    right: "1.25rem",
-                    width: "2.4rem",
-                    height: "2.4rem",
-                    borderRadius: "50%",
                     background: "rgba(6,10,7,0.85)",
                     border: "1px solid rgba(201,168,76,0.25)",
-                    cursor: "pointer",
                     color: cream,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backdropFilter: "blur(8px)",
                   }}
                 >
                   <X size={15} />
                 </button>
-                <div style={{ position: "absolute", bottom: "1.75rem", left: "2rem" }}>
-                  <span style={{ fontSize: "2.5rem" }}>{migrationModal.icon}</span>
-                  <h2 style={{ fontSize: "2.2rem", fontWeight: 400, color: cream, margin: "0.25rem 0 0.5rem" }}>
+                <div className="absolute bottom-7 left-8">
+                  <span className="text-4xl">{migrationModal.icon}</span>
+                  <h2 className="font-normal mt-1 mb-2" style={{ fontSize: "2.2rem", color: cream }}>
                     {migrationModal.name}
                   </h2>
-                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  <div className="flex gap-2 flex-wrap">
                     <Tag>📍 {migrationModal.route}</Tag>
                     <Tag color="#a8c9ad">📏 {migrationModal.dist}</Tag>
                   </div>
                 </div>
               </div>
 
-              {/* Content */}
-              <div style={{ padding: "2.5rem 3rem 3rem" }}>
-                {/* Description */}
+              <div className="px-12 pt-10 pb-12">
                 <p
+                  className="mb-8 pl-4"
                   style={{
                     color: cream,
                     fontSize: "1.05rem",
                     lineHeight: 1.85,
                     opacity: 0.9,
                     borderLeft: `3px solid ${GOLD}`,
-                    paddingLeft: "1.1rem",
-                    marginBottom: "2rem",
                   }}
                 >
                   {migrationModal.desc}
                 </p>
 
-                {/* Key Facts */}
-                <div style={{ marginBottom: "2rem" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.6rem",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    <div style={{ height: 1, width: 24, background: G }} />
+                <div className="mb-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-px w-6" style={{ background: G }} />
                     <span
-                      style={{
-                        color: GOLD,
-                        fontSize: "0.6rem",
-                        letterSpacing: "0.45em",
-                        textTransform: "uppercase",
-                        fontFamily: "Courier New,monospace",
-                      }}
+                      className="uppercase"
+                      style={{ color: GOLD, fontSize: "0.6rem", letterSpacing: "0.45em", fontFamily: "Courier New,monospace" }}
                     >
                       Key Facts
                     </span>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem" }}>
+                  <div className="grid grid-cols-2 gap-2">
                     {migrationModal.facts.map((f, i) => (
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.07 }}
-                        style={{
-                          display: "flex",
-                          gap: "0.75rem",
-                          alignItems: "flex-start",
-                          padding: "0.85rem 1rem",
-                          borderRadius: "0.6rem",
-                          background: "rgba(201,168,76,0.04)",
-                          border: "1px solid rgba(201,168,76,0.12)",
-                        }}
+                        className="flex gap-3 items-start px-4 py-3 rounded-xl"
+                        style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.12)" }}
                       >
-                        <span style={{ color: GOLD, fontSize: "0.7rem", marginTop: "0.15rem", flexShrink: 0 }}>✦</span>
-                        <p style={{ color: dim, fontSize: "0.88rem", lineHeight: 1.6, margin: 0, opacity: 0.82 }}>{f}</p>
+                        <span className="shrink-0 mt-0.5" style={{ color: GOLD, fontSize: "0.7rem" }}>✦</span>
+                        <p className="m-0" style={{ color: dim, fontSize: "0.88rem", lineHeight: 1.6, opacity: 0.82 }}>{f}</p>
                       </motion.div>
                     ))}
                   </div>
                 </div>
 
-                {/* Threats */}
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  style={{
-                    padding: "1.75rem",
-                    borderRadius: "1rem",
-                    background: "rgba(220,68,68,0.04)",
-                    border: "1px solid rgba(220,68,68,0.18)",
-                    position: "relative",
-                    overflow: "hidden",
-                  }}
+                  className="p-7 rounded-2xl relative overflow-hidden"
+                  style={{ background: "rgba(220,68,68,0.04)", border: "1px solid rgba(220,68,68,0.18)" }}
                 >
                   <div
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 2,
-                      background: "linear-gradient(135deg,#dd4444,#e87070)",
-                    }}
+                    className="absolute top-0 left-0 right-0 h-0.5"
+                    style={{ background: "linear-gradient(135deg,#dd4444,#e87070)" }}
                   />
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.6rem",
-                      marginBottom: "0.75rem",
-                    }}
-                  >
-                    <span style={{ fontSize: "1.2rem" }}>⚠️</span>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-xl">⚠️</span>
                     <span
-                      style={{
-                        color: "#e87070",
-                        fontSize: "0.6rem",
-                        letterSpacing: "0.45em",
-                        textTransform: "uppercase",
-                        fontFamily: "Courier New,monospace",
-                      }}
+                      className="uppercase"
+                      style={{ color: "#e87070", fontSize: "0.6rem", letterSpacing: "0.45em", fontFamily: "Courier New,monospace" }}
                     >
                       Threats to Migration
                     </span>
                   </div>
-                  <p style={{ color: dim, fontSize: "0.95rem", lineHeight: 1.8, opacity: 0.82, margin: 0 }}>
+                  <p className="m-0" style={{ color: dim, fontSize: "0.95rem", lineHeight: 1.8, opacity: 0.82 }}>
                     {migrationModal.threats}
                   </p>
                 </motion.div>
 
-                {/* Close */}
-                <div style={{ marginTop: "2rem", textAlign: "right" }}>
+                <div className="mt-8 text-right">
                   <button
                     onClick={() => setMigrationModal(null)}
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full uppercase cursor-pointer transition-all duration-300"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      padding: "0.65rem 1.6rem",
                       border: "1px solid rgba(201,168,76,0.25)",
                       color: dim,
-                      borderRadius: "3rem",
+                      background: "transparent",
                       fontSize: "0.78rem",
                       letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                      background: "transparent",
-                      cursor: "pointer",
                       fontFamily: "Courier New,monospace",
-                      transition: "all 0.3s",
                     }}
                     onMouseEnter={e => {
                       e.currentTarget.style.borderColor = GOLD;

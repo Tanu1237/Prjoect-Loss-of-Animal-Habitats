@@ -2,9 +2,9 @@ const extinctData = [
 
   // ------------------- MAMMALS -------------------
   {
-    id: "indian-woolly-mammoth",
+    id: "woolly-mammoth",
     type: "Mammals",
-    title: "Indian Woolly Mammoth",
+    title: "Woolly Mammoth",
     subtitle: "The Woolly Mammoth once roamed northern India during the Ice Age. Climate change and habitat loss caused its extinction.",
     keywords: ["woolly mammoth", "elephant", "north india", "mammal", "ice age", "forest"],
     image: "https://npr.brightspotcdn.com/dims4/default/c4dca33/2147483647/strip/true/crop/1786x1004+0+0/resize/880x495!/quality/90/?url=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fimg%2F2015%2F07%2F02%2Fwoollymammoth-1_wide-c92251c02c4611438550b130393048dac3c0d79f.jpg",
@@ -22,7 +22,6 @@ const extinctData = [
         title: "Evolution & Anatomy",
         images: [
           "https://ars.els-cdn.com/content/image/1-s2.0-S0960982223004049-gr2.jpg",
-          "https://scontent.fpnq13-2.fna.fbcdn.net/v/t39.30808-6/490958884_122219787650184217_279146454371484330_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=111&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=LJu57vzWgkwQ7kNvwGXyWth&_nc_oc=AdmoPYgr6eyxXD0OjvNFQM725zR_lRNHjNX0ILx0XLO7YLLtbNtks4i3CpTw-7WADNAGOa7OOcwQf68acJMfSwoq&_nc_zt=23&_nc_ht=scontent.fpnq13-2.fna&_nc_gid=1DGkTIjFanmHiP8xmidNpw&oh=00_AfuPtSbUcbQd44zUOP5MjKyowwOdxD83vbqaX7VX906w2w&oe=698849A0",
           "https://ars.els-cdn.com/content/image/1-s2.0-S0960982223004049-fx1.jpg"
         ],
         content: `Evolving from African elephant ancestors, Woolly Mammoths adapted to glacial environments with thick fur, a pronounced shoulder hump storing fat reserves, and domed skulls with large sinus cavities to warm Arctic air. Their teeth developed tightly packed enamel ridges to grind tough, abrasive tundra vegetation. Tusks grew up to four meters and were used for foraging and combat. Broad, cushioned feet helped them traverse snowy plains without sinking. Recent genetic studies show cold-adapted hemoglobin and dense hair genes that allowed mammoths to thrive in extreme cold.`
@@ -305,7 +304,6 @@ const extinctData = [
       },
       {
         title: "Extinction & Legacy",
-        images: ["https://ej9px6kfdm3.exactdn.com/wp-content/uploads/2020/11/Alca_impennis_3.jpg?strip=all&quality=75"],
         content: `By 1844 Great Auks were extinct due to overhunting and collection for museums and private collectors. Their loss underscores the vulnerability of flightless island birds to human exploitation.`
       }
     ]
@@ -339,8 +337,7 @@ const extinctData = [
       },
       {
         title: "Extinction & Legacy",
-        images: ["https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2014/07/Female-Passenger-Pigeon.jpg?ssl=1",
-          "https://www.mcgill.ca/redpath/files/redpath/styles/hd/public/img_6397.jpg?itok=HCoHwUXL&timestamp=1628176625"
+        images: ["https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2014/07/Female-Passenger-Pigeon.jpg?ssl=1"
         ],
         content: `Intensive hunting and habitat destruction drove them to extinction by 1914. Passenger Pigeons stand as a powerful reminder that even enormous populations are not immune to human pressures.`
       }
@@ -363,16 +360,16 @@ const extinctData = [
       },
       {
         title: "Habitat & Diet",
-        content: `They inhabited deciduous forests and wooded floodplains from New England to Florida and west to the Mississippi Valley, nesting in old hollow trees. Their diet included seeds, nuts, fruits (including cultivated crops), cockleburs, and other vegetation, making them frequent visitors to farmland. :contentReference[oaicite:0]{index=0}`
+        content: `They inhabited deciduous forests and wooded floodplains from New England to Florida and west to the Mississippi Valley, nesting in old hollow trees. Their diet included seeds, nuts, fruits (including cultivated crops), cockleburs, and other vegetation, making them frequent visitors to farmland.`
       },
       {
         title: "Evolution & Behavior",
-        content: `Carolina Parakeets evolved as a highly social conure species, adapting to forest edges and floodplain habitats. They formed flocks ranging from dozens to hundreds. Their social behavior, while beneficial in the wild, made them vulnerable to hunting when one wounded bird attracted the rest of the flock. :contentReference[oaicite:1]{index=1}`
+        content: `Carolina Parakeets evolved as a highly social conure species, adapting to forest edges and floodplain habitats. They formed flocks ranging from dozens to hundreds. Their social behavior, while beneficial in the wild, made them vulnerable to hunting when one wounded bird attracted the rest of the flock.`
       },
       {
         title: "Extinction & Legacy",
         images: ["https://www.extinctanimals.org/wp-content/uploads/2015/05/Carolina-Parakeet-Photos.jpg"],
-        content: `Extinction was driven by habitat destruction from deforestation, relentless hunting for pest control and brightly-colored feathers used in fashion, competition for nest sites with introduced honeybees, and potential disease. The last captive bird, named Incas, died in 1918 at the Cincinnati Zoo, marking the end of the species. :contentReference[oaicite:2]{index=2}`
+        content: `Extinction was driven by habitat destruction from deforestation, relentless hunting for pest control and brightly-colored feathers used in fashion, competition for nest sites with introduced honeybees, and potential disease. The last captive bird, named Incas, died in 1918 at the Cincinnati Zoo, marking the end of the species.`
       }
     ]
   },
@@ -576,7 +573,7 @@ const extinctData = [
   {
     type: "Amphibian",
     id: "alpine-newt",
-    title: "Alpine Newt (Local Extinction)",
+    title: "Alpine Newt",
     subtitle: "Small European salamander locally lost due to pollution and habitat change.",
     keywords: ["alpine newt", "amphibian", "salamander", "extinct locally"],
     image: "https://www.waldwissen.net/assets/wald/tiere/reptilien_amphibien_fische/lwf_bergmolch/lwf_bergmolch_maennchen.jpeg",
@@ -611,7 +608,7 @@ const extinctData = [
   {
     type: "Amphibian",
     id: "blue-spotted-salamander",
-    title: "Blue-Spotted Salamander (Local Loss)",
+    title: "Blue-Spotted Salamander",
     subtitle: "Small salamander lost in parts of its range due to fragmentation and pollution.",
     keywords: ["blue-spotted salamander", "amphibian", "extinct locally"],
     image: "https://edge-es.com/wp-content/uploads/2024/10/Blue-spotted-Salamander-1_EDIT-scaled.jpg",
@@ -681,7 +678,7 @@ const extinctData = [
   {
     type: "Fish",
     id: "baiji",
-    title: "Baiji (Yangtze River Dolphin)",
+    title: "Baiji",
     subtitle: "A freshwater dolphin from China, functionally extinct due to industrialization and pollution.",
     keywords: ["baiji", "fish", "dolphin", "yangtze river", "extinct"],
     image: "https://veganfirst.com/media/editorimages/Delphine-Iquitos-Peru-jungle-tours.jpg",
@@ -715,7 +712,7 @@ const extinctData = [
   {
     type: "Fish",
     id: "labyrinth-fish",
-    title: "Labyrinth Fish (Extinct Species)",
+    title: "Labyrinth Fish",
     subtitle: "A hypothetical specialized freshwater fish lost due to habitat degradation.",
     keywords: ["labyrinth fish", "fish", "freshwater", "extinct"],
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlBs3T84l61aUL1b7alxHC8D1emQBqKlW3kQ&s",
