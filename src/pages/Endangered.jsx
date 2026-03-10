@@ -32,7 +32,7 @@ const Endangered = () => {
   }, [location]);
 
   return (
-    <div className="fixed inset-0 text-white overflow-auto scroll-smooth">
+    <div className="relative min-h-screen text-white overflow-x-hidden scroll-smooth">
 
       {/* BACKGROUND VIDEO WITH FADE */}
       <video

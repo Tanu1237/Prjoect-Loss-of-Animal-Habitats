@@ -16,7 +16,8 @@ export default function SpeciesListSidebar({
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/60 z-40"
+            className="fixed inset-0 z-40"
+            style={{ background: "rgba(3,6,5,0.85)" }}
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -29,16 +30,38 @@ export default function SpeciesListSidebar({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30 }}
-            className="fixed right-0 top-0 z-50 h-screen w-full md:w-96 bg-slate-950 border-l border-slate-700"
+            className="fixed right-0 top-0 z-50 h-screen w-full md:w-96"
+            style={{
+              background: "#060d09",
+              borderLeft: "1px solid rgba(201,168,76,0.15)",
+            }}
           >
+            {/* gold top accent */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[2px]"
+              style={{ background: "linear-gradient(90deg,#c9a84c,#e8d87f,#8fad58)" }}
+            />
+
             {/* Header */}
-            <header className="px-6 py-4 flex items-center justify-between border-b border-slate-700 sticky top-0 bg-slate-950">
-              <h2 className="flex items-center gap-2 font-bold text-stone-200">
-                <List size={18} /> Species
+            <header
+              className="px-6 py-4 flex items-center justify-between sticky top-0"
+              style={{
+                background: "#060d09",
+                borderBottom: "1px solid rgba(201,168,76,0.12)",
+              }}
+            >
+              <h2
+                className="flex items-center gap-2 font-bold"
+                style={{ color: "#f0ead8" }}
+              >
+                <List size={18} style={{ color: "#c9a84c" }} /> Species
               </h2>
               <button
                 onClick={onClose}
-                className="text-stone-400 hover:text-white transition-colors"
+                className="transition-colors"
+                style={{ color: "rgba(196,187,166,0.55)" }}
+                onMouseEnter={e => e.currentTarget.style.color = "#f0ead8"}
+                onMouseLeave={e => e.currentTarget.style.color = "rgba(196,187,166,0.55)"}
               >
                 <X size={20} />
               </button>
@@ -51,7 +74,14 @@ export default function SpeciesListSidebar({
                   {/* Category button */}
                   <button
                     onClick={() => { onTypeClick(sIdx); onClose(); }}
-                    className="w-full px-6 py-4 text-left uppercase text-sm font-semibold text-amber-300 hover:bg-white/5 transition-colors"
+                    className="w-full px-6 py-4 text-left uppercase text-sm font-semibold transition-colors"
+                    style={{
+                      color: "#c9a84c",
+                      background: "transparent",
+                      borderBottom: "1px solid rgba(201,168,76,0.06)",
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.background = "rgba(201,168,76,0.05)"}
+                    onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                   >
                     {sec.title}
                   </button>
@@ -65,11 +95,24 @@ export default function SpeciesListSidebar({
                       <button
                         key={item.id}
                         onClick={() => { onSpeciesClick(idx); onClose(); }}
-                        className={`block w-full px-10 py-2 text-sm text-left transition-colors
-                          ${active
-                            ? "text-amber-300 bg-amber-300/10"
-                            : "text-stone-300 hover:bg-white/10"
-                          }`}
+                        className="block w-full px-10 py-2 text-sm text-left transition-colors"
+                        style={{
+                          color: active ? "#c9a84c" : "rgba(196,187,166,0.6)",
+                          background: active ? "rgba(201,168,76,0.07)" : "transparent",
+                          borderLeft: active ? "2px solid #c9a84c" : "2px solid transparent",
+                        }}
+                        onMouseEnter={e => {
+                          if (!active) {
+                            e.currentTarget.style.color = "#f0ead8";
+                            e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                          }
+                        }}
+                        onMouseLeave={e => {
+                          if (!active) {
+                            e.currentTarget.style.color = "rgba(196,187,166,0.6)";
+                            e.currentTarget.style.background = "transparent";
+                          }
+                        }}
                       >
                         {item.title}
                       </button>

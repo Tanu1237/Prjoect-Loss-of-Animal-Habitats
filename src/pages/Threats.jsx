@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import threatsData from "../data/threatsData";
+import { setNavbarVisible } from "../components/Navbar";
 
 const STATS = [
   { value: "1M+", label: "Species at Risk", sub: "Currently facing extinction" },
@@ -7,6 +8,9 @@ const STATS = [
   { value: "68%", label: "Wildlife Decline", sub: "Since 1970 — in a single lifetime" },
   { value: "80%", label: "Habitat Destroyed", sub: "Of Earth's forests are gone" },
 ];
+
+// Must match SHOW_THRESHOLD in Navbar.jsx
+const SHOW_THRESHOLD = 80;
 
 function StatCard({ value, label, sub }) {
   const ref = useRef(null);
@@ -43,15 +47,60 @@ function StatCard({ value, label, sub }) {
 
 function Threats() {
   const [openId, setOpenId] = useState(null);
+  const scrollDivRef  = useRef(null);
+  const lastScrollTop = useRef(0);
+  const hiddenAtY     = useRef(null); // scrollTop where navbar was hidden
 
   useEffect(() => {
     document.body.style.backgroundColor = "#000";
+    // Navbar visible when arriving on page
+    setNavbarVisible(true);
+    return () => {
+      // Navbar visible when leaving page
+      setNavbarVisible(true);
+    };
+  }, []);
+
+  useEffect(() => {
+    const el = scrollDivRef.current;
+    if (!el) return;
+
+    const handler = () => {
+      const y    = el.scrollTop;
+      const last = lastScrollTop.current;
+
+      if (y < 60) {
+        // Near the top — always show
+        hiddenAtY.current = null;
+        setNavbarVisible(true);
+      } else if (y > last + 5) {
+        // Intentional downward scroll → hide, record position
+        if (hiddenAtY.current === null) hiddenAtY.current = y;
+        setNavbarVisible(false);
+      } else if (
+        hiddenAtY.current !== null &&
+        y < hiddenAtY.current - SHOW_THRESHOLD
+      ) {
+        // Only show after scrolling UP by SHOW_THRESHOLD from the hide point.
+        // A "Read More" reflow might shift scrollTop by ~10–30px — nowhere
+        // near 80px — so it never falsely triggers this branch.
+        hiddenAtY.current = null;
+        setNavbarVisible(true);
+      }
+      // Any tiny jitter (reflow, snap animation) that doesn't meet the
+      // threshold above is simply ignored — navbar stays hidden.
+
+      lastScrollTop.current = y;
+    };
+
+    el.addEventListener("scroll", handler, { passive: true });
+    return () => el.removeEventListener("scroll", handler);
   }, []);
 
   return (
     <div className="fixed inset-0 text-white overflow-hidden">
 
-      {/* Background video with dark overlay */}
+      {/* Background video */}
       <video
         className="fixed inset-0 w-full h-full object-cover -z-10 filter brightness-30"
         src="/threats.mp4"
@@ -62,9 +111,12 @@ function Threats() {
       />
       <div className="fixed inset-0 bg-black/60 -z-10" />
 
-      <div className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth">
+      <div
+        ref={scrollDivRef}
+        className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth"
+      >
 
-        {/* HERO SECTION */}
+        {/* HERO */}
         <section className="snap-start min-h-screen flex flex-col justify-center items-center text-center px-10">
           <h1 className="text-6xl md:text-7xl font-extrabold text-green-200 drop-shadow-lg mb-4 animate-slideIn">
             The Silent War
@@ -77,7 +129,7 @@ function Threats() {
           </p>
         </section>
 
-        {/* STATS SECTION */}
+        {/* STATS */}
         <section className="snap-start min-h-screen flex flex-col items-center justify-center px-6 gap-8">
           <h2 className="text-4xl font-bold text-green-300 text-center animate-fadeIn">
             The Scale of Destruction
@@ -101,13 +153,11 @@ function Threats() {
                 className={`
                   grid md:grid-cols-2 gap-10 max-w-6xl
                   bg-gradient-to-br from-[#0c1e0f]/80 via-[#162918]/70 to-[#1a2b1a]/80
-                  p-10 rounded-2xl
-                  border border-green-700/20
+                  p-10 rounded-2xl border border-green-700/20
                   transition-transform duration-300
                   hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(72,187,120,0.3)]
                 `}
               >
-                {/* Images */}
                 <div className="space-y-6">
                   <img
                     src={item.image}
@@ -125,7 +175,6 @@ function Threats() {
                     ))}
                 </div>
 
-                {/* Text */}
                 <div>
                   <h2 className="text-2xl font-bold text-green-300">{item.title}</h2>
                   <p className="text-gray-300 mt-4">{item.short}</p>
@@ -177,7 +226,7 @@ function Threats() {
           );
         })}
 
-        {/* DID YOU KNOW / THREADS */}
+        {/* DID YOU KNOW */}
         <section className="snap-start min-h-screen flex flex-col items-center justify-center text-center px-6 gap-6">
           <h2 className="text-4xl font-bold text-green-300 mb-8">Did You Know?</h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl w-full">
@@ -193,10 +242,8 @@ function Threats() {
           </div>
         </section>
 
-        {/* ENDING / WAYS TO HELP */}
+        {/* WAYS TO HELP */}
         <section className="snap-start min-h-screen flex flex-col items-center justify-center text-center px-6 gap-6">
-          
-
           <div className="bg-gradient-to-br from-[#0c1e0f]/70 via-[#162918]/50 to-[#1a2b1a]/70 border border-green-700/20 p-8 rounded-xl max-w-xl backdrop-blur-md transition hover:shadow-lg">
             <h3 className="text-xl font-semibold text-green-300 mb-4">Ways You Can Help</h3>
             <ul className="space-y-3 text-gray-400 text-left">
@@ -208,7 +255,6 @@ function Threats() {
               <li>Reduce plastic use to protect oceans</li>
             </ul>
           </div>
-
           <p className="mt-10 text-gray-300 font-semibold text-lg">
             The wild world is counting on us.
           </p>
@@ -216,13 +262,12 @@ function Threats() {
 
       </div>
 
-      {/* Animations */}
       <style>
         {`
-          @keyframes slideIn { 0% {opacity:0; transform:translateY(40px);} 100% {opacity:1; transform:translateY(0);} }
+          @keyframes slideIn { 0%{opacity:0;transform:translateY(40px);} 100%{opacity:1;transform:translateY(0);} }
           .animate-slideIn { animation: slideIn 1s forwards; }
-          .animate-fadeIn { animation: fadeIn 1.5s forwards; }
-          @keyframes fadeIn {0% {opacity:0;} 100% {opacity:1;}}
+          .animate-fadeIn  { animation: fadeIn 1.5s forwards; }
+          @keyframes fadeIn { 0%{opacity:0;} 100%{opacity:1;} }
         `}
       </style>
     </div>

@@ -30,16 +30,13 @@ export default function Conservation() {
       style={{ background: bg.main, color: cream, fontFamily: "'Cinzel',Georgia,serif" }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
-        body{margin:0}*{box-sizing:border-box}
-        p,span,a,li{font-family:'Cormorant Garamond',Palatino,serif}
-        ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:#c9a84c}
-        .hi img{transition:transform 0.7s ease}.hi:hover img{transform:scale(1.07)!important}
-        .hi:hover .po{opacity:1!important}
-        input::placeholder{color:rgba(196,187,166,0.4)}input{outline:none}
-        .hov-card{transition:all 0.3s;cursor:pointer}.hov-card:hover{border-color:rgba(201,168,76,0.3)!important;transform:translateY(-4px)}
-        .news-card:hover{border-color:rgba(201,168,76,0.28)!important;transform:translateY(-5px)}
-      `}</style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap');
+  .hi img{transition:transform 0.7s ease}.hi:hover img{transform:scale(1.07)!important}
+  .hi:hover .po{opacity:1!important}
+  input::placeholder{color:rgba(196,187,166,0.4)}input{outline:none}
+  .hov-card{transition:all 0.3s;cursor:pointer}.hov-card:hover{border-color:rgba(201,168,76,0.3)!important;transform:translateY(-4px)}
+  .news-card:hover{border-color:rgba(201,168,76,0.28)!important;transform:translateY(-5px)}
+`}</style>
 
       {/* ── 1. HERO ── */}
       <section ref={heroRef} className="relative h-screen overflow-hidden">
@@ -1229,44 +1226,6 @@ export default function Conservation() {
 
       {/* ── 14. FOOTER ── */}
       <footer style={{ background: bg.deep, borderTop: "1px solid rgba(201,168,76,0.1)" }}>
-        <div
-          className="py-10 px-8 flex justify-center gap-5"
-          style={{ borderBottom: "1px solid rgba(201,168,76,0.06)" }}
-        >
-          {[
-            { Icon: Instagram, label: "Instagram", url: "https://instagram.com" },
-            { Icon: Twitter, label: "Twitter", url: "https://twitter.com" },
-            { Icon: Facebook,label: "Facebook",url: "https://facebook.com" },
-            { Icon: Youtube,label: "YouTube",url: "https://youtube.com" },
-          ].map(({ Icon, label, url }) => (
-            <motion.a
-              key={label}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.12, y: -3 }}
-              className="w-11 h-11 rounded-full flex items-center justify-center no-underline transition-all duration-300"
-              style={{
-                background: "rgba(201,168,76,0.07)",
-                border: "1px solid rgba(201,168,76,0.18)",
-                color: "rgba(201,168,76,0.6)",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "rgba(201,168,76,0.18)";
-                e.currentTarget.style.color = GOLD;
-                e.currentTarget.style.borderColor = "rgba(201,168,76,0.5)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = "rgba(201,168,76,0.07)";
-                e.currentTarget.style.color = "rgba(201,168,76,0.6)";
-                e.currentTarget.style.borderColor = "rgba(201,168,76,0.18)";
-              }}
-            >
-              <Icon size={16} />
-            </motion.a>
-          ))}
-        </div>
-
         <div className="px-10 py-8 flex justify-between items-center flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <div
@@ -1276,11 +1235,11 @@ export default function Conservation() {
               <Leaf size={12} color={bg.main} />
             </div>
             <span className="uppercase tracking-widest" style={{ fontSize: "0.8rem", letterSpacing: "0.25em" }}>
-              GREEN <span style={{ color: GOLD }}>NATURE</span>
+              Loss Of Animal <span style={{ color: GOLD }}>Habitats</span>
             </span>
           </div>
           <p style={{ color: "rgba(201,168,76,0.25)", fontSize: "0.82rem" }}>
-            © 2026 Green Nature Conservation. All rights reserved.
+            © 2026 Loss Of Animal Habitat Project. All rights reserved.
           </p>
           <div className="flex gap-7">
             {["Privacy", "Terms", "Contact"].map(t => (
