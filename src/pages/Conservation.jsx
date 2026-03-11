@@ -1224,7 +1224,7 @@ export default function Conservation() {
         </div>
       </section>
 
-      {/* ── 14. FOOTER ── */}
+      {/* ── 14. Footer ── */}
       <footer style={{ background: bg.deep, borderTop: "1px solid rgba(201,168,76,0.1)" }}>
         <div className="px-10 py-8 flex justify-between items-center flex-wrap gap-4">
           <div className="flex items-center gap-3">
