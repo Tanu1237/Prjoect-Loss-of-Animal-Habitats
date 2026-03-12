@@ -44,9 +44,15 @@ const sections = [
 
 const Fade = ({ direction = "top" }) =>
   direction === "top" ? (
-    <div className="pointer-events-none absolute top-0 inset-x-0 h-40 z-20" style={{ background: "linear-gradient(to bottom, #060d09 0%, rgba(6,13,9,0.6) 60%, transparent 100%)" }} />
+    <div
+      className="pointer-events-none absolute top-0 inset-x-0 h-40 z-10"  // was z-20
+      style={{ background: "linear-gradient(to bottom, #060d09 0%, rgba(6,13,9,0.6) 60%, transparent 100%)" }}
+    />
   ) : (
-    <div className="pointer-events-none absolute bottom-0 inset-x-0 h-40 z-20" style={{ background: "linear-gradient(to top, #060d09 0%, rgba(6,13,9,0.6) 60%, transparent 100%)" }} />
+    <div
+      className="pointer-events-none absolute bottom-0 inset-x-0 h-40 z-10"  // was z-20
+      style={{ background: "linear-gradient(to top, #060d09 0%, rgba(6,13,9,0.6) 60%, transparent 100%)" }}
+    />
   );
 
 const SpeciesCard = ({ item, onClick }) => (

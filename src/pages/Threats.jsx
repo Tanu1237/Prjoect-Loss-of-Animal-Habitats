@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import threatsData from "../data/threatsData";
-import { setNavbarVisible } from "../components/Navbar";
+import { setNavbarVisible, setNavbarProgress } from "../components/Navbar";
 
 const STATS = [
   { value: "1M+",  label: "Species at Risk",  sub: "Currently facing extinction" },
@@ -53,7 +53,10 @@ function Threats() {
   useEffect(() => {
     document.body.style.backgroundColor = "#000";
     setNavbarVisible(true);
-    return () => { setNavbarVisible(true); };
+    return () => {
+      setNavbarVisible(true);
+      setNavbarProgress(0);   // reset bar when leaving Threats
+    };
   }, []);
 
   useEffect(() => {
@@ -74,6 +77,10 @@ function Threats() {
       requestAnimationFrame(() => {
         const y     = el.scrollTop;
         const delta = y - lastScrollTop.current;
+        const max   = el.scrollHeight - el.clientHeight;
+
+        // Push progress to navbar
+        if (max > 0) setNavbarProgress(y / max);
 
         if (y < 80) {
           setNavbarVisible(true);

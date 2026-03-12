@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { GOLD, G, bg, cream, dim } from "../data/ConservationData.js";
 
-// ── Shared primitives ──
+// ── Shared animation preset ──
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.55, ease: "easeOut" },
+};
+
+// ── Shared primitives ──────────────────────────────────────
 
 export const GL = ({ center }) => (
   <div
@@ -14,7 +21,7 @@ export const GL = ({ center }) => (
 
 export const Tag = ({ children, color }) => (
   <span
-    className="inline-block px-3 py-1 rounded-full text-xs uppercase tracking-widest"
+    className="inline-block px-3 py-1 rounded-full text-xs uppercase"
     style={{
       color: color || GOLD,
       background: `${color || GOLD}12`,
@@ -29,27 +36,25 @@ export const Tag = ({ children, color }) => (
 
 export const SectionHeader = ({ label, title, sub, center }) => (
   <motion.div
-    initial={{ opacity: 0, y: 28 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
+    {...fadeUp}
     className={`mb-14 ${center ? "text-center" : "text-left"}`}
   >
     <p
-      className="text-xs uppercase tracking-widest mb-3"
+      className="text-xs uppercase mb-3"
       style={{ color: GOLD, fontFamily: "Courier New,monospace", letterSpacing: "0.5em" }}
     >
       {label}
     </p>
     <GL center={center} />
     <h2
-      className="font-normal tracking-wide"
-      style={{ fontSize: "clamp(2.2rem,4vw,3.4rem)", color: cream, letterSpacing: "0.02em" }}
+      className="font-normal"
+      style={{ fontSize: "clamp(2.2rem,4vw,3.2rem)", color: cream, letterSpacing: "0.02em" }}
     >
       {title}
     </h2>
     {sub && (
       <p
-        className={`mt-4 leading-relaxed text-lg ${center ? "mx-auto" : ""}`}
+        className={`mt-4 text-lg leading-relaxed ${center ? "mx-auto" : ""}`}
         style={{ color: dim, maxWidth: "40rem", opacity: 0.75, lineHeight: 1.8 }}
       >
         {sub}
@@ -58,23 +63,18 @@ export const SectionHeader = ({ label, title, sub, center }) => (
   </motion.div>
 );
 
-// ── Body block renderer ──
+// ── Body block renderer ────────────────────────────────────
 
 function BodyBlocks({ body }) {
   return (
     <div className="flex flex-col gap-7">
       {body.map((block, i) => {
+
         if (block.type === "intro") return (
           <p
             key={i}
             className="pl-5 m-0"
-            style={{
-              color: cream,
-              fontSize: "1.12rem",
-              lineHeight: 1.85,
-              opacity: 0.92,
-              borderLeft: `3px solid ${GOLD}`,
-            }}
+            style={{ color: cream, fontSize: "1.1rem", lineHeight: 1.85, opacity: 0.92, borderLeft: `3px solid ${GOLD}` }}
           >
             {block.text}
           </p>
@@ -93,38 +93,21 @@ function BodyBlocks({ body }) {
         if (block.type === "subheading") return (
           <div key={i}>
             <div className="h-px w-9 mb-3" style={{ background: G }} />
-            <h3 className="text-2xl font-normal m-0" style={{ color: cream }}>
-              {block.text}
-            </h3>
+            <h3 className="text-2xl font-normal m-0" style={{ color: cream }}>{block.text}</h3>
           </div>
         );
 
         if (block.type === "pullquote") return (
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            {...fadeUp}
             className="relative px-9 py-8 rounded-2xl"
             style={{ background: "rgba(201,168,76,0.05)", border: "1px solid rgba(201,168,76,0.18)" }}
           >
-            <span
-              className="absolute top-2 left-6 leading-none"
-              style={{ fontSize: "4rem", color: `${GOLD}20`, fontFamily: "Georgia,serif" }}
-            >
-              "
-            </span>
-            <p
-              className="italic pt-2 mb-4"
-              style={{ color: cream, fontSize: "1.2rem", lineHeight: 1.7, opacity: 0.9 }}
-            >
-              {block.text}
-            </p>
+            <span className="absolute top-2 left-6 leading-none" style={{ fontSize: "4rem", color: `${GOLD}20`, fontFamily: "Georgia,serif" }}>"</span>
+            <p className="italic pt-2 mb-4" style={{ color: cream, fontSize: "1.2rem", lineHeight: 1.7, opacity: 0.9 }}>{block.text}</p>
             <div className="h-px w-10 mb-2" style={{ background: G }} />
-            <p
-              className="m-0 uppercase tracking-widest"
-              style={{ color: GOLD, fontSize: "0.72rem", letterSpacing: "0.2em", fontFamily: "Courier New,monospace" }}
-            >
+            <p className="m-0 uppercase" style={{ color: GOLD, fontSize: "0.72rem", letterSpacing: "0.2em", fontFamily: "Courier New,monospace" }}>
               {block.attribution}
             </p>
           </motion.div>
@@ -135,26 +118,14 @@ function BodyBlocks({ body }) {
             {block.items.map((s, j) => (
               <motion.div
                 key={j}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: j * 0.08 }}
+                {...fadeUp}
+                transition={{ delay: j * 0.08, duration: 0.5 }}
                 className="py-5 px-3 text-center rounded-xl"
                 style={{ background: "rgba(201,168,76,0.04)", border: "1px solid rgba(201,168,76,0.14)" }}
               >
-                <p
-                  className="mb-1"
-                  style={{ fontSize: "1.8rem", color: GOLD, fontFamily: "'Cinzel',serif" }}
-                >
-                  {s.val}
-                </p>
+                <p className="mb-1" style={{ fontSize: "1.8rem", color: GOLD, fontFamily: "'Cinzel',serif" }}>{s.val}</p>
                 <div className="h-px w-4 mx-auto my-1" style={{ background: G }} />
-                <p
-                  className="m-0 leading-snug"
-                  style={{ color: dim, fontSize: "0.72rem", opacity: 0.65 }}
-                >
-                  {s.label}
-                </p>
+                <p className="m-0 leading-snug" style={{ color: dim, fontSize: "0.72rem", opacity: 0.65 }}>{s.label}</p>
               </motion.div>
             ))}
           </div>
@@ -163,24 +134,17 @@ function BodyBlocks({ body }) {
         if (block.type === "callout") return (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...fadeUp}
             className="relative flex gap-5 items-start p-7 rounded-2xl overflow-hidden"
             style={{ background: "rgba(201,168,76,0.07)", border: "1px solid rgba(201,168,76,0.25)" }}
           >
             <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: G }} />
             <span className="text-3xl shrink-0 mt-0.5">{block.icon}</span>
             <div>
-              <p
-                className="m-0 mb-2 uppercase tracking-widest"
-                style={{ color: GOLD, fontSize: "0.62rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}
-              >
+              <p className="m-0 mb-2 uppercase" style={{ color: GOLD, fontSize: "0.62rem", letterSpacing: "0.4em", fontFamily: "Courier New,monospace" }}>
                 How You Can Help
               </p>
-              <p className="m-0" style={{ color: cream, fontSize: "1rem", lineHeight: 1.75, opacity: 0.88 }}>
-                {block.text}
-              </p>
+              <p className="m-0" style={{ color: cream, fontSize: "1rem", lineHeight: 1.75, opacity: 0.88 }}>{block.text}</p>
             </div>
           </motion.div>
         );
@@ -191,7 +155,7 @@ function BodyBlocks({ body }) {
   );
 }
 
-// ── News Article Modal ──
+// ── News Article Modal ─────────────────────────────────────
 
 export function NewsModal({ article, onClose }) {
   useEffect(() => {
@@ -204,75 +168,57 @@ export function NewsModal({ article, onClose }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[400] flex items-center justify-center p-4 backdrop-blur-3xl"
-      style={{ background: "rgba(3,6,5,0.95)" }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[400] flex items-center justify-center p-4 backdrop-blur-2xl"
+      style={{ background: "rgba(3,6,5,0.93)" }}
       onClick={onClose}
     >
       <motion.div
-        initial={{ scale: 0.9, y: 40, opacity: 0 }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
-        exit={{ scale: 0.9, y: 40, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 26 }}
+        initial={{ opacity: 0, y: 24, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0,  scale: 1 }}
+        exit={{    opacity: 0, y: 16, scale: 0.97 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         onClick={e => e.stopPropagation()}
         className="relative w-full max-w-2xl overflow-y-auto rounded-3xl"
         style={{ background: bg.card, border: "1px solid rgba(201,168,76,0.18)", maxHeight: "92vh" }}
       >
         {/* Gold top bar */}
-        <div
-          className="h-0.5 rounded-t-3xl sticky top-0 z-10"
-          style={{ background: G }}
-        />
+        <div className="h-0.5 rounded-t-3xl sticky top-0 z-10" style={{ background: G }} />
 
         {/* Hero image */}
         <div className="relative overflow-hidden" style={{ height: "22rem" }}>
-          <img
-            src={article.heroImg}
-            alt={article.title}
-            className="w-full h-full object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(to top,rgba(12,20,16,1) 0%,rgba(12,20,16,0.4) 55%,transparent 100%)" }}
-          />
-          {/* Close button */}
+          <img src={article.heroImg} alt={article.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(12,20,16,1) 0%,rgba(12,20,16,0.4) 55%,transparent 100%)" }} />
+
+          {/* Close */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md z-10"
+            className="absolute top-5 right-5 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer backdrop-blur-md z-10 text-lg transition-colors duration-200"
             style={{ background: "rgba(6,10,7,0.85)", border: "1px solid rgba(201,168,76,0.25)", color: cream }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = GOLD}
+            onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"}
           >
-            <X size={15} />
+            ×
           </button>
+
           {/* Tag + date */}
           <div className="absolute top-5 left-6 flex items-center gap-2">
             <Tag>{article.tag}</Tag>
-            <span
-              style={{ color: "rgba(201,168,76,0.5)", fontSize: "0.72rem", fontFamily: "Courier New,monospace" }}
-            >
-              {article.date}
-            </span>
+            <span style={{ color: "rgba(201,168,76,0.5)", fontSize: "0.72rem", fontFamily: "Courier New,monospace" }}>{article.date}</span>
           </div>
         </div>
 
         {/* Content */}
         <div className="px-12 pt-10 pb-12">
-          <h2
-            className="font-normal mb-6 leading-tight"
-            style={{ fontSize: "clamp(1.6rem,3vw,2.4rem)", color: cream }}
-          >
+          <h2 className="font-normal mb-6 leading-tight" style={{ fontSize: "clamp(1.6rem,3vw,2.4rem)", color: cream }}>
             {article.title}
           </h2>
 
           {/* Author row */}
-          <div
-            className="flex items-center gap-5 pb-6 mb-8"
-            style={{ borderBottom: "1px solid rgba(201,168,76,0.1)" }}
-          >
+          <div className="flex items-center gap-5 pb-6 mb-8" style={{ borderBottom: "1px solid rgba(201,168,76,0.1)" }}>
             <div
               className="w-11 h-11 rounded-full flex items-center justify-center text-lg shrink-0"
-              style={{
-                background: "linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05))",
-                border: "1px solid rgba(201,168,76,0.2)",
-              }}
+              style={{ background: "linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05))", border: "1px solid rgba(201,168,76,0.2)" }}
             >
               {article.author.charAt(0)}
             </div>
@@ -280,10 +226,7 @@ export function NewsModal({ article, onClose }) {
               <p className="m-0" style={{ color: cream, fontSize: "0.92rem" }}>{article.author}</p>
               <p className="m-0" style={{ color: dim, fontSize: "0.78rem", opacity: 0.6 }}>{article.authorRole}</p>
             </div>
-            <div
-              className="ml-auto"
-              style={{ color: "rgba(201,168,76,0.45)", fontSize: "0.75rem", fontFamily: "Courier New,monospace" }}
-            >
+            <div className="ml-auto" style={{ color: "rgba(201,168,76,0.45)", fontSize: "0.75rem", fontFamily: "Courier New,monospace" }}>
               ⏱ {article.readTime}
             </div>
           </div>
@@ -291,29 +234,19 @@ export function NewsModal({ article, onClose }) {
           <BodyBlocks body={article.body} />
 
           {/* Footer */}
-          <div
-            className="mt-10 pt-6 flex items-center justify-between flex-wrap gap-4"
-            style={{ borderTop: "1px solid rgba(201,168,76,0.1)" }}
-          >
+          <div className="mt-10 pt-6 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid rgba(201,168,76,0.1)" }}>
             <div className="flex gap-2">
               <Tag>{article.tag}</Tag>
               <Tag color="#a8c9ad">{article.readTime}</Tag>
             </div>
             <button
               onClick={onClose}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full uppercase cursor-pointer transition-all duration-300"
-              style={{
-                border: "1px solid rgba(201,168,76,0.25)",
-                color: dim,
-                background: "transparent",
-                fontSize: "0.78rem",
-                letterSpacing: "0.15em",
-                fontFamily: "Courier New,monospace",
-              }}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full uppercase cursor-pointer transition-all duration-200"
+              style={{ border: "1px solid rgba(201,168,76,0.25)", color: dim, background: "transparent", fontSize: "0.78rem", letterSpacing: "0.15em", fontFamily: "Courier New,monospace" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = GOLD; e.currentTarget.style.color = GOLD; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"; e.currentTarget.style.color = dim; }}
             >
-              <X size={12} /> Close Article
+              × Close Article
             </button>
           </div>
         </div>
@@ -322,7 +255,7 @@ export function NewsModal({ article, onClose }) {
   );
 }
 
-// ── Focus (image gallery) Modal ──
+// ── Focus (image gallery) Modal ────────────────────────────
 
 export function FocusModal({ focusKey, modalsData, onClose }) {
   const [imgIdx, setImgIdx] = useState(0);
@@ -335,20 +268,24 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
 
   if (!md) return null;
 
+  const prev = () => setImgIdx(p => (p - 1 + md.imgs.length) % md.imgs.length);
+  const next = () => setImgIdx(p => (p + 1) % md.imgs.length);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
       className="fixed inset-0 z-[200] flex items-center justify-center p-4 backdrop-blur-2xl"
       style={{ background: "rgba(3,6,5,0.92)" }}
       onClick={onClose}
     >
       <motion.div
-        initial={{ scale: 0.88, y: 30 }}
-        animate={{ scale: 1, y: 0 }}
-        exit={{ scale: 0.88 }}
-        transition={{ type: "spring", stiffness: 280, damping: 28 }}
+        initial={{ opacity: 0, y: 20, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0,  scale: 1 }}
+        exit={{    opacity: 0, y: 12, scale: 0.97 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         onClick={e => e.stopPropagation()}
         className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl"
         style={{ background: bg.card, border: "1px solid rgba(201,168,76,0.2)" }}
@@ -364,55 +301,46 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
               src={md.imgs[imgIdx]}
               alt={md.title}
               className="w-full h-full object-cover"
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.3 }}
             />
           </AnimatePresence>
-          <div
-            className="absolute inset-0"
-            style={{ background: `linear-gradient(to top,${bg.card},transparent 50%)` }}
-          />
+          <div className="absolute inset-0" style={{ background: `linear-gradient(to top,${bg.card},transparent 50%)` }} />
 
           {/* Prev / Next */}
-          {[
-            { side: "left",  fn: () => setImgIdx(p => (p - 1 + md.imgs.length) % md.imgs.length), I: ChevronLeft },
-            { side: "right", fn: () => setImgIdx(p => (p + 1) % md.imgs.length), I: ChevronRight },
-          ].map(({ side, fn, I }) => (
-            <button
-              key={side}
-              onClick={fn}
-              className={`absolute ${side}-4 top-1/2 -translate-y-1/2 p-2 rounded-full cursor-pointer`}
-              style={{
-                background: "rgba(3,6,5,0.75)",
-                border: "1px solid rgba(201,168,76,0.2)",
-                color: cream,
-              }}
-            >
-              <I size={16} />
-            </button>
-          ))}
+          <button
+            onClick={prev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200"
+            style={{ background: "rgba(3,6,5,0.75)", border: "1px solid rgba(201,168,76,0.2)", color: cream }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = GOLD}
+            onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)"}
+          >
+            ‹
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200"
+            style={{ background: "rgba(3,6,5,0.75)", border: "1px solid rgba(201,168,76,0.2)", color: cream }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = GOLD}
+            onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)"}
+          >
+            ›
+          </button>
 
           {/* Close */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-1.5 rounded-full cursor-pointer"
-            style={{
-              background: "rgba(3,6,5,0.75)",
-              border: "1px solid rgba(201,168,76,0.2)",
-              color: cream,
-            }}
+            className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center cursor-pointer transition-colors duration-200 text-lg"
+            style={{ background: "rgba(3,6,5,0.75)", border: "1px solid rgba(201,168,76,0.2)", color: cream }}
+            onMouseEnter={e => e.currentTarget.style.borderColor = GOLD}
+            onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(201,168,76,0.2)"}
           >
-            <X size={16} />
+            ×
           </button>
 
-          <h2
-            className="absolute bottom-6 left-8 text-4xl font-normal"
-            style={{ color: cream }}
-          >
-            {md.title}
-          </h2>
+          <h2 className="absolute bottom-6 left-8 text-4xl font-normal" style={{ color: cream }}>{md.title}</h2>
         </div>
 
         {/* Body */}
@@ -427,15 +355,13 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
                   width: i === imgIdx ? 26 : 6,
                   backgroundColor: i === imgIdx ? GOLD : "rgba(201,168,76,0.2)",
                 }}
+                transition={{ duration: 0.25 }}
                 style={{ height: 2, border: "none", borderRadius: 4, cursor: "pointer" }}
               />
             ))}
           </div>
 
-          <p
-            className="leading-loose mb-6"
-            style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.85 }}
-          >
+          <p className="leading-loose mb-6" style={{ color: dim, fontSize: "1.05rem", lineHeight: 1.85 }}>
             {md.desc}
           </p>
 
@@ -447,10 +373,23 @@ export function FocusModal({ focusKey, modalsData, onClose }) {
                 className="flex gap-2 items-start px-4 py-3 rounded-xl"
                 style={{ background: "rgba(201,168,76,0.06)", border: "1px solid rgba(201,168,76,0.15)" }}
               >
-                <span style={{ color: GOLD }}>✦</span>
+                <span style={{ color: GOLD, marginTop: 1 }}>✦</span>
                 <p className="m-0" style={{ color: dim, fontSize: "0.9rem" }}>{f}</p>
               </div>
             ))}
+          </div>
+
+          {/* Close footer */}
+          <div className="mt-8 text-right">
+            <button
+              onClick={onClose}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full uppercase cursor-pointer transition-all duration-200"
+              style={{ border: "1px solid rgba(201,168,76,0.25)", color: dim, background: "transparent", fontSize: "0.78rem", letterSpacing: "0.15em", fontFamily: "Courier New,monospace" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = GOLD; e.currentTarget.style.color = GOLD; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(201,168,76,0.25)"; e.currentTarget.style.color = dim; }}
+            >
+              × Close
+            </button>
           </div>
         </div>
       </motion.div>
